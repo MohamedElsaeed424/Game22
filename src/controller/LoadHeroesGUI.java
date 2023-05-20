@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import model.characters.Hero;
 import views.LoadHeroes;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class LoadHeroesGUI {
@@ -30,18 +31,17 @@ public class LoadHeroesGUI {
     }
 
     public void HeroesBtnHandler (ActionEvent e){
+        Button heroBtn = (Button) e.getSource();
+        int heroIndex = HeroesBtn.indexOf(heroBtn);
+       Hero h = Game.availableHeroes.get(heroIndex);
         if ( e.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
-            onHeroesDetailsUpdate();
+            onHeroesDetailsUpdate(h);
         }else if (e.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
             // start game
         }
     }
 
-    public void onHeroesDetailsUpdate(){
-        ArrayList<String> HeroesData = new ArrayList<>() ;
-        for (int i =0 ; i<Heroes.size() ; i++){
-            Hero h = Heroes.get(i);
+    public void onHeroesDetailsUpdate(Hero h){
             loadHeroes.addDetails(h.toString());
-        }
     }
 }

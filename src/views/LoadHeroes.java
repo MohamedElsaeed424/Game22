@@ -25,16 +25,16 @@ public class LoadHeroes  {
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
     public LoadHeroes() {
+
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
-        layoutheroes.setRight(heroesdetails);
-         LoadHeroes = new Scene(layoutheroes, 1500,1000);
         GridPane grid = new GridPane();
         grid.setMaxSize(1125,1000);
-        heroesdetails.setMaxSize(375,1000);
-        heroesdetails.setEditable(false);
-        layoutdetails.getChildren().addAll(heroesdetails,grid);
-         LoadHeroes = new Scene(layoutdetails, 1000,1000);
+        layoutheroes.setRight(heroesdetails);
+        layoutheroes.setLeft(grid);
+         LoadHeroes = new Scene(layoutheroes, 1500,1000);
+
+
         heroesdetails.setFont(new Font(24));
     }
     public void addHeroes(Button hero){

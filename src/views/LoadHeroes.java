@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.characters.Character;
 import model.characters.Hero;
-
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;

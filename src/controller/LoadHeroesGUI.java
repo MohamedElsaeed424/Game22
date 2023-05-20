@@ -23,9 +23,9 @@ public class LoadHeroesGUI {
             Button heroeBtn = new Button();
             heroeBtn.setText(i + " "+h.getName() );
             heroeBtn.setOnAction(e-> HeroesBtnHandler(e));
+            loadHeroes.addHeroes(heroeBtn,i,0);
             HeroesBtn.add(heroeBtn);
         }
-        loadHeroes.addHeroes(HeroesBtn);
     }
 
     public void HeroesBtnHandler (ActionEvent e){
@@ -35,15 +35,11 @@ public class LoadHeroesGUI {
         if ( e.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
             onHeroesDetailsUpdate(h);
         }else if (e.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-            onHeroesChoose(h);
+            // start game
         }
     }
 
     public void onHeroesDetailsUpdate(Hero h){
             loadHeroes.addDetails(h.toString());
-    }
-
-    public void onHeroesChoose(Hero h){
-
     }
 }

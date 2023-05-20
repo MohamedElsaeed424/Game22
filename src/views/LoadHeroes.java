@@ -4,8 +4,10 @@ import engine.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -20,15 +22,9 @@ public class LoadHeroes extends Application {
 
     Scene LoadHeroes ;
 
-    public void setLoadHeroes(Scene loadHeroes) {
-        LoadHeroes = loadHeroes;
-    }
 
-    public Scene getLoadHeroes() {
-        return LoadHeroes;
-    }
 
-    BorderPane layoutheroes = new BorderPane();
+
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
     public static void main(String[] args) {
@@ -38,16 +34,17 @@ public class LoadHeroes extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Choose your hero(Hover to check details)");
-
+        GridPane grid = new GridPane();
+        grid.setMaxSize(1125,1000);
 
 
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
+        layoutdetails.getChildren().addAll(heroesdetails,grid);
 
 
-        layoutheroes.setRight(heroesdetails);
+         LoadHeroes = new Scene(layoutdetails, 1500,1000);
 
-         LoadHeroes = new Scene(layoutheroes, 1500,1000);
         heroesdetails.setFont(new Font(24));
         primaryStage.setScene(LoadHeroes);
         primaryStage.show();
@@ -55,11 +52,18 @@ public class LoadHeroes extends Application {
 
     }
     public void addHeroes(Button hero){
-        layoutheroes.getChildren().add(hero);
+        layoutdetails.getChildren().add(hero);
 
 
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);
+    }
+    public void setLoadHeroes(Scene loadHeroes) {
+        LoadHeroes = loadHeroes;
+    }
+
+    public Scene getLoadHeroes() {
+        return LoadHeroes;
     }
 }

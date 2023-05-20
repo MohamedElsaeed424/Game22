@@ -32,7 +32,7 @@ public class LoadHeroes  {
         }catch (FileNotFoundException e){
             System.out.println("Not found File");
         }
-        LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
+        //LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
 

@@ -17,7 +17,7 @@ import javax.swing.*;
 public class test extends Application {
     Button button ;
 
-    Stage window  = new Stage();
+    Stage window  = new Stage();    
     Scene scene1 , scene2 ;
     public static void main(String[] args) {
         launch(args);

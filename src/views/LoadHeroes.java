@@ -19,6 +19,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LoadHeroes  {
+    GridPane grid = new GridPane();
     Scene LoadHeroes ;
     BorderPane layoutheroes = new BorderPane();
     VBox layoutdetails = new VBox();
@@ -26,15 +27,16 @@ public class LoadHeroes  {
     public LoadHeroes() {
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
-        GridPane grid = new GridPane();
         grid.setMaxSize(1125,1000);
         layoutheroes.setRight(heroesdetails);
         layoutheroes.setLeft(grid);
         LoadHeroes = new Scene(layoutheroes, 1000,1000);
         heroesdetails.setFont(new Font(24));
     }
-    public void addHeroes(Button hero){
-        layoutheroes.getChildren().add(hero);
+    public void addHeroes(ArrayList<Button>HeroesBtn){
+        for (int i =0 ; i< grid.getWidth(); i++){
+                grid.add(HeroesBtn.get(i),i,0);
+        }
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);

@@ -23,9 +23,9 @@ public class LoadHeroesGUI {
             Button heroeBtn = new Button();
             heroeBtn.setText(i + " "+h.getName() );
             heroeBtn.setOnAction(e-> HeroesBtnHandler(e));
-            loadHeroes.addHeroes(heroeBtn);
             HeroesBtn.add(heroeBtn);
         }
+        loadHeroes.addHeroes(HeroesBtn);
     }
 
     public void HeroesBtnHandler (ActionEvent e){

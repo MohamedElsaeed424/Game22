@@ -17,9 +17,7 @@ public class LoadHeroesGUI {
 
     public LoadHeroesGUI (){
         HeroesBtn  = new ArrayList<>() ;
-
         int sizeOfHeroes = Heroes.size();
-
         for(int i =0 ; i<sizeOfHeroes ; i++){
             Hero h = Heroes.get(i);
             Button heroeBtn = new Button();

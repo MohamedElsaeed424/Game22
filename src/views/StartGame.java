@@ -25,9 +25,7 @@ public class StartGame extends Application {
         launch(args);
     }
 
-    public Stage getWindow() {
-        return window;
-    }
+
 
     public void setWindow(Stage window) {
         this.window = window;
@@ -41,9 +39,14 @@ public class StartGame extends Application {
         StackPane stack = new StackPane();
         //stack.getChildren().add(webView);
         stack.getChildren().add(button);
-        Scene scene = new Scene(stack,900,900);
+        Scene scene = new Scene(stack,1500,1000);
         window.setScene(scene);
         window.show();
+    }
+
+    public Stage getWindow() {
+        start(window);
+        return window;
     }
 
 }

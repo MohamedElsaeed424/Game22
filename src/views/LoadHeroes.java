@@ -22,6 +22,8 @@ public class LoadHeroes extends Application {
     BorderPane layoutheroes = new BorderPane();
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
+
+    Stage window;
     public static void main(String[] args) {
         launch(args);
     }
@@ -43,11 +45,11 @@ public class LoadHeroes extends Application {
         heroesdetails.appendText(herosdetails);
     }
 
-    public void setLoadHeroes(Scene loadHeroes) {
+    public void setLoadHeroesSchene (Scene loadHeroes) {
         LoadHeroes = loadHeroes;
     }
 
-    public Scene getLoadHeroes() {
+    public Scene getLoadHeroesScene () {
         return LoadHeroes;
     }
 }

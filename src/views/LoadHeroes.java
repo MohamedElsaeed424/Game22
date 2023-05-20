@@ -1,5 +1,6 @@
 package views;
 
+
 import controller.LoadHeroesGUI;
 import engine.Game;
 import javafx.application.Application;

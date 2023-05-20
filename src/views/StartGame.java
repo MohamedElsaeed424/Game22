@@ -39,7 +39,7 @@ public class StartGame extends Application {
         StackPane stack = new StackPane();
         //stack.getChildren().add(webView);
         stack.getChildren().add(button);
-        Scene scene = new Scene(stack,1500,1000);
+        Scene scene = new Scene(stack,1000,1000);
         window.setScene(scene);
         window.show();
     }

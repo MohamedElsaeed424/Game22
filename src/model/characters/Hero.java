@@ -269,4 +269,15 @@ public abstract class Hero extends Character {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "actionsAvailable=" + actionsAvailable +
+                ", maxActions=" + maxActions +
+                ", specialAction=" + specialAction +
+                ", vaccineInventory=" + vaccineInventory +
+                ", supplyInventory=" + supplyInventory +
+                '}';
+    }
 }

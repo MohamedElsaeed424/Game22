@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class LoadHeroes extends Application {
     BorderPane layoutheroes = new BorderPane();
     VBox layoutdetails = new VBox();
+    TextArea heroesdetails = new TextArea("Hero details:\n");
     public static void main(String[] args) {
         launch(args);
     }
@@ -28,7 +29,7 @@ public class LoadHeroes extends Application {
         primaryStage.setTitle("Choose your hero(Hover to check details)");
 
 
-        TextArea heroesdetails = new TextArea("Hero details:\n");
+
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
 
@@ -47,9 +48,7 @@ public class LoadHeroes extends Application {
 
 
     }
-    public void addDetails(Hero hero){
-        String health = "Max health:" + hero.getMaxHp() + '\n';
-        String damage = "Damage" + hero.getAttackDmg() + '\n';
-        String end = "----------";
+    public void addDetails(String herosdetails){
+        heroesdetails.appendText(herosdetails);
     }
 }

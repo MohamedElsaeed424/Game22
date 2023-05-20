@@ -19,6 +19,29 @@ import java.util.ArrayList;
 public class LoadHeroes extends Application {
 
     Scene LoadHeroes ;
+    BorderPane layoutheroes = new BorderPane();
+    VBox layoutdetails = new VBox();
+    TextArea heroesdetails = new TextArea("Hero details:\n");
+    public static void main(String[] args) {
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Choose your hero(Hover to check details)");
+        heroesdetails.setMaxSize(375,1000);
+        heroesdetails.setEditable(false);
+        layoutheroes.setRight(heroesdetails);
+         LoadHeroes = new Scene(layoutheroes, 1500,1000);
+        heroesdetails.setFont(new Font(24));
+        primaryStage.setScene(LoadHeroes);
+        primaryStage.show();
+    }
+    public void addHeroes(Button hero){
+        layoutheroes.getChildren().add(hero);
+    }
+    public void addDetails(String herosdetails){
+        heroesdetails.appendText(herosdetails);
+    }
 
     public void setLoadHeroes(Scene loadHeroes) {
         LoadHeroes = loadHeroes;
@@ -26,40 +49,5 @@ public class LoadHeroes extends Application {
 
     public Scene getLoadHeroes() {
         return LoadHeroes;
-    }
-
-    BorderPane layoutheroes = new BorderPane();
-    VBox layoutdetails = new VBox();
-    TextArea heroesdetails = new TextArea("Hero details:\n");
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Choose your hero(Hover to check details)");
-
-
-
-        heroesdetails.setMaxSize(375,1000);
-        heroesdetails.setEditable(false);
-
-
-        layoutheroes.setRight(heroesdetails);
-
-         LoadHeroes = new Scene(layoutheroes, 1500,1000);
-        heroesdetails.setFont(new Font(24));
-        primaryStage.setScene(LoadHeroes);
-        primaryStage.show();
-
-
-    }
-    public void addHeroes(Button hero){
-        layoutheroes.getChildren().add(hero);
-
-
-    }
-    public void addDetails(String herosdetails){
-        heroesdetails.appendText(herosdetails);
     }
 }

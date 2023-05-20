@@ -1,5 +1,6 @@
 package views;
 
+import controller.StartGameGUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,33 +19,31 @@ import javafx.stage.Stage;
 //import java.awt.*;
 
 public class StartGame extends Application {
+    Stage window = new Stage() ;
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public Stage getWindow() {
+        return window;
+    }
+
+    public void setWindow(Stage window) {
+        this.window = window;
+    }
+
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("First scene");
-        Button button = new Button("Start Game");
-        button.setFont(new javafx.scene.text.Font(80));
-         button.setStyle("-fx-border-color:#000000;-fx-border-width:5px;");
-         button.setFont(Font.font("Tahoma", FontWeight.BOLD, 80));
-       // Font horrorFont = Font.loadFont(getClass().getResourceAsStream("/path/to/horror/font.ttf"), 50);
-        //button.setFont(horrorFont);
-       // WebView webView = new WebView();
-       // WebEngine webEngine = webView.getEngine();
-       // webEngine.load("https://media.giphy.com/media/GrJLbDwSeKL8A/giphy.gif");
+        window.setTitle("First scene");
+        StartGameGUI start = new StartGameGUI() ;
+        Button button = start.getStartGameButton() ;
         StackPane stack = new StackPane();
         //stack.getChildren().add(webView);
         stack.getChildren().add(button);
         Scene scene = new Scene(stack,900,900);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-
-
-
+        window.setScene(scene);
+        window.show();
     }
 
 }

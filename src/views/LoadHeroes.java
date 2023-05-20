@@ -20,6 +20,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LoadHeroes  {
+    LoadHeroesGUI loadheroes;
     Scene LoadHeroes ;
     BorderPane layoutheroes = new BorderPane();
     GridPane grid = new GridPane();
@@ -28,13 +29,13 @@ public class LoadHeroes  {
 
 
     public LoadHeroes() {
-        LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
+        loadheroes = new LoadHeroesGUI();
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
         grid.setMaxSize(1125,1000);
         layoutheroes.setRight(heroesdetails);
         layoutheroes.setLeft(grid);
-         LoadHeroes = new Scene(layoutheroes, 1000,1000);
+         LoadHeroes = new Scene(layoutheroes, 1500,1000);
         heroesdetails.setFont(new Font(24));
     }
     public void addHeroes(Button hero){
@@ -44,6 +45,7 @@ public class LoadHeroes  {
         heroesdetails.appendText(herosdetails);
     }
     public void setLoadHeroesScene (Scene loadHeroes) {
+        
         LoadHeroes = loadHeroes;
     }
     public Scene getLoadHeroesScene() {

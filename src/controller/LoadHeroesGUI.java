@@ -7,11 +7,10 @@ import javafx.scene.input.MouseEvent;
 import model.characters.Hero;
 import views.LoadHeroes;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class LoadHeroesGUI {
-    private ArrayList<Hero>Heroes  = Game.availableHeroes ;
+    ArrayList<Hero>Heroes  = Game.availableHeroes ;
     private ArrayList<Button>HeroesBtn;
     private LoadHeroes loadHeroes ;
 

@@ -9,7 +9,7 @@ public class WinGameGUI {
 
         public WinGameGUI (){
                 winBtn = new Button("Win Game") ;
-                winBtn.setOnAction(e->);
+//                winBtn.setOnAction(e->);
         }
 
         public Button getWinBtn() {

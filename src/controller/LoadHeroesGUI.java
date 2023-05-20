@@ -23,7 +23,7 @@ public class LoadHeroesGUI {
             Button heroeBtn = new Button();
             heroeBtn.setText(i + " "+h.getName() );
             heroeBtn.setOnAction(e-> HeroesBtnHandler(e));
-            loadHeroes.addHeroes(heroeBtn);
+            loadHeroes.addHeroes(heroeBtn,i,0);
             HeroesBtn.add(heroeBtn);
         }
     }

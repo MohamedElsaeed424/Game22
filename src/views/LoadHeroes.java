@@ -22,13 +22,14 @@ public class LoadHeroes  {
     Scene LoadHeroes ;
 
     BorderPane layoutheroes = new BorderPane();
+    GridPane grid = new GridPane();
+
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
     public LoadHeroes() {
 
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
-        GridPane grid = new GridPane();
         grid.setMaxSize(1125,1000);
         layoutheroes.setRight(heroesdetails);
         layoutheroes.setLeft(grid);
@@ -37,11 +38,11 @@ public class LoadHeroes  {
 
         heroesdetails.setFont(new Font(24));
     }
-    public void addHeroes(Button hero){
+    public void addHeroes(Button hero,int i,int j){
+        grid.add(hero,i,j);
 
-        layoutheroes.getChildren().add(hero);
 
-        layoutdetails.getChildren().add(hero);
+
 
     }
     public void addDetails(String herosdetails){

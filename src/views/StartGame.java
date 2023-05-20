@@ -33,7 +33,7 @@ public class StartGame extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        window.setTitle("First scene");
+        window.setTitle("Last Of Us");
         StartGameGUI start = new StartGameGUI() ;
         Button button = start.getStartGameButton() ;
         StackPane stack = new StackPane();

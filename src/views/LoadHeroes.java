@@ -1,5 +1,6 @@
 package views;
 
+import controller.LoadHeroesGUI;
 import engine.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,30 +21,24 @@ import java.util.ArrayList;
 
 public class LoadHeroes  {
     Scene LoadHeroes ;
-
     BorderPane layoutheroes = new BorderPane();
     GridPane grid = new GridPane();
-
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
-    public LoadHeroes() {
 
+
+    public LoadHeroes() {
+        LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
         grid.setMaxSize(1125,1000);
         layoutheroes.setRight(heroesdetails);
         layoutheroes.setLeft(grid);
-         LoadHeroes = new Scene(layoutheroes, 1500,1000);
-
-
+         LoadHeroes = new Scene(layoutheroes, 1000,1000);
         heroesdetails.setFont(new Font(24));
     }
-    public void addHeroes(Button hero,int i,int j){
-        grid.add(hero,i,j);
-
-
-
-
+    public void addHeroes(Button hero){
+        grid.getChildren().add(hero);
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);

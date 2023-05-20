@@ -15,6 +15,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 //import java.awt.*;
 
@@ -32,7 +34,7 @@ public class StartGame extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         window.setTitle("Last Of Us");
         StartGameGUI start = new StartGameGUI() ;
         Button button = start.getStartGameButton() ;
@@ -44,7 +46,7 @@ public class StartGame extends Application {
         window.show();
     }
 
-    public Stage getWindow() {
+    public Stage getWindow() throws IOException {
         start(window);
         return window;
     }

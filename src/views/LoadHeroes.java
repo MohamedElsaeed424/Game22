@@ -17,6 +17,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LoadHeroes extends Application {
+
+    Scene LoadHeroes ;
+
+    public void setLoadHeroes(Scene loadHeroes) {
+        LoadHeroes = loadHeroes;
+    }
+
+    public Scene getLoadHeroes() {
+        return LoadHeroes;
+    }
+
     BorderPane layoutheroes = new BorderPane();
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
@@ -36,7 +47,7 @@ public class LoadHeroes extends Application {
 
         layoutheroes.setRight(heroesdetails);
 
-        Scene LoadHeroes = new Scene(layoutheroes, 1500,1000);
+         LoadHeroes = new Scene(layoutheroes, 1500,1000);
         heroesdetails.setFont(new Font(24));
         primaryStage.setScene(LoadHeroes);
         primaryStage.show();

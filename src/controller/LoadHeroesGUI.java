@@ -35,11 +35,15 @@ public class LoadHeroesGUI {
         if ( e.getEventType().equals(MouseEvent.MOUSE_ENTERED)){
             onHeroesDetailsUpdate(h);
         }else if (e.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
-            // start game
+            onHeroesChoose(h);
         }
     }
 
     public void onHeroesDetailsUpdate(Hero h){
             loadHeroes.addDetails(h.toString());
+    }
+
+    public void onHeroesChoose(Hero h){
+
     }
 }

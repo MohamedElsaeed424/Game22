@@ -7,14 +7,20 @@ import javafx.scene.input.MouseEvent;
 import model.characters.Hero;
 import views.LoadHeroes;
 
+import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoadHeroesGUI {
-    ArrayList<Hero>Heroes  = Game.availableHeroes ;
+    private ArrayList<Hero>Heroes  = Game.availableHeroes ;
     private ArrayList<Button>HeroesBtn;
-    private LoadHeroes loadHeroes ;
+    private LoadHeroes loadHeroes  = new LoadHeroes();
 
-    public LoadHeroesGUI (){
+    public LoadHeroesGUI () throws IOException {
+        for (int i =0 ; i<Heroes.size() ; i++){
+            System.out.println(Heroes.get(i));
+        }
         HeroesBtn  = new ArrayList<>() ;
         int sizeOfHeroes = Heroes.size();
         for(int i =0 ; i<sizeOfHeroes ; i++){

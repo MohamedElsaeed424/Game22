@@ -28,9 +28,9 @@ public class LoadHeroes  {
 
     public LoadHeroes() throws IOException {
         try {
-            Game.loadHeroes("src/test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
         }catch (FileNotFoundException e){
-            System.out.println("Not found");
+            System.out.println("Not found File");
         }
         LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
         heroesdetails.setMaxSize(375,1000);

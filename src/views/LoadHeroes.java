@@ -51,12 +51,21 @@ public class LoadHeroes  {
         LoadHeroes = new Scene(layoutheroes, 1000,1000);
         heroesdetails.setFont(new Font(24));
     }
-    public void addHeroes(Button hero){
-        grid.add(hero , 1,1);
+    public void addHeroes(Button hero, int i){
+        if (i<2){
+            grid.add(hero,i,0);
+        }
+        else if(i<5){
+            grid.add(hero,i-3,1);
+        }
+        else{
+            grid.add(hero,1,2);
+        }
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);
     }
+
     public void setLoadHeroesScene (Scene loadHeroes) {
         LoadHeroes = loadHeroes;
     }

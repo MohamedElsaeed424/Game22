@@ -18,52 +18,39 @@ import model.characters.Hero;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LoadHeroes extends Application {
-
+public class LoadHeroes  {
     Scene LoadHeroes ;
 
-
-
-
+    BorderPane layoutheroes = new BorderPane();
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Choose your hero(Hover to check details)");
-        GridPane grid = new GridPane();
-        grid.setMaxSize(1125,1000);
-
+    public LoadHeroes() {
 
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
-        layoutdetails.getChildren().addAll(heroesdetails,grid);
+        GridPane grid = new GridPane();
+        grid.setMaxSize(1125,1000);
+        layoutheroes.setRight(heroesdetails);
+        layoutheroes.setLeft(grid);
+         LoadHeroes = new Scene(layoutheroes, 1500,1000);
 
-
-         LoadHeroes = new Scene(layoutdetails, 1500,1000);
 
         heroesdetails.setFont(new Font(24));
-        primaryStage.setScene(LoadHeroes);
-        primaryStage.show();
-
-
     }
     public void addHeroes(Button hero){
-        layoutdetails.getChildren().add(hero);
 
+        layoutheroes.getChildren().add(hero);
+
+        layoutdetails.getChildren().add(hero);
 
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);
     }
-    public void setLoadHeroes(Scene loadHeroes) {
+    public void setLoadHeroesScene (Scene loadHeroes) {
         LoadHeroes = loadHeroes;
     }
-
-    public Scene getLoadHeroes() {
+    public Scene getLoadHeroesScene() {
         return LoadHeroes;
     }
 }

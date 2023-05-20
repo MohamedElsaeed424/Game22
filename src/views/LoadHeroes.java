@@ -1,48 +1,58 @@
 package views;
 
+import controller.LoadHeroesGUI;
 import engine.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.characters.Character;
 import model.characters.Hero;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoadHeroes  {
     Scene LoadHeroes ;
-
     BorderPane layoutheroes = new BorderPane();
+    GridPane grid = new GridPane();
     VBox layoutdetails = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
-    public LoadHeroes() {
+
+
+    public LoadHeroes() throws IOException {
+        try {
+            Game.loadHeroes("src/test_heros.csv");
+        }catch (FileNotFoundException e){
+            System.out.println("Not found");
+        }
+        LoadHeroesGUI loadHeroesGUI = new LoadHeroesGUI() ;
         heroesdetails.setMaxSize(375,1000);
         heroesdetails.setEditable(false);
+
+        for(int i = 0 ; i<7 ; i++){
+            RowConstraints row  = new RowConstraints() ;
+            row.setPercentHeight(90);
+            grid.getRowConstraints().add(row);
+            if (i<3) {
+                ColumnConstraints coloum = new ColumnConstraints();
+                coloum.setPercentWidth(90);
+                grid.getColumnConstraints().add(coloum);
+            }
+        }
         layoutheroes.setRight(heroesdetails);
-         LoadHeroes = new Scene(layoutheroes, 1500,1000);
-        GridPane grid = new GridPane();
-        grid.setMaxSize(1125,1000);
-        heroesdetails.setMaxSize(375,1000);
-        heroesdetails.setEditable(false);
-        layoutdetails.getChildren().addAll(heroesdetails,grid);
-         LoadHeroes = new Scene(layoutdetails, 1000,1000);
+        layoutheroes.setLeft(grid);
+        LoadHeroes = new Scene(layoutheroes, 1000,1000);
         heroesdetails.setFont(new Font(24));
     }
     public void addHeroes(Button hero){
-
-        layoutheroes.getChildren().add(hero);
-
-        layoutdetails.getChildren().add(hero);
-
+        grid.add(hero , 1,1);
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);

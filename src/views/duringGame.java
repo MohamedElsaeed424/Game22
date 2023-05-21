@@ -1,9 +1,15 @@
 package views;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import exceptions.InvalidTargetException;
-import exceptions.NotEnoughActionsException;
+import engine.Game;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import javafx.stage.Window;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -12,10 +18,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import model.characters.Hero;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Window;
 
 public class duringGame extends StackPane{
-
    private Button up;
     private Button down;
     private Button left;
@@ -24,12 +30,17 @@ public class duringGame extends StackPane{
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
+    StartGame  startScene = new StartGame ();
+
+
     public Button getUp() {
         return up;
     }
+
     public Button getDown() {
         return down;
     }
+
     public Button getAttack() {
         return attack;
     }
@@ -41,11 +52,12 @@ public class duringGame extends StackPane{
     public Button getEndTurn() {
         return endTurn;
     }
+
     public Button getUseSpecial() {
         return useSpecial;
     }
-    StackPane stack ;
-    public duringGame(){
+
+    public duringGame() throws IOException {
          up = new Button("up");
          down = new Button("down");
          left = new Button("left");
@@ -59,7 +71,7 @@ public class duringGame extends StackPane{
         alert.setHeaderText("You have entered a trap cell!");
         alert.setContentText("You lost some of your current HP!!");
         alert.showAndWait();
-        stack = new StackPane();
+        StackPane stack = new StackPane();
         stack.getChildren().add(up);
         stack.getChildren().add(down);
         stack.getChildren().add(left);
@@ -72,27 +84,27 @@ public class duringGame extends StackPane{
         move.setAlignment(Pos.CENTER);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         takeAction.setAlignment(Pos.CENTER);
+
         VBox both = new VBox(20, move, takeAction);
         both.setAlignment(Pos.CENTER);
         both.setPadding(new Insets(20));
+
         this.getChildren().add(both);
-
-
-
-    }
-
-
-
-    public void onAttackHandler(Hero heroAttacking) throws InvalidTargetException, NotEnoughActionsException {
-        try {
-            heroAttacking.attack();
-        }catch (InvalidTargetException e){
-
+        GridPane map = new GridPane();
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15;j++){
+                Button cell = new Button();
+                GridPane.setConstraints(cell,j,i);
+                map.getChildren().add(cell);
+            }
         }
 
+        BorderPane layout = new BorderPane();
+        layout.setCenter(map);
+        Scene game = new Scene(layout, 1000,1000);
+        startScene.getWindow().setScene(game);
+
     }
-
-
 
 
 

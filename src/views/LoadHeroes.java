@@ -35,7 +35,8 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\sahar\\IdeaProjects\\src\\test_heros.csv");
+//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }

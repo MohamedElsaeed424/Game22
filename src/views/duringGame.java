@@ -1,12 +1,15 @@
 package views;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import engine.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-
+import javafx.stage.Window;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Window;
 
 public class duringGame extends StackPane{
    private Button up;
@@ -26,6 +30,7 @@ public class duringGame extends StackPane{
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
+    StartGame  startScene = new StartGame ();
 
 
     public Button getUp() {
@@ -52,7 +57,7 @@ public class duringGame extends StackPane{
         return useSpecial;
     }
 
-    public duringGame(){
+    public duringGame() throws IOException {
          up = new Button("up");
          down = new Button("down");
          left = new Button("left");
@@ -86,11 +91,18 @@ public class duringGame extends StackPane{
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
+        for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15;j++){
+                Button cell = new Button();
+                GridPane.setConstraints(cell,j,i);
+                map.getChildren().add(cell);
+            }
+        }
 
-
-
-
-
+        BorderPane layout = new BorderPane();
+        layout.setCenter(map);
+        Scene game = new Scene(layout, 1000,1000);
+        startScene.getWindow().setScene(game);
 
     }
 

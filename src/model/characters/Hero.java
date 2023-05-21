@@ -272,12 +272,12 @@ public abstract class Hero extends Character {
 
     @Override
     public String toString() {
-        return "Hero{" +
-                "actionsAvailable=" + actionsAvailable +
-                ", maxActions=" + maxActions +
-                ", specialAction=" + specialAction +
-                ", vaccineInventory=" + vaccineInventory +
-                ", supplyInventory=" + supplyInventory +
-                '}';
+        return  "Hero Details :"+"\n"+
+                "actionsAvailable=" + actionsAvailable + "\n"+
+                ", maxActions=" + maxActions +"\n"+
+                ", specialAction=" + specialAction +"\n"+
+                ", vaccineInventory=" + vaccineInventory +"\n"+
+                ", supplyInventory=" + supplyInventory
+                ;
     }
 }

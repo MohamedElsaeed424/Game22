@@ -1,6 +1,11 @@
 package views;
 
 import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.layout.GridPane;
 
 public class duringGame extends StackPane{
    private Button up;
@@ -79,6 +85,8 @@ public class duringGame extends StackPane{
         both.setPadding(new Insets(20));
 
         this.getChildren().add(both);
+        GridPane map = new GridPane();
+
 
 
 

@@ -30,7 +30,7 @@ public class LoadHeroes {
     VBox heroesDetailsPlaceHolder = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
 
-    StartGame startGameScene  ;
+    StartGame startGameScene = new StartGame()  ;
     duringGame duringGameScene = new duringGame() ;
     private ArrayList<Button> HeroesBtn;
 

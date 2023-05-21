@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
 public class duringGame extends StackPane{
+    Scene duringGameScene ;
    private Button up;
     private Button down;
     private Button left;
@@ -53,26 +54,9 @@ public class duringGame extends StackPane{
         return endTurn;
     }
 
-    public StartGame getStartScene() {
-        return startScene;
-    }
-
-    public void setStartScene(StartGame startScene) {
-        this.startScene = startScene;
-    }
-
     public Button getUseSpecial() {
         return useSpecial;
     }
-
-    public Scene getGame() {
-        return game;
-    }
-
-    public void setGame(Scene game) {
-        this.game = game;
-    }
-
     public duringGame() throws IOException {
          up = new Button("up");
          down = new Button("down");
@@ -82,11 +66,11 @@ public class duringGame extends StackPane{
          cure = new Button("cure");
          endTurn = new Button("end turn");
          useSpecial = new Button("use special");
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Trap Cell");
-        alert.setHeaderText("You have entered a trap cell!");
-        alert.setContentText("You lost some of your current HP!!");
-        alert.showAndWait();
+//        Alert alert = new Alert(Alert.AlertType.WARNING);
+//        alert.setTitle("Trap Cell");
+//        alert.setHeaderText("You have entered a trap cell!");
+//        alert.setContentText("You lost some of your current HP!!");
+//        alert.showAndWait();
         StackPane stack = new StackPane();
         stack.getChildren().add(up);
         stack.getChildren().add(down);
@@ -118,11 +102,10 @@ public class duringGame extends StackPane{
 
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
-        game = new Scene(layout, 1000,1000);
-        startScene.getWindow().setScene(game);
-
+        duringGameScene = new Scene(layout, 1000,1000);
     }
 
-
-
+    public Scene getDuringGameScene() {
+        return duringGameScene;
+    }
 }

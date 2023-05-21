@@ -35,14 +35,16 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
         //---------------------For text box---------------------------------------
-        heroesdetails.setMaxSize(375, 1000);
-        heroesdetails.setFont(new Font(24));
+        heroesdetails.setMaxSize(350, 250);
+        heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
+        heroesdetails.setTranslateX(-320);
+        heroesdetails.setTranslateY(700);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         layoutheroes.setRight(heroesdetails);
 //        layoutheroes.getChildren().add(heroesdetails);
@@ -69,39 +71,46 @@ public class LoadHeroes {
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
-        gridHeroesLayOut.setVgap(8);
-        gridHeroesLayOut.setHgap(10);
+        gridHeroesLayOut.setVgap(120);
+        gridHeroesLayOut.setHgap(90);
         Button h0 = new Button( Heroes.get(0).getName()) ;
+        h0.setFont(new Font(60));
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(0)));
         h0.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h1 = new Button( Heroes.get(1).getName()) ;
+        h1.setFont(new Font(60));
         GridPane.setConstraints(h1,1,0);
 //        h1.setOnAction(e -> HeroesBtnHandler(e, h1 ,1));
         h1.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(1)));
         h1.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h2 = new Button( Heroes.get(2).getName()) ;
+        h2.setFont(new Font(60));
         GridPane.setConstraints(h2,2,0);
 //        h2.setOnAction(e -> HeroesBtnHandler(e, h2,2));
         h2.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(2)));
         h2.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h3 = new Button( Heroes.get(3).getName()) ;
+        h3.setFont(new Font(60));
         GridPane.setConstraints(h3,0,1);
 //        h3.setOnAction(e -> HeroesBtnHandler(e, h3,3));
         h3.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(3)));
         h3.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h4 = new Button( Heroes.get(4).getName()) ;
+        h4.setFont(new Font(60));
         GridPane.setConstraints(h4,1,1);
 //        h4.setOnAction(e -> HeroesBtnHandler(e, h4,4));
         h4.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(4)));
         h4.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h5 = new Button( Heroes.get(5).getName()) ;
+        h5.setFont(new Font(60));
         GridPane.setConstraints(h5,2,1);
 //        h5.setOnAction(e -> HeroesBtnHandler(e, h5,5));
         h5.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(5)));
         h5.setOnMouseClicked(e-> System.out.println("hello click"));
         Button h6 = new Button( Heroes.get(6).getName()) ;
-        GridPane.setConstraints(h6,0,3);
+        h6.setFont(new Font(60));
+        GridPane.setConstraints(h6,1,2);
 //        h6.setOnAction(e -> HeroesBtnHandler(e, h6,6));
         h6.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(6)));
         h6.setOnMouseClicked(e-> System.out.println("hello click"));

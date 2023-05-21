@@ -48,7 +48,6 @@ public class Game {
             // -----------------------------------------------------------------
             if (heros[1].equals("FIGH")) {
                 h = new Fighter(name, maxHp, attackDmg, maxActions);
-                System.out.println(h.getName());
             } else if (heros[1].equals("MED")) {
                 h = new Medic(name, maxHp, attackDmg, maxActions);
             } else {

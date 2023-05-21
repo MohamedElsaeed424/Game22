@@ -31,7 +31,7 @@ public class duringGame extends StackPane{
     private Button endTurn;
     private Button useSpecial;
     StartGame  startScene = new StartGame ();
-
+    Scene game;
 
     public Button getUp() {
         return up;
@@ -53,8 +53,24 @@ public class duringGame extends StackPane{
         return endTurn;
     }
 
+    public StartGame getStartScene() {
+        return startScene;
+    }
+
+    public void setStartScene(StartGame startScene) {
+        this.startScene = startScene;
+    }
+
     public Button getUseSpecial() {
         return useSpecial;
+    }
+
+    public Scene getGame() {
+        return game;
+    }
+
+    public void setGame(Scene game) {
+        this.game = game;
     }
 
     public duringGame() throws IOException {
@@ -95,13 +111,14 @@ public class duringGame extends StackPane{
             for(int j = 0; j < 15;j++){
                 Button cell = new Button();
                 GridPane.setConstraints(cell,j,i);
+
                 map.getChildren().add(cell);
             }
         }
 
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
-        Scene game = new Scene(layout, 1000,1000);
+        game = new Scene(layout, 1000,1000);
         startScene.getWindow().setScene(game);
 
     }

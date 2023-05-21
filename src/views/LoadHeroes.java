@@ -61,6 +61,7 @@ public class LoadHeroes  {
         else{
             grid.add(hero,1,2);
         }
+        layoutheroes.getChildren().add(hero);
     }
     public void addDetails(String herosdetails){
         heroesdetails.appendText(herosdetails);

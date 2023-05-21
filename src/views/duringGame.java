@@ -77,6 +77,8 @@ public class duringGame extends StackPane{
         both.setPadding(new Insets(20));
         this.getChildren().add(both);
 
+
+
     }
 
 

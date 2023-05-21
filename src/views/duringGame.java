@@ -22,7 +22,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
 public class duringGame extends StackPane{
-   private Button up;
+    Scene duringGameScene ;
+
+
+    private Button up;
     private Button down;
     private Button left;
     private Button right;
@@ -84,11 +87,9 @@ public class duringGame extends StackPane{
         move.setAlignment(Pos.CENTER);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         takeAction.setAlignment(Pos.CENTER);
-
         VBox both = new VBox(20, move, takeAction);
         both.setAlignment(Pos.CENTER);
         both.setPadding(new Insets(20));
-
         this.getChildren().add(both);
         GridPane map = new GridPane();
         for(int i = 0; i < 15; i++){
@@ -98,13 +99,14 @@ public class duringGame extends StackPane{
                 map.getChildren().add(cell);
             }
         }
-
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
-        Scene game = new Scene(layout, 1000,1000);
-        startScene.getWindow().setScene(game);
-
+        duringGameScene = new Scene(layout, 1000,1000);
     }
+    public Scene getDuringGameScene() {
+        return duringGameScene;
+    }
+
 
 
 

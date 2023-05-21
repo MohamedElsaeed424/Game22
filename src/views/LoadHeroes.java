@@ -29,13 +29,16 @@ public class LoadHeroes {
     GridPane gridHeroesLayOut = new GridPane();
     VBox heroesDetailsPlaceHolder = new VBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
+
+    StartGame startGameScene  ;
+    duringGame duringGameScene = new duringGame() ;
     private ArrayList<Button> HeroesBtn;
 
     // ---------------------------Constructor to create Load Heroes Scene-----------------------
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\sahar\\IdeaProjects\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
 //            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
@@ -75,37 +78,99 @@ public class LoadHeroes {
         Button h0 = new Button( Heroes.get(0).getName()) ;
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(0)));
-        h0.setOnMouseClicked(e-> System.out.println("hello click"));
+        h0.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h0 Clicked");
+                Game.startGame(Heroes.get(0));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //---------------------------------------------------------------------
         Button h1 = new Button( Heroes.get(1).getName()) ;
         GridPane.setConstraints(h1,1,0);
-//        h1.setOnAction(e -> HeroesBtnHandler(e, h1 ,1));
         h1.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(1)));
-        h1.setOnMouseClicked(e-> System.out.println("hello click"));
+        h1.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h1 Clicked");
+                Game.startGame(Heroes.get(1));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //-------------------------------------------------------------------------
         Button h2 = new Button( Heroes.get(2).getName()) ;
         GridPane.setConstraints(h2,2,0);
 //        h2.setOnAction(e -> HeroesBtnHandler(e, h2,2));
         h2.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(2)));
-        h2.setOnMouseClicked(e-> System.out.println("hello click"));
+        h2.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h2 Clicked");
+                Game.startGame(Heroes.get(2));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //--------------------------------------------------------------------------
         Button h3 = new Button( Heroes.get(3).getName()) ;
         GridPane.setConstraints(h3,0,1);
 //        h3.setOnAction(e -> HeroesBtnHandler(e, h3,3));
         h3.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(3)));
-        h3.setOnMouseClicked(e-> System.out.println("hello click"));
+        h3.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h3 Clicked");
+                Game.startGame(Heroes.get(3));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //-----------------------------------------------------------------------------
         Button h4 = new Button( Heroes.get(4).getName()) ;
         GridPane.setConstraints(h4,1,1);
 //        h4.setOnAction(e -> HeroesBtnHandler(e, h4,4));
         h4.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(4)));
-        h4.setOnMouseClicked(e-> System.out.println("hello click"));
+        h4.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h4 Clicked");
+                Game.startGame(Heroes.get(4));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //----------------------------------------------------------------------------
         Button h5 = new Button( Heroes.get(5).getName()) ;
         GridPane.setConstraints(h5,2,1);
 //        h5.setOnAction(e -> HeroesBtnHandler(e, h5,5));
         h5.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(5)));
-        h5.setOnMouseClicked(e-> System.out.println("hello click"));
+        h5.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h5 Clicked");
+                Game.startGame(Heroes.get(5));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //-----------------------------------------------------------------------------
         Button h6 = new Button( Heroes.get(6).getName()) ;
         GridPane.setConstraints(h6,0,3);
 //        h6.setOnAction(e -> HeroesBtnHandler(e, h6,6));
         h6.setOnMouseEntered(e-> onHeroesDetailsUpdate(Heroes.get(6)));
-        h6.setOnMouseClicked(e-> System.out.println("hello click"));
+        h6.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h6 Clicked");
+                Game.startGame(Heroes.get(6));
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //----------------------------------------------------------------------------
         gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6);
         layoutheroes.setLeft(gridHeroesLayOut);
     }

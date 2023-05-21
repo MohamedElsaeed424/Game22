@@ -15,8 +15,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import javax.security.auth.callback.ConfirmationCallback;
 import java.io.IOException;
-
 
 //import java.awt.*;
 
@@ -37,6 +37,7 @@ public class StartGame extends Application {
         window.setTitle("Last Of Us");
 //        StartGameGUI start = new StartGameGUI() ;
         //-------------------------------------
+
         startGame = new Button("Start Game");
         startGame.setFont(new javafx.scene.text.Font(80));
         startGame.setStyle("-fx-border-color:#000000;-fx-border-width:5px;");
@@ -54,6 +55,7 @@ public class StartGame extends Application {
         window.setScene(scene);
         window.show();
     }
+
 
     public Stage getWindow() throws IOException {
         start(window);

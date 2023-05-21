@@ -2,6 +2,8 @@ package views;
 
 import java.util.ArrayList;
 
+import exceptions.InvalidTargetException;
+import exceptions.NotEnoughActionsException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -10,8 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import model.characters.Hero;
 
 public class duringGame extends StackPane{
+
    private Button up;
     private Button down;
     private Button left;
@@ -20,16 +24,12 @@ public class duringGame extends StackPane{
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
-
-
     public Button getUp() {
         return up;
     }
-
     public Button getDown() {
         return down;
     }
-
     public Button getAttack() {
         return attack;
     }
@@ -41,11 +41,10 @@ public class duringGame extends StackPane{
     public Button getEndTurn() {
         return endTurn;
     }
-
     public Button getUseSpecial() {
         return useSpecial;
     }
-
+    StackPane stack ;
     public duringGame(){
          up = new Button("up");
          down = new Button("down");
@@ -60,7 +59,7 @@ public class duringGame extends StackPane{
         alert.setHeaderText("You have entered a trap cell!");
         alert.setContentText("You lost some of your current HP!!");
         alert.showAndWait();
-        StackPane stack = new StackPane();
+        stack = new StackPane();
         stack.getChildren().add(up);
         stack.getChildren().add(down);
         stack.getChildren().add(left);
@@ -73,18 +72,25 @@ public class duringGame extends StackPane{
         move.setAlignment(Pos.CENTER);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         takeAction.setAlignment(Pos.CENTER);
-
         VBox both = new VBox(20, move, takeAction);
         both.setAlignment(Pos.CENTER);
         both.setPadding(new Insets(20));
-
         this.getChildren().add(both);
 
+    }
 
 
 
+    public void onAttackHandler(Hero heroAttacking) throws InvalidTargetException, NotEnoughActionsException {
+        try {
+            heroAttacking.attack();
+        }catch (InvalidTargetException e){
+
+        }
 
     }
+
+
 
 
 

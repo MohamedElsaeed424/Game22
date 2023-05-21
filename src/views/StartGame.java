@@ -37,7 +37,6 @@ public class StartGame extends Application {
         window.setTitle("Last Of Us");
 //        StartGameGUI start = new StartGameGUI() ;
         //-------------------------------------
-
         startGame = new Button("Start Game");
         startGame.setFont(new javafx.scene.text.Font(80));
         startGame.setStyle("-fx-border-color:#000000;-fx-border-width:5px;");

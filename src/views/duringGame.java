@@ -22,10 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
 public class duringGame extends StackPane{
-    Scene duringGameScene ;
-
-
-    private Button up;
+   private Button up;
     private Button down;
     private Button left;
     private Button right;
@@ -34,7 +31,7 @@ public class duringGame extends StackPane{
     private Button endTurn;
     private Button useSpecial;
     StartGame  startScene = new StartGame ();
-
+    Scene game;
 
     public Button getUp() {
         return up;
@@ -56,8 +53,24 @@ public class duringGame extends StackPane{
         return endTurn;
     }
 
+    public StartGame getStartScene() {
+        return startScene;
+    }
+
+    public void setStartScene(StartGame startScene) {
+        this.startScene = startScene;
+    }
+
     public Button getUseSpecial() {
         return useSpecial;
+    }
+
+    public Scene getGame() {
+        return game;
+    }
+
+    public void setGame(Scene game) {
+        this.game = game;
     }
 
     public duringGame() throws IOException {
@@ -87,26 +100,28 @@ public class duringGame extends StackPane{
         move.setAlignment(Pos.CENTER);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         takeAction.setAlignment(Pos.CENTER);
+
         VBox both = new VBox(20, move, takeAction);
         both.setAlignment(Pos.CENTER);
         both.setPadding(new Insets(20));
+
         this.getChildren().add(both);
         GridPane map = new GridPane();
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
                 Button cell = new Button();
                 GridPane.setConstraints(cell,j,i);
+
                 map.getChildren().add(cell);
             }
         }
+
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
-        duringGameScene = new Scene(layout, 1000,1000);
-    }
-    public Scene getDuringGameScene() {
-        return duringGameScene;
-    }
+        game = new Scene(layout, 1000,1000);
+        startScene.getWindow().setScene(game);
 
+    }
 
 
 

@@ -95,8 +95,7 @@ public class duringGame extends StackPane{
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
-        String name;
-        name = Game.availableHeroes.get(0).getName();
+
 
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
@@ -105,14 +104,12 @@ public class duringGame extends StackPane{
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
                 }
-                if (Game.map[i][j] instanceof CharacterCell){
 
-                }
-                if(i==0 && j== 0){
 
-                    Button cell = new Button(name);
+
+                    Button cell = new Button();
                     GridPane.setConstraints(cell,0,0);
-                }
+
 
 
 
@@ -121,6 +118,7 @@ public class duringGame extends StackPane{
 
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
+        layout.setRight(both);
         duringGameScene = new Scene(layout, 1000,1000);
 
 

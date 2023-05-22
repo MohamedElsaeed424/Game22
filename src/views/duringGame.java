@@ -112,9 +112,9 @@ public class duringGame extends StackPane{
                 }
 
 
-
+                 else{
                     Button cell = new Button();
-                    GridPane.setConstraints(cell,0,0);
+                    GridPane.setConstraints(cell,j,i);
                     map.getChildren().add(cell);
 
 
@@ -126,7 +126,7 @@ public class duringGame extends StackPane{
 
     }
 
-    public Scene getDuringGameScene() {
+    public  Scene getDuringGameScene() {
         return duringGameScene;
     }
-}
+}}

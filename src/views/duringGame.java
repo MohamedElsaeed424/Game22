@@ -20,6 +20,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
+import model.characters.Character;
+import model.characters.Zombie;
 import model.collectibles.Supply;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
@@ -101,14 +103,20 @@ public class duringGame extends StackPane{
 
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
-                if(Game.map[i][j] instanceof CollectibleCell){
+                if(Game.map[j][i] instanceof CollectibleCell){
                     Button colllectible = new Button("Collectible");
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
+
                 }
+                if(Game.map[j][i] instanceof CharacterCell){
+                    if ((Character) ((CharacterCell) Game.map[j][i]).getCharacter() instanceof Zombie){
+                        Button zombie = new Button("Zombie");
+                    }
+                }else{
                     Button cell = new Button();
                     GridPane.setConstraints(cell,j,i);
-                    map.getChildren().add(cell);
+                    map.getChildren().add(cell);}
             }
         }
         map.setAlignment(Pos.CENTER);

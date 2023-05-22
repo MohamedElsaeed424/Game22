@@ -95,6 +95,10 @@ public class duringGame extends StackPane{
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
+        BorderPane layout = new BorderPane();
+        layout.setCenter(map);
+        layout.setRight(both);
+        duringGameScene = new Scene(layout, 1000,1000);
 
 
         for(int i = 0; i < 15; i++){
@@ -103,23 +107,21 @@ public class duringGame extends StackPane{
                     Button colllectible = new Button("Collectible");
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
+
+
                 }
 
 
 
                     Button cell = new Button();
                     GridPane.setConstraints(cell,0,0);
-
+                    map.getChildren().add(cell);
 
 
 
             }
         }
 
-        BorderPane layout = new BorderPane();
-        layout.setCenter(map);
-        layout.setRight(both);
-        duringGameScene = new Scene(layout, 1000,1000);
 
 
     }

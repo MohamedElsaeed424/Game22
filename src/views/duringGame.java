@@ -20,6 +20,9 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
+import model.collectibles.Supply;
+import model.world.CharacterCell;
+import model.world.CollectibleCell;
 
 public class duringGame extends StackPane{
     Scene duringGameScene ;
@@ -31,6 +34,7 @@ public class duringGame extends StackPane{
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
+
     StartGame  startScene = new StartGame ();
     Scene game;
 
@@ -91,18 +95,35 @@ public class duringGame extends StackPane{
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
+        String name;
+        name = Game.availableHeroes.get(0).getName();
+
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
-                Button cell = new Button();
-                GridPane.setConstraints(cell,j,i);
+                if(Game.map[i][j] instanceof CollectibleCell){
+                    Button colllectible = new Button("Collectible");
+                    GridPane.setConstraints(colllectible,i,j);
+                    map.getChildren().add(colllectible);
+                }
+                if (Game.map[i][j] instanceof CharacterCell){
 
-                map.getChildren().add(cell);
+                }
+                if(i==0 && j== 0){
+
+                    Button cell = new Button(name);
+                    GridPane.setConstraints(cell,0,0);
+                }
+
+
+
             }
         }
 
         BorderPane layout = new BorderPane();
         layout.setCenter(map);
         duringGameScene = new Scene(layout, 1000,1000);
+
+
     }
 
     public Scene getDuringGameScene() {

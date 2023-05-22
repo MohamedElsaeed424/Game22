@@ -26,6 +26,8 @@ import model.world.CollectibleCell;
 
 public class duringGame extends StackPane{
     Scene duringGameScene ;
+
+    BorderPane layout ;
    private Button up;
     private Button down;
     private Button left;
@@ -85,21 +87,17 @@ public class duringGame extends StackPane{
         stack.getChildren().add(endTurn);
         stack.getChildren().add(useSpecial);
         HBox move = new HBox(10, up, down, right, left);
-        move.setAlignment(Pos.CENTER);
+        move.setAlignment(Pos.BOTTOM_RIGHT);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
-        takeAction.setAlignment(Pos.CENTER);
+        takeAction.setAlignment(Pos.BOTTOM_LEFT);
 
         VBox both = new VBox(20, move, takeAction);
-        both.setAlignment(Pos.CENTER);
+        both.setAlignment(Pos.BOTTOM_CENTER);
         both.setPadding(new Insets(20));
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
-        BorderPane layout = new BorderPane();
-        layout.setCenter(map);
-        layout.setRight(both);
-        duringGameScene = new Scene(layout, 1000,1000);
-
+         layout = new BorderPane();
 
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
@@ -107,25 +105,17 @@ public class duringGame extends StackPane{
                     Button colllectible = new Button("Collectible");
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
-
-
                 }
-
-
-
                     Button cell = new Button();
-                    GridPane.setConstraints(cell,0,0);
+                    GridPane.setConstraints(cell,j,i);
                     map.getChildren().add(cell);
-
-
-
             }
         }
-
-
-
+        map.setAlignment(Pos.CENTER);
+        layout.setCenter(map);
+        layout.setRight(both);
+        duringGameScene = new Scene(layout, 1000,1000);
     }
-
     public Scene getDuringGameScene() {
         return duringGameScene;
     }

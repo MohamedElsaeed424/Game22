@@ -29,6 +29,7 @@ import model.characters.Direction;
 import model.characters.Hero;
 import model.characters.Zombie;
 import model.collectibles.Supply;
+import model.collectibles.Vaccine;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
 
@@ -40,7 +41,6 @@ public class duringGame extends StackPane{
    private Button up;
     private Button down;
     private Button left;
-    private Button right;
     private Button attack;
     private Button cure;
     private Button endTurn;
@@ -76,7 +76,7 @@ public class duringGame extends StackPane{
          up = new Button("up");
          down = new Button("down");
          left = new Button("left");
-         right = new Button("right");
+        Button right = new Button("right");
          attack = new Button("attack");
          cure = new Button("cure");
          endTurn = new Button("end turn");
@@ -109,19 +109,23 @@ public class duringGame extends StackPane{
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 15;j++){
                 if(Game.map[j][i] instanceof CollectibleCell){
-                    Button colllectible = new Button("Collectible");
+                    if ( ( ((CollectibleCell) Game.map[j][i]).getCollectible()) instanceof Vaccine){
+                        Button Vaccine = new Button( "V");
+                    }else  if ( ( ((CollectibleCell) Game.map[j][i]).getCollectible()) instanceof Supply){
+                        Button Supply = new Button( "S");
+                    }
+                    Button colllectible = new Button("C");
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
                 }
                 else if(Game.map[j][i] instanceof CharacterCell){
                     if ( ((CharacterCell) Game.map[j][i]).getCharacter() instanceof Zombie){
-                        Button zombie = new Button( "Zombie"+((Zombie)(Character)((CharacterCell) Game.map[j][i]).getCharacter()).getZombiesCount());
+                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[j][i]).getCharacter()).getZombiesCount());
                     }else  if (((CharacterCell) Game.map[j][i]).getCharacter() instanceof Hero){
                         Button Hero = new Button( ((CharacterCell) Game.map[j][i]).getCharacter().getName());
-                        Hero.setFont(new Font(40));
                     }
                 }else{
-                    Button cell = new Button();
+                    Button cell = new Button("e");
                     GridPane.setConstraints(cell,j,i);
                     map.getChildren().add(cell);}
             }

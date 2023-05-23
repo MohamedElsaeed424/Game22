@@ -41,8 +41,8 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
-//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
+//            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
@@ -53,33 +53,13 @@ public class LoadHeroes {
         heroesdetails.setTranslateX(-320);
         heroesdetails.setTranslateY(650);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
-       // layoutheroes.setRight(heroesdetails);
-        //heroesdetails.setStyle("-fx-background-color: lightgray; -fx-text-fill: black;");
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);
         heroesDetailsPlaceHolder.setStyle("-fx-background-color: red;");
-//        layoutheroes.getChildren().add(heroesdetails);
         //-----------------------initializing grid-------------------------------------------------------
-//        for (int i = 0; i < 7; i++) {
-//            RowConstraints row = new RowConstraints();
-//            row.setPercentHeight(50);
-//            gridHeroesLayOut.getRowConstraints().add(row);
-//            if (i < 3) {
-//                ColumnConstraints coloum = new ColumnConstraints();
-//                coloum.setPercentWidth(50);
-//                gridHeroesLayOut.getColumnConstraints().add(coloum);
-//            }
-//        }
-//        handelAddingHeroesBtns(Game.availableHeroes);
-//        layoutheroes.setLeft(gridHeroesLayOut);
-//        gridHeroesLayOut.setVisible(true);
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
-//        LoadHeroes = new Scene(gridHeroesLayOut, 1000, 1000);
-
         LoadHeroes = new Scene(layoutheroes, 1000, 1000);
-
-
     }
 
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
@@ -299,60 +279,6 @@ public class LoadHeroes {
 
 
     }
-//    public void handelAddingHeroesBtns(ArrayList<Hero> Heroes) throws IOException {
-//        HeroesBtn = new ArrayList<>();
-//        int sizeOfHeroes = Heroes.size();
-//        for (int i = 0; i < sizeOfHeroes; i++) {
-//            Hero h = Heroes.get(i);
-//
-//            Button heroeBtn = new Button();
-//            heroeBtn.setText(i + " " + h.getName());
-//
-//            // test print
-//            System.out.println(heroeBtn.getText());
-//            // set up actions for each btn
-//            heroeBtn.setOnAction(e -> HeroesBtnHandler(e));
-//            // addHeroesToGrid Function takes btn and column
-//            addHeroesToGrid(heroeBtn, i);
-//            HeroesBtn.add(heroeBtn);
-//        }
-//    }
-//    public void addHeroesToGrid(Button hero, int i) {
-//        if (i <= 2) {
-//            gridHeroesLayOut.add(hero, i, 0);
-//            System.out.println(gridHeroesLayOut.getColumnIndex(hero)+" hello iam here in first row");
-//        } else if (i <= 5) {
-//            gridHeroesLayOut.add(hero, i - 3, 1);
-//            System.out.println(gridHeroesLayOut.getColumnIndex(hero)+" hello iam here in secound row");
-//        } else {
-//            gridHeroesLayOut.add(hero, 0, 2);
-//            System.out.println(gridHeroesLayOut.getColumnIndex(hero)+" hello iam here in  third row ");
-//        }
-//        layoutheroes.getChildren().add(hero);
-//        System.out.println("done adding to grid");
-//    }
-    //--------------------Handling Events on buttons------------------------------------
-//    public void HeroesBtnHandler(ActionEvent e, Button btn , int heroIndex) {
-//
-////        Button heroBtn = (Button) e.getSource();
-//        System.out.println("heloo in Heroes btn handler");
-////        int heroIndex = HeroesBtn.indexOf(heroBtn);
-//        Hero h = Game.availableHeroes.get(heroIndex);
-//
-//        btn.setOnMouseEntered((event) -> {
-//            System.out.println("You have just entered button" + heroIndex);
-//            onHeroesDetailsUpdate(h);
-//        });
-//        btn.setOnMouseClicked((event) -> {
-//            System.out.println("You have just clicked button" + heroIndex);
-////            onHeroesDetailsUpdate(h);
-//        });
-////        if (e.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
-////
-////        } else if (e.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-////            // start game
-////        }
-//    }
     //---------------------Text Box Details------------------------------------------------
     public void onHeroesDetailsUpdate(Hero h) {
         addDetails(h.toString());

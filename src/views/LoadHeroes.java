@@ -48,7 +48,7 @@ public class LoadHeroes {
         heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
         heroesdetails.setTranslateX(-320);
-        heroesdetails.setTranslateY(700);
+        heroesdetails.setTranslateY(400);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         layoutheroes.setRight(heroesdetails);
 //        layoutheroes.getChildren().add(heroesdetails);
@@ -75,8 +75,8 @@ public class LoadHeroes {
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
-        gridHeroesLayOut.setVgap(120);
-        gridHeroesLayOut.setHgap(90);
+        gridHeroesLayOut.setVgap(60);
+        gridHeroesLayOut.setHgap(60);
         Button h0 = new Button( Heroes.get(0).getName()) ;
         h0.setFont(new Font(60));
         GridPane.setConstraints(h0,0,0);

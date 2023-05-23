@@ -2,6 +2,11 @@
 // helloooooooooooooo
 package views;
 
+import engine.Game;
+import exceptions.InvalidTargetException;
+import exceptions.MovementException;
+import exceptions.NoAvailableResourcesException;
+import exceptions.NotEnoughActionsException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.characters.Character;
+import model.characters.Direction;
+import model.characters.Hero;
 
 import javax.swing.*;
 
@@ -67,5 +75,96 @@ public class test extends Application {
         window.setTitle("My App");
         window.show();
     }
+
+
+    //--------------------------------------------------------
+
+
+//    public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
+//        try {
+//            c.attack();
+//        } catch (InvalidTargetException e) {
+//            alertBoxes.alertBoxForInvalidTargetAttack();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsAttack();
+//        }
+//    }
+//
+//    public void onCureHandler(Hero h) throws Exception {
+//        try {
+//            h.cure();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsCure();
+//        } catch (InvalidTargetException e) {
+//            alertBoxes.alertBoxForInvalidTargetCure();
+//        } catch (NoAvailableResourcesException e) {
+//            alertBoxes.alretBoxForNoAvailableResourcesCure();
+//        } catch (Exception e) {
+//            alertBoxes.alretBoxForNoHeroestobeaddedCure();
+//        }
+//    }
+//
+//    public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
+//        try {
+//            h.useSpecial();
+//        } catch (InvalidTargetException e) {
+//            alertBoxes.alertBoxForInvalidTargetUseSpecial();
+//
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsUseSpecial();
+//        } catch (NoAvailableResourcesException e) {
+//            alertBoxes.alretBoxForNoAvailableResourcesUseSpecial();
+//        }
+//    }
+//
+//    public void onEndTurnHandler() throws InvalidTargetException, NotEnoughActionsException {
+//        try {
+//            Game.endTurn();
+//        } catch (InvalidTargetException e) {
+//
+//        } catch (NotEnoughActionsException e) {
+//
+//        }
+//    }
+//
+//    public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
+//        try {
+//            h.move(Direction.UP);
+//        } catch (MovementException e) {
+//            alertBoxes.alertBoxForMovementDirection();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+//        }
+//    }
+//
+//    public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
+//        try {
+//            h.move(Direction.DOWN);
+//        } catch (MovementException e) {
+//            alertBoxes.alertBoxForMovementDirection();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+//        }
+//    }
+//
+//    public void onMoveRightHandler(Hero h) throws MovementException, NotEnoughActionsException {
+//        try {
+//            h.move(Direction.RIGHT);
+//        } catch (MovementException e) {
+//            alertBoxes.alertBoxForMovementDirection();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+//        }
+//    }
+//
+//    public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
+//        try {
+//            h.move(Direction.LEFT);
+//        } catch (MovementException e) {
+//            alertBoxes.alertBoxForMovementDirection();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+//        }
+//    }
 
 }

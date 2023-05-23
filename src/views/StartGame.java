@@ -14,7 +14,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
 import javax.security.auth.callback.ConfirmationCallback;
 import java.io.IOException;
 

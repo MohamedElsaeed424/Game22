@@ -128,7 +128,7 @@ public class Game {
         return map;
     }
 
-    public static void endTurn() throws  InvalidTargetException, NotEnoughActionsException {
+    public static void endTurn() throws InvalidTargetException, NotEnoughActionsException {
         for (int i =0 ; i<zombies.size()  ; i++) {
             Zombie z = zombies.get(i) ;
             z.attack();

@@ -31,7 +31,6 @@ public class LoadHeroes {
     BorderPane layoutheroes = new BorderPane();
     GridPane gridHeroesLayOut = new GridPane();
     VBox heroesDetailsPlaceHolder = new VBox();
-    HBox heropics = new HBox();
     TextArea heroesdetails = new TextArea("Hero details:\n");
 
     StartGame startGameScene = new StartGame()  ;
@@ -76,7 +75,7 @@ public class LoadHeroes {
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
 //        LoadHeroes = new Scene(gridHeroesLayOut, 1000, 1000);
-        layoutheroes.getChildren().add(heropics);
+
         LoadHeroes = new Scene(layoutheroes, 1000, 1000);
 
 
@@ -98,23 +97,20 @@ public class LoadHeroes {
         ImageView imageView5 = new ImageView(hh4);
         ImageView imageView6 = new ImageView(hh5);
         ImageView imageView7 = new ImageView(hh6);
-        imageView1.setFitWidth(40);
-        imageView1.setFitHeight(30);
-        imageView2.setFitWidth(40);
-        imageView2.setFitHeight(30);
-        imageView3.setFitWidth(40);
-        imageView3.setFitHeight(30);
-        imageView4.setFitWidth(40);
-        imageView4.setFitHeight(30);
-        imageView5.setFitWidth(40);
-        imageView5.setFitHeight(30);
-        imageView6.setFitWidth(40);
-        imageView6.setFitHeight(30);
-        imageView7.setFitWidth(40);
-        imageView7.setFitHeight(30);
-        //StackPane stack = new StackPane();
-        //stack.setAlignment(imageView1,Pos.BOTTOM_LEFT);
-       // stack.getChildren().addAll(imageView1,imageView2,imageView3,imageView4,imageView5,imageView6,imageView7);
+        imageView1.setFitWidth(350);
+        imageView1.setFitHeight(350);
+        imageView2.setFitWidth(350);
+        imageView2.setFitHeight(350);
+        imageView3.setFitWidth(350);
+        imageView3.setFitHeight(350);
+        imageView4.setFitWidth(350);
+        imageView4.setFitHeight(350);
+        imageView5.setFitWidth(350);
+        imageView5.setFitHeight(350);
+        imageView6.setFitWidth(350);
+        imageView6.setFitHeight(350);
+        imageView7.setFitWidth(350);
+        imageView7.setFitHeight(350);
 
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
         gridHeroesLayOut.setVgap(90);
@@ -123,9 +119,14 @@ public class LoadHeroes {
         h0.setFont(new Font(60));
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView4);
-            onHeroesDetailsUpdate(Heroes.get(0));}
-        );
+            h0.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView4);
+
+            onHeroesDetailsUpdate(Heroes.get(0));});
+                h0.setOnMouseExited(event -> h0.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h0.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         h0.setOnMouseClicked((e)->{
             try {
@@ -142,10 +143,16 @@ public class LoadHeroes {
         h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h1,1,0);
         h1.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView1);
-            onHeroesDetailsUpdate(Heroes.get(1));}
+                    h1.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+                    BorderPane.setAlignment(imageView1 , Pos.BOTTOM_LEFT);
+                    BorderPane.setMargin(imageView1, new Insets(12,12,12,12)); // optional
+                    layoutheroes.setBottom(imageView1);
+            onHeroesDetailsUpdate(Heroes.get(1));
+        });
+                h1.setOnMouseExited(event -> h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
 
-        );
+
+        ;
         h1.setOnMouseClicked((e)->{
             try {
                 System.out.println("h1 Clicked");
@@ -162,8 +169,13 @@ public class LoadHeroes {
         h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h2,2,0);
         h2.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView2);
+            h2.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView2);
                     onHeroesDetailsUpdate(Heroes.get(2)) ; });
+        h2.setOnMouseExited(event -> h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h2.setOnMouseClicked((e)->{
             try {
                 System.out.println("h2 Clicked");
@@ -179,10 +191,15 @@ public class LoadHeroes {
         h3.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h3,0,1);
         h3.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView3);
+            h3.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            BorderPane.setAlignment(imageView3, Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView3, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView3);
             onHeroesDetailsUpdate(Heroes.get(3));}
 
         );
+        h3.setOnMouseExited(event -> h3.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h3.setOnMouseClicked((e)->{
             try {
                 System.out.println("h3 Clicked");
@@ -198,10 +215,16 @@ public class LoadHeroes {
         h4.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h4,1,1);
         h4.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView5);
+            h4.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView5, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView5);
             onHeroesDetailsUpdate(Heroes.get(4));}
 
         );
+        h4.setOnMouseExited(event -> h4.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h4.setOnMouseClicked((e)->{
             try {
                 System.out.println("h4 Clicked");
@@ -217,10 +240,16 @@ public class LoadHeroes {
         h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h5,2,1);
         h5.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView6);
+            h5.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView6 ,new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView6);
             onHeroesDetailsUpdate(Heroes.get(5));}
 
         );
+        h5.setOnMouseExited(event -> h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h5.setOnMouseClicked((e)->{
             try {
                 System.out.println("h5 Clicked");
@@ -236,10 +265,16 @@ public class LoadHeroes {
         h6.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h6,1,2);
         h6.setOnMouseEntered((e)->{
-            heropics.getChildren().add(imageView7);
+            h6.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            BorderPane.setAlignment(imageView7 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView7);
             onHeroesDetailsUpdate(Heroes.get(6));}
 
         );
+        h6.setOnMouseExited(event -> h6.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
         h6.setOnMouseClicked((e)->{
             try {
                 System.out.println("h6 Clicked");

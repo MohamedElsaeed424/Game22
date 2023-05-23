@@ -4,6 +4,8 @@ package views;
 //import controller.LoadHeroesGUI;
 
 import engine.Game;
+import exceptions.MovementException;
+import exceptions.NotEnoughActionsException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.characters.Character;
 import model.characters.Hero;
+import model.world.CharacterCell;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -34,7 +37,7 @@ public class LoadHeroes {
     TextArea heroesdetails = new TextArea("Hero details:\n");
 
     StartGame startGameScene = new StartGame()  ;
-    duringGame duringGameScene = new duringGame() ;
+    duringGame duringGameScene  ;
     private ArrayList<Button> HeroesBtn;
 
     // ---------------------------Constructor to create Load Heroes Scene-----------------------
@@ -51,7 +54,7 @@ public class LoadHeroes {
         heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
         heroesdetails.setTranslateX(-320);
-        heroesdetails.setTranslateY(650);
+        heroesdetails.setTranslateY(390);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);
@@ -112,9 +115,11 @@ public class LoadHeroes {
         h0.setOnMouseClicked((e)->{
             try {
                 System.out.println("h0 Clicked");
-                Game.startGame(Heroes.get(0));
+                duringGameScene = new duringGame(Heroes.get(0)) ;
+//                duringGameScene.setHeroToStart();
+//                System.out.println(((CharacterCell)Game.map[0][0]).getCharacter().getName());
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -137,9 +142,9 @@ public class LoadHeroes {
         h1.setOnMouseClicked((e)->{
             try {
                 System.out.println("h1 Clicked");
-                Game.startGame(Heroes.get(1));
+                duringGameScene = new duringGame(Heroes.get(1)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -160,9 +165,9 @@ public class LoadHeroes {
         h2.setOnMouseClicked((e)->{
             try {
                 System.out.println("h2 Clicked");
-                Game.startGame(Heroes.get(2));
+                duringGameScene = new duringGame(Heroes.get(2)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -184,9 +189,9 @@ public class LoadHeroes {
         h3.setOnMouseClicked((e)->{
             try {
                 System.out.println("h3 Clicked");
-                Game.startGame(Heroes.get(3));
+                duringGameScene = new duringGame(Heroes.get(3)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -209,9 +214,9 @@ public class LoadHeroes {
         h4.setOnMouseClicked((e)->{
             try {
                 System.out.println("h4 Clicked");
-                Game.startGame(Heroes.get(4));
+                duringGameScene = new duringGame(Heroes.get(4)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -234,9 +239,9 @@ public class LoadHeroes {
         h5.setOnMouseClicked((e)->{
             try {
                 System.out.println("h5 Clicked");
-                Game.startGame(Heroes.get(5));
+                duringGameScene = new duringGame(Heroes.get(5)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
         } );
@@ -259,9 +264,9 @@ public class LoadHeroes {
         h6.setOnMouseClicked((e)->{
             try {
                 System.out.println("h6 Clicked");
-                Game.startGame(Heroes.get(6));
+                duringGameScene = new duringGame(Heroes.get(6)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
-            } catch (IOException ex) {
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
                 throw new RuntimeException(ex);
             }
 

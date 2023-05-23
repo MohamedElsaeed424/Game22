@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import engine.Game;
+import exceptions.InvalidTargetException;
+import exceptions.MovementException;
+import exceptions.NoAvailableResourcesException;
+import exceptions.NotEnoughActionsException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,6 +25,8 @@ import javafx.scene.text.Font;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 import model.characters.Character;
+import model.characters.Direction;
+import model.characters.Hero;
 import model.characters.Zombie;
 import model.collectibles.Supply;
 import model.world.CharacterCell;
@@ -28,6 +34,7 @@ import model.world.CollectibleCell;
 
 public class duringGame extends StackPane{
     Scene duringGameScene ;
+    AlertBoxes alertBoxes = new AlertBoxes();
 
     BorderPane layout ;
    private Button up;
@@ -74,11 +81,7 @@ public class duringGame extends StackPane{
          cure = new Button("cure");
          endTurn = new Button("end turn");
          useSpecial = new Button("use special");
-//        Alert alert = new Alert(Alert.AlertType.WARNING);
-//        alert.setTitle("Trap Cell");
-//        alert.setHeaderText("You have entered a trap cell!");
-//        alert.setContentText("You lost some of your current HP!!");
-//        alert.showAndWait();
+
         StackPane stack = new StackPane();
         stack.getChildren().add(up);
         stack.getChildren().add(down);
@@ -99,6 +102,8 @@ public class duringGame extends StackPane{
 
         this.getChildren().add(both);
         GridPane map = new GridPane();
+        map.setHgap(20);
+        map.setVgap(20);
          layout = new BorderPane();
 
         for(int i = 0; i < 15; i++){
@@ -107,11 +112,13 @@ public class duringGame extends StackPane{
                     Button colllectible = new Button("Collectible");
                     GridPane.setConstraints(colllectible,i,j);
                     map.getChildren().add(colllectible);
-
                 }
-                if(Game.map[j][i] instanceof CharacterCell){
-                    if ((Character) ((CharacterCell) Game.map[j][i]).getCharacter() instanceof Zombie){
-                        Button zombie = new Button("Zombie");
+                else if(Game.map[j][i] instanceof CharacterCell){
+                    if ( ((CharacterCell) Game.map[j][i]).getCharacter() instanceof Zombie){
+                        Button zombie = new Button( "Zombie"+((Zombie)(Character)((CharacterCell) Game.map[j][i]).getCharacter()).getZombiesCount());
+                    }else  if (((CharacterCell) Game.map[j][i]).getCharacter() instanceof Hero){
+                        Button Hero = new Button( ((CharacterCell) Game.map[j][i]).getCharacter().getName());
+                        Hero.setFont(new Font(40));
                     }
                 }else{
                     Button cell = new Button();
@@ -119,10 +126,99 @@ public class duringGame extends StackPane{
                     map.getChildren().add(cell);}
             }
         }
-        map.setAlignment(Pos.CENTER);
+        map.setAlignment(Pos.TOP_CENTER);
         layout.setCenter(map);
         layout.setRight(both);
         duringGameScene = new Scene(layout, 1000,1000);
+    }
+
+
+        public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
+
+            try {
+            c.attack();
+        } catch (InvalidTargetException e) {
+            alertBoxes.alertBoxForInvalidTargetAttack();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsAttack();
+        }
+    }
+
+    public void onCureHandler(Hero h) throws Exception {
+        try {
+            h.cure();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsCure();
+        } catch (InvalidTargetException e) {
+            alertBoxes.alertBoxForInvalidTargetCure();
+        } catch (NoAvailableResourcesException e) {
+            alertBoxes.alretBoxForNoAvailableResourcesCure();
+        } catch (Exception e) {
+            alertBoxes.alretBoxForNoHeroestobeaddedCure();
+        }
+    }
+
+    public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
+        try {
+            h.useSpecial();
+        } catch (InvalidTargetException e) {
+            alertBoxes.alertBoxForInvalidTargetUseSpecial();
+
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsUseSpecial();
+        } catch (NoAvailableResourcesException e) {
+            alertBoxes.alretBoxForNoAvailableResourcesUseSpecial();
+        }
+    }
+
+    public void onEndTurnHandler() throws InvalidTargetException, NotEnoughActionsException {
+        try {
+            Game.endTurn();
+        } catch (InvalidTargetException e) {
+
+        } catch (NotEnoughActionsException e) {
+
+        }
+    }
+
+    public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
+        try {
+            h.move(Direction.UP);
+        } catch (MovementException e) {
+            alertBoxes.alertBoxForMovementDirection();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+        }
+    }
+
+    public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
+        try {
+            h.move(Direction.DOWN);
+        } catch (MovementException e) {
+            alertBoxes.alertBoxForMovementDirection();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+        }
+    }
+
+    public void onMoveRightHandler(Hero h) throws MovementException, NotEnoughActionsException {
+        try {
+            h.move(Direction.RIGHT);
+        } catch (MovementException e) {
+            alertBoxes.alertBoxForMovementDirection();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+        }
+    }
+
+    public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
+        try {
+            h.move(Direction.LEFT);
+        } catch (MovementException e) {
+            alertBoxes.alertBoxForMovementDirection();
+        } catch (NotEnoughActionsException e) {
+            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+        }
     }
     public Scene getDuringGameScene() {
         return duringGameScene;

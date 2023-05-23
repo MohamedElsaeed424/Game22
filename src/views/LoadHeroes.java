@@ -54,6 +54,7 @@ public class LoadHeroes {
         heroesdetails.setTranslateY(650);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
        // layoutheroes.setRight(heroesdetails);
+        //heroesdetails.setStyle("-fx-background-color: lightgray; -fx-text-fill: black;");
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);
         heroesDetailsPlaceHolder.setStyle("-fx-background-color: red;");

@@ -12,6 +12,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import javafx.stage.Window;
@@ -41,6 +43,10 @@ public class duringGame extends StackPane{
     AlertBoxes alertBoxes = new AlertBoxes();
     StartGame  startScene = new StartGame ();
     Group layout ;
+    GridPane grid = new GridPane();
+    BorderPane border = new BorderPane();
+    VBox move = new VBox();
+
 
    private Button up;
     private Button down;
@@ -78,9 +84,18 @@ public class duringGame extends StackPane{
     }
     public duringGame(Hero heroToStart) throws IOException, MovementException, NotEnoughActionsException {
         System.out.println(heroToStart);
-         up = new Button("up");
-         up.setOnAction(e-> {
-             try {
+        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
+        Background backgroundImage = new Background(new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
+
+      // duringGameScene.getRoot().setBackground(backgroundImage);
+
+         up = new Button("\u2191");
+        up.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+        up.setOnAction(e-> {
+            up.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            try {
                  onMoveUpHandler(heroToStart);
              } catch (MovementException ex) {
                  throw new RuntimeException(ex);
@@ -88,8 +103,14 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
-         down = new Button("down");
+        up.setOnMouseReleased(event -> {
+            up.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
+         down = new Button("\u2193");
+         down.setAlignment(Pos.CENTER_RIGHT);
+         down.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
          down.setOnAction(e-> {
+             down.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
              try {
                  onMoveDownHandler(heroToStart);
              } catch (MovementException ex) {
@@ -98,8 +119,14 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
-         left = new Button("left");
+        down.setOnMouseReleased(event -> {
+            down.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
+         left = new Button("\u2190");
+         left.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
          left.setOnAction(e-> {
+             left.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
              try {
                  onMoveLeftHandler(heroToStart);
              } catch (MovementException ex) {
@@ -108,8 +135,14 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
-         right = new Button("right");
+        left.setOnMouseReleased(event -> {
+            left.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
+         right = new Button("\u2192");
+         right.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         right.setOnAction(e-> {
+            right.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
             try {
                 onMoveLeftHandler(heroToStart);
             } catch (MovementException ex) {
@@ -118,8 +151,16 @@ public class duringGame extends StackPane{
                 throw new RuntimeException(ex);
             }
         });
+        right.setOnMouseReleased(event -> {
+            right.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
+;
          attack = new Button("attack");
-         attack.setOnAction(e-> {
+        attack.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+        attack.setOnAction(e-> {
+             attack.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
              try {
                  onAttackHandler(heroToStart);
              } catch (InvalidTargetException ex) {
@@ -128,16 +169,30 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
+        attack.setOnMouseReleased(event -> {
+            attack.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
          cure = new Button("cure");
-         cure.setOnAction(e-> {
+        cure.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+        cure.setOnAction(e-> {
+             cure.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
              try {
                  onCureHandler(heroToStart);
              } catch (Exception ex) {
                  throw new RuntimeException(ex);
              }
          });
+        cure.setOnMouseReleased(event -> {
+            cure.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
          endTurn = new Button("end turn");
-         endTurn.setOnAction(e-> {
+         endTurn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+        endTurn.setOnAction(e-> {
+             endTurn.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
              try {
                  onEndTurnHandler();
              } catch (InvalidTargetException ex) {
@@ -146,8 +201,15 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
+        endTurn.setOnMouseReleased(event -> {
+            endTurn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
          useSpecial = new Button("use special");
-         useSpecial.setOnAction(e-> {
+        useSpecial.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+        useSpecial.setOnAction(e-> {
+             useSpecial.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
              try {
                  onUseSpecialHandler(heroToStart);
              } catch (InvalidTargetException ex) {
@@ -158,29 +220,45 @@ public class duringGame extends StackPane{
                  throw new RuntimeException(ex);
              }
          });
+        useSpecial.setOnMouseReleased(event -> {
+            useSpecial.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        });
 
 //        StackPane stack = new StackPane();
 //        stack.getChildren().addAll(up , down , left , right , attack , cure , endTurn , useSpecial);
-        HBox move = new HBox(10, up, down, right, left);
-        move.setAlignment(Pos.BOTTOM_RIGHT);
+        HBox move1 = new HBox(10, left,down,right);
+        HBox move2 = new HBox(10,up);
+        move2.setAlignment(Pos.CENTER);
+        move = new VBox(10,move2,move1);
+        move.setAlignment(Pos.BOTTOM_LEFT);
+        grid.getChildren().add(move);
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
-        takeAction.setAlignment(Pos.BOTTOM_LEFT);
+        grid.getChildren().add(takeAction);
+        grid.setAlignment(Pos.TOP_RIGHT);
+       // border.setTop(move);
+        duringGame.setAlignment(takeAction,Pos.CENTER);
 
-        HBox both = new HBox(20, move, takeAction);
+        //HBox both = new HBox(20, move, takeAction);
 //        both.setAlignment(Pos.BOTTOM_CENTER);
-        both.setPadding(new Insets(20));
+        //both.setPadding(new Insets(20));
 
         GridPane map = new GridPane();
+        //map.getChildren().add(layout);
+       // map.setAlignment(Pos.TOP_CENTER);
 //        map.setHgap(30);
 //        map.setVgap(10);
          layout = new Group();
+        // layout.setLayoutX(80);
+         layout.setLayoutY(490);
 
         Game.startGame(heroToStart);
         for (int i =0 ; i<15 ; i++){
             for (int j =0 ; j<15 ; j++){
                 Button empty = new Button( "E");
-                empty.setMinWidth(20);
-                empty.setMinHeight(10);
+                layout = new Group(empty);
+                layout.setLayoutY(490);
+                empty.setMinWidth(40);
+                empty.setMinHeight(20);
                 GridPane.setConstraints(empty,i,j);
                 map.getChildren().add(empty);
             }
@@ -192,16 +270,18 @@ public class duringGame extends StackPane{
                 if(cell instanceof CollectibleCell){
                     if ( ( ((CollectibleCell) Game.map[i][j]).getCollectible()) instanceof Vaccine){
                         Button Vaccine = new Button( "V");
+                        layout = new Group(Vaccine);
                         Vaccine.setStyle("-fx-background-color: blue");
-                        Vaccine.setMinWidth(20);
-                        Vaccine.setMinHeight(10);
+                        Vaccine.setMinWidth(40);
+                        Vaccine.setMinHeight(20);
                         GridPane.setConstraints(Vaccine,i,14-j);
                         map.getChildren().add(Vaccine);
                     }else  if ( ( ((CollectibleCell) Game.map[i][j]).getCollectible()) instanceof Supply){
                         Button Supply = new Button( "S");
+                        layout = new Group(Supply);
                         Supply.setStyle("-fx-background-color: Yellow");
-                        Supply.setMinWidth(20);
-                        Supply.setMinHeight(10);
+                        Supply.setMinWidth(40);
+                        Supply.setMinHeight(20);
                         GridPane.setConstraints(Supply,i,14-j);
                         map.getChildren().add(Supply);
                     }
@@ -210,70 +290,107 @@ public class duringGame extends StackPane{
                     if ( ((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie){
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button( "Z");
+                        layout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
-                        zombie.setMinWidth(20);
-                        zombie.setMinHeight(10);
+                        zombie.setMinWidth(40);
+                        zombie.setMinHeight(20);
                         GridPane.setConstraints(zombie,i,14-j);
                         map.getChildren().add(zombie);
                     }else  if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Hero){
 //                        Button Hero = new Button( ((CharacterCell) Game.map[i][j]).getCharacter().getName());
                         Button Hero = new Button( "H");
+                        layout = new Group(Hero);
                         Hero.setStyle("-fx-background-color: black");
-                        Hero.setMinWidth(20);
-                        Hero.setMinHeight(10);
+                        Hero.setMinWidth(40);
+                        Hero.setMinHeight(20);
                         GridPane.setConstraints(Hero,i,14-j);
                         map.getChildren().add(Hero);
                     }
                 }else{
                     Button empty = new Button("E");
+                    layout = new Group(empty);
                     GridPane.setConstraints(empty,i,j);
                     map.getChildren().add(empty);
                 }
             }
-        }
+        } layout.setLayoutY(300);layout.setLayoutX(200);
+        //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
         VBox availableHeroesBox = new VBox() ;
+        map.getChildren().add(availableHeroesBox);
+        map.setAlignment(Pos.CENTER);
         ArrayList<Hero> availableHeroes = Game.availableHeroes ;
         for (int i =0 ; i< availableHeroes.size() ; i++) {
             Hero h = availableHeroes.get(i);
             Button availableHeroeBtn = new Button(h.getName());
-            availableHeroeBtn.setMinWidth(20);
-            availableHeroeBtn.setMinHeight(10);
+            availableHeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            availableHeroeBtn.setMinWidth(90);
+            availableHeroeBtn.setMinHeight(40);
             availableHeroeBtn.setPrefSize(20 ,50);
             availableHeroesBox.getChildren().add(availableHeroeBtn);
+            availableHeroesBox.setLayoutY(800);
+            availableHeroeBtn.setAlignment(Pos.CENTER);
+            availableHeroesBox.setLayoutX(550);
         }
         VBox HeroesBox = new VBox() ;
         ArrayList<Hero> Heroes = Game.heroes ;
         for (int i =0 ; i< Heroes.size() ; i++){
             Hero h= availableHeroes.get(i);
             Button HeroeBtn = new Button(h.getName()) ;
-            HeroeBtn.setMinWidth(20);
-            HeroeBtn.setMinHeight(10);
+            HeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
+            HeroeBtn.setMinWidth(90);
+            HeroeBtn.setMinHeight(40);
             HeroeBtn.setPrefSize(20 ,50);
             HeroesBox.getChildren().add(HeroeBtn);
+            HeroesBox.setLayoutY(800);
+            HeroesBox.setLayoutY(700);
+            HeroeBtn.setAlignment(Pos.CENTER_RIGHT );
         }
-        VBox currentHeroBox = new VBox();
         Button currentHeroBtn = new Button() ;
-        currentHeroBtn.setMinWidth(20);
-        currentHeroBtn.setMinHeight(10);
+        VBox currentHeroBox = new VBox(currentHeroBtn);
+       // Button currentHeroBtn = new Button() ;
+        //duringGameScene = new Scene(currentHeroBox, 100,100);
+           // duringGameScene.getRoot().getChildrenUnmodifiable().add(currentHeroBox);
+        currentHeroBox.setAlignment(Pos.CENTER);
+        currentHeroBtn.setMinWidth(90);
+        currentHeroBtn.setMinHeight(40);
         currentHeroBtn.setPrefSize(20 ,50);
-        currentHeroBox.getChildren().add(currentHeroBtn);
+        // currentHeroBox.getChildren().add(currentHeroBtn);
         //--------------------------------------------
-        availableHeroesBox.setLayoutX(190);
-        availableHeroesBox.setLayoutY(150);
+        availableHeroesBox.setLayoutX(800);
+        availableHeroesBox.setLayoutY(500);
         HeroesBox.setLayoutX(400);
         HeroesBox.setLayoutY(900);
         currentHeroBox.setLayoutX(400);
         currentHeroBox.setLayoutY(800);
         VBox allHeroesBoxes = new VBox();
+        duringGameScene = new Scene(allHeroesBoxes);
         allHeroesBoxes.getChildren().addAll(currentHeroBox,availableHeroesBox,HeroesBox);
-        layout.getChildren().addAll(allHeroesBoxes ,map ,both);
+        StackPane pic = new StackPane();
+        pic.setBackground(backgroundImage);
+      layout.getChildren().addAll(map,allHeroesBoxes,move,takeAction);
+        takeAction.setTranslateX(400);
+        takeAction.setTranslateY(-200);
+        move.setTranslateX(400);
+        move.setTranslateY(500);
+        allHeroesBoxes.setTranslateX(-100);
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
-        both.setAlignment(Pos.BOTTOM_LEFT);
-        duringGameScene = new Scene(layout, 1000,1000);
+        //both.setAlignment(Pos.BOTTOM_LEFT);
+        duringGameScene.getRoot().setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
+                "-fx-background-size: cover; " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: no-repeat;");
+        duringGameScene = new Scene(layout,1000,1000);
+       // duringGameScene= new Scene(allHeroesBoxes);
+
     }
+
+
+
 
         public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
             try {
@@ -373,4 +490,6 @@ public class duringGame extends StackPane{
     public Scene getDuringGameScene() {
         return duringGameScene;
     }
+
+
 }

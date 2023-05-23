@@ -45,16 +45,16 @@ public class LoadHeroes {
         //--------------------loading heroes from csv File
         try {
 //            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
-            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
         //---------------------For text box---------------------------------------
-        heroesdetails.setMaxSize(350, 300);
+        heroesdetails.setMaxSize(350, 350);
         heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
         heroesdetails.setTranslateX(-320);
-        heroesdetails.setTranslateY(390);
+        heroesdetails.setTranslateY(670);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);

@@ -84,13 +84,13 @@ public class LoadHeroes {
 
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
-        Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero1.jpg");
-        Image hh1 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero2.jpg");
-        Image hh2 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero3.jpg");
-        Image hh3 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero4.jpg");
-        Image hh4 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero5.jpg");
-        Image hh5 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero6.jpg");
-        Image hh6 = new Image("file:///C:/Users/Habiba%20Elguindy/OneDrive/Pictures/hero7.jpg");
+        Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero1.jpg");
+        Image hh1 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero2.jpg");
+        Image hh2 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero3.jpg");
+        Image hh3 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero4.jpg");
+        Image hh4 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero5.jpg");
+        Image hh5 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero6.jpg");
+        Image hh6 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero7.jpg");
         ImageView imageView1 = new ImageView(hh0);
         ImageView imageView2 = new ImageView(hh1);
         ImageView imageView3 = new ImageView(hh2);
@@ -289,7 +289,7 @@ public class LoadHeroes {
         //----------------------------------------------------------------------------
         gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6);
         layoutheroes.setLeft(gridHeroesLayOut);
-        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/red%20wallpaper%20start.jfif");
+        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

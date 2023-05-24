@@ -46,7 +46,7 @@ public class duringGame extends StackPane{
     VBox move = new VBox();
 
 
-   private Button up;
+    private Button up;
     private Button down;
     private Button left;
     private Button attack;
@@ -85,60 +85,60 @@ public class duringGame extends StackPane{
         Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
         Background backgroundImage = new Background(new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
 
-      // duringGameScene.getRoot().setBackground(backgroundImage);
+        // duringGameScene.getRoot().setBackground(backgroundImage);
 
 
-         up = new Button("\u2191");
+        up = new Button("\u2191");
         up.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
         up.setOnAction(e-> {
             up.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
             try {
-                 onMoveUpHandler(heroToStart);
-             } catch (MovementException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+                onMoveUpHandler(heroToStart);
+            } catch (MovementException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         up.setOnMouseReleased(event -> {
             up.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         down = new Button("\u2193");
-         down.setAlignment(Pos.CENTER_RIGHT);
-         down.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-         down.setOnAction(e-> {
-             down.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-             try {
-                 onMoveDownHandler(heroToStart);
-             } catch (MovementException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+        down = new Button("\u2193");
+        down.setAlignment(Pos.CENTER_RIGHT);
+        down.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        down.setOnAction(e-> {
+            down.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            try {
+                onMoveDownHandler(heroToStart);
+            } catch (MovementException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         down.setOnMouseReleased(event -> {
             down.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         left = new Button("\u2190");
-         left.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-         left.setOnAction(e-> {
-             left.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        left = new Button("\u2190");
+        left.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        left.setOnAction(e-> {
+            left.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-             try {
-                 onMoveLeftHandler(heroToStart);
-             } catch (MovementException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+            try {
+                onMoveLeftHandler(heroToStart);
+            } catch (MovementException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         left.setOnMouseReleased(event -> {
             left.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         right = new Button("\u2192");
-         right.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        right = new Button("\u2192");
+        right.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         right.setOnAction(e-> {
             right.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
@@ -153,72 +153,72 @@ public class duringGame extends StackPane{
         right.setOnMouseReleased(event -> {
             right.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-;
-         attack = new Button("attack");
+        ;
+        attack = new Button("attack");
         attack.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
         attack.setOnAction(e-> {
-             attack.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            attack.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-             try {
-                 onAttackHandler(heroToStart);
-             } catch (InvalidTargetException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+            try {
+                onAttackHandler(heroToStart);
+            } catch (InvalidTargetException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         attack.setOnMouseReleased(event -> {
             attack.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         cure = new Button("cure");
+        cure = new Button("cure");
         cure.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
         cure.setOnAction(e-> {
-             cure.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            cure.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-             try {
-                 onCureHandler(heroToStart);
-             } catch (Exception ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+            try {
+                onCureHandler(heroToStart);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         cure.setOnMouseReleased(event -> {
             cure.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         endTurn = new Button("end turn");
-         endTurn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        endTurn = new Button("end turn");
+        endTurn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
         endTurn.setOnAction(e-> {
-             endTurn.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            endTurn.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-             try {
-                 onEndTurnHandler();
-             } catch (InvalidTargetException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+            try {
+                onEndTurnHandler();
+            } catch (InvalidTargetException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         endTurn.setOnMouseReleased(event -> {
             endTurn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-         useSpecial = new Button("use special");
+        useSpecial = new Button("use special");
         useSpecial.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
         useSpecial.setOnAction(e-> {
-             useSpecial.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            useSpecial.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-             try {
-                 onUseSpecialHandler(heroToStart);
-             } catch (InvalidTargetException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NotEnoughActionsException ex) {
-                 throw new RuntimeException(ex);
-             } catch (NoAvailableResourcesException ex) {
-                 throw new RuntimeException(ex);
-             }
-         });
+            try {
+                onUseSpecialHandler(heroToStart);
+            } catch (InvalidTargetException ex) {
+                throw new RuntimeException(ex);
+            } catch (NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            } catch (NoAvailableResourcesException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         useSpecial.setOnMouseReleased(event -> {
             useSpecial.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
@@ -234,7 +234,7 @@ public class duringGame extends StackPane{
         HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         grid.getChildren().add(takeAction);
         grid.setAlignment(Pos.TOP_RIGHT);
-       // border.setTop(move);
+        // border.setTop(move);
         duringGame.setAlignment(takeAction,Pos.CENTER);
 
         //HBox both = new HBox(20, move, takeAction);
@@ -243,12 +243,12 @@ public class duringGame extends StackPane{
 
         GridPane map = new GridPane();
         //map.getChildren().add(layout);
-       // map.setAlignment(Pos.TOP_CENTER);
+        // map.setAlignment(Pos.TOP_CENTER);
 //        map.setHgap(30);
 //        map.setVgap(10);
-         layout = new Group();
+        layout = new Group();
         // layout.setLayoutX(80);
-         layout.setLayoutY(490);
+        layout.setLayoutY(490);
 
         Game.startGame(heroToStart);
         for (int i =0 ; i<15 ; i++){
@@ -349,9 +349,9 @@ public class duringGame extends StackPane{
         Button currentHeroBtn = new Button("currentHero") ;
         currentHeroBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         VBox currentHeroBox = new VBox(currentHeroBtn);
-       // Button currentHeroBtn = new Button() ;
+        // Button currentHeroBtn = new Button() ;
         //duringGameScene = new Scene(currentHeroBox, 100,100);
-           // duringGameScene.getRoot().getChildrenUnmodifiable().add(currentHeroBox);
+        // duringGameScene.getRoot().getChildrenUnmodifiable().add(currentHeroBox);
         currentHeroBox.setAlignment(Pos.CENTER);
         currentHeroBtn.setMinWidth(90);
         currentHeroBtn.setMinHeight(40);
@@ -374,7 +374,7 @@ public class duringGame extends StackPane{
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: no-repeat;") ;
 //      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
-      grid.setBackground(backgroundImage);
+        grid.setBackground(backgroundImage);
 //      layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
 //              "-fx-background-size: cover; " +
 //              "-fx-background-position: center center; " +
@@ -416,15 +416,15 @@ public class duringGame extends StackPane{
         map.setAlignment(Pos.TOP_CENTER);
         //both.setAlignment(Pos.BOTTOM_LEFT);
         duringGameScene = new Scene(layout,1000,1000);
-       // duringGameScene= new Scene(allHeroesBoxes);
+        // duringGameScene= new Scene(allHeroesBoxes);
 
     }
 
 
 
 
-        public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
-            try {
+    public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
+        try {
             c.attack();
         } catch (InvalidTargetException e) {
             alertBoxes.alertBoxForInvalidTargetAttack();

@@ -44,7 +44,7 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\sahar\\Desktop\\src\\heros.csv");
 //            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
 
         } catch (FileNotFoundException e) {
@@ -63,7 +63,7 @@ public class LoadHeroes {
         //-----------------------initializing grid-------------------------------------------------------
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
-        LoadHeroes = new Scene(layoutheroes, 1000, 1000);
+        LoadHeroes = new Scene(layoutheroes, 1250, 1000);
     }
 
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
@@ -101,7 +101,7 @@ public class LoadHeroes {
         gridHeroesLayOut.setVgap(90);
         gridHeroesLayOut.setHgap(50);
         Button h0 = new Button( Heroes.get(0).getName()) ;
-        h0.setFont(new Font(60));
+        h0.setFont(new Font(45));
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered((e)->{
             h0.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
@@ -126,7 +126,7 @@ public class LoadHeroes {
         } );
         //---------------------------------------------------------------------
         Button h1 = new Button( Heroes.get(1).getName()) ;
-        h1.setFont(new Font(60));
+        h1.setFont(new Font(45));
         h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h1,1,0);
         h1.setOnMouseEntered((e)->{
@@ -152,7 +152,7 @@ public class LoadHeroes {
         //-------------------------------------------------------------------------
 
         Button h2 = new Button( Heroes.get(2).getName()) ;
-        h2.setFont(new Font(60));
+        h2.setFont(new Font(45));
         h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h2,2,0);
         h2.setOnMouseEntered((e)->{
@@ -174,7 +174,7 @@ public class LoadHeroes {
         } );
         //--------------------------------------------------------------------------
         Button h3 = new Button( Heroes.get(3).getName()) ;
-        h3.setFont(new Font(60));
+        h3.setFont(new Font(45));
         h3.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h3,0,1);
         h3.setOnMouseEntered((e)->{
@@ -198,7 +198,7 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h4 = new Button( Heroes.get(4).getName()) ;
-        h4.setFont(new Font(60));
+        h4.setFont(new Font(45));
         h4.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h4,1,1);
         h4.setOnMouseEntered((e)->{
@@ -223,7 +223,7 @@ public class LoadHeroes {
         } );
         //----------------------------------------------------------------------------
         Button h5 = new Button( Heroes.get(5).getName()) ;
-        h5.setFont(new Font(60));
+        h5.setFont(new Font(45));
         h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h5,2,1);
         h5.setOnMouseEntered((e)->{
@@ -248,7 +248,7 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h6 = new Button( Heroes.get(6).getName()) ;
-        h6.setFont(new Font(60));
+        h6.setFont(new Font(45));
         h6.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h6,1,2);
         h6.setOnMouseEntered((e)->{
@@ -273,7 +273,31 @@ public class LoadHeroes {
 
         } );
         //----------------------------------------------------------------------------
-        gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6);
+        Button h7 = new Button( Heroes.get(7).getName()) ;
+        h7.setFont(new Font(45));
+        h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        GridPane.setConstraints(h7,2,2);
+        h7.setOnMouseEntered((e)->{
+            h7.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView2);
+            onHeroesDetailsUpdate(Heroes.get(7)) ; });
+        h7.setOnMouseExited(event -> h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
+        h7.setOnMouseClicked((e)->{
+            try {
+                System.out.println("h7 Clicked");
+                duringGameScene = new duringGame(Heroes.get(7)) ;
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //---------------------------------------------------------------
+
+
+        gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6,h7);
         layoutheroes.setLeft(gridHeroesLayOut);
         Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
         BackgroundImage backgroundImage = new BackgroundImage(image,
@@ -285,6 +309,7 @@ public class LoadHeroes {
 
 
     }
+
     //---------------------Text Box Details------------------------------------------------
     public void onHeroesDetailsUpdate(Hero h) {
         addDetails(h.toString());

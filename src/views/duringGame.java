@@ -515,13 +515,22 @@ public class duringGame extends StackPane {
     public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
             currentHero = h;
+            Point loc = h.getLocation();
+            //int x = GridPane.getColumnIndex(hero);
+            //int y = GridPane.getRowIndex(hero);
             Button heroNewLocationBtn = new Button("H");
+            heroNewLocationBtn.setPrefSize(20 ,50);
             heroNewLocationBtn.setStyle("-fx-background-color: black");
-            Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x+1 , heroCurrentLocation.y);
-            Button heroLastLocation = new Button("H");
-            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
-            map.getChildren().add(heroLastLocation);
+            GridPane.setConstraints(heroNewLocationBtn,loc.y,14-loc.x+1);
+
+            Button oldlocation = new Button("E");
+            oldlocation.setPrefSize(20,50);
+            GridPane.setConstraints(oldlocation,loc.y,14-loc.x);
+            map.getChildren().addAll(oldlocation);
+            //ut.getChildren().addAll(heroNewLocationBtn,oldlocation);layo
+
+            //heroNewLocationBtn.setStyle("-fx-background-color: black");
+
             currentHero.move(Direction.UP);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
@@ -532,14 +541,21 @@ public class duringGame extends StackPane {
 
     public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+
+
             currentHero = h;
+            Point loc = h.getLocation();
+            //int x = GridPane.getColumnIndex(hero);
+            //int y = GridPane.getRowIndex(hero);
             Button heroNewLocationBtn = new Button("H");
+            heroNewLocationBtn.setPrefSize(40 ,20);
             heroNewLocationBtn.setStyle("-fx-background-color: black");
-            Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x-1 , heroCurrentLocation.y);
-            Button heroLastLocation = new Button("H");
-            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
-            map.getChildren().add(heroLastLocation);
+            GridPane.setConstraints(heroNewLocationBtn,loc.y,14-loc.x-1);
+
+            Button oldlocation = new Button("E");
+            oldlocation.setPrefSize(40,20);
+            GridPane.setConstraints(oldlocation,loc.y,14-loc.x);
+            map.getChildren().addAll(oldlocation);
             currentHero.move(Direction.DOWN);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
@@ -551,13 +567,18 @@ public class duringGame extends StackPane {
     public void onMoveRightHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
             currentHero = h;
+            Point loc = h.getLocation();
+            //int x = GridPane.getColumnIndex(hero);
+            //int y = GridPane.getRowIndex(hero);
             Button heroNewLocationBtn = new Button("H");
+            heroNewLocationBtn.setPrefSize(40 ,20);
             heroNewLocationBtn.setStyle("-fx-background-color: black");
-            Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x, heroCurrentLocation.y+1);
-            Button heroLastLocation = new Button("H");
-            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
-            map.getChildren().add(heroLastLocation);
+            GridPane.setConstraints(heroNewLocationBtn,loc.y+1,14-loc.x);
+
+            Button oldlocation = new Button("E");
+            oldlocation.setPrefSize(40,20);
+            GridPane.setConstraints(oldlocation,loc.y,14-loc.x);
+            map.getChildren().addAll(oldlocation);
             currentHero.move(Direction.RIGHT);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
@@ -569,13 +590,18 @@ public class duringGame extends StackPane {
     public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
             currentHero = h;
+            Point loc = h.getLocation();
+            //int x = GridPane.getColumnIndex(hero);
+            //int y = GridPane.getRowIndex(hero);
             Button heroNewLocationBtn = new Button("H");
+            heroNewLocationBtn.setPrefSize(40 ,20);
             heroNewLocationBtn.setStyle("-fx-background-color: black");
-            Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x , heroCurrentLocation.y-1);
-            Button heroLastLocation = new Button("H");
-            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
-            map.getChildren().add(heroLastLocation);
+            GridPane.setConstraints(heroNewLocationBtn,loc.y,14-loc.x-1);
+
+            Button oldlocation = new Button("E");
+            oldlocation.setPrefSize(40,20);
+            GridPane.setConstraints(oldlocation,loc.y,14-loc.x);
+            map.getChildren().addAll(oldlocation);
             currentHero.move(Direction.LEFT);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();

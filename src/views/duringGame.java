@@ -339,7 +339,6 @@ public class duringGame extends StackPane{
             Hero h= availableHeroes.get(i);
             Button HeroeBtn = new Button(h.getName()) ;
             HeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-
             HeroeBtn.setMinWidth(90);
             HeroeBtn.setMinHeight(40);
             HeroeBtn.setPrefSize(20 ,50);
@@ -348,7 +347,8 @@ public class duringGame extends StackPane{
             HeroesBox.setLayoutY(700);
             HeroeBtn.setAlignment(Pos.CENTER_RIGHT );
         }
-        Button currentHeroBtn = new Button() ;
+        Button currentHeroBtn = new Button("currentHero") ;
+        currentHeroBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         VBox currentHeroBox = new VBox(currentHeroBtn);
        // Button currentHeroBtn = new Button() ;
         //duringGameScene = new Scene(currentHeroBox, 100,100);
@@ -357,33 +357,47 @@ public class duringGame extends StackPane{
         currentHeroBtn.setMinWidth(90);
         currentHeroBtn.setMinHeight(40);
         currentHeroBtn.setPrefSize(20 ,50);
-        // currentHeroBox.getChildren().add(currentHeroBtn);
+        //currentHeroBox.getChildren().add(currentHeroBtn);
         //--------------------------------------------
-        availableHeroesBox.setLayoutX(800);
-        availableHeroesBox.setLayoutY(500);
-        HeroesBox.setLayoutX(400);
-        HeroesBox.setLayoutY(900);
-        currentHeroBox.setLayoutX(400);
-        currentHeroBox.setLayoutY(800);
+        availableHeroesBox.setLayoutX(620);
+        availableHeroesBox.setLayoutY(-10);
+        HeroesBox.setLayoutX(900);
+        HeroesBox.setLayoutY(1000);
+        currentHeroBox.setLayoutX(480);
+        currentHeroBox.setLayoutY(-60);
         VBox allHeroesBoxes = new VBox();
         duringGameScene = new Scene(allHeroesBoxes);
         allHeroesBoxes.getChildren().addAll(currentHeroBox,availableHeroesBox,HeroesBox);
         StackPane pic = new StackPane();
         pic.setBackground(backgroundImage);
-      layout.getChildren().addAll(map,allHeroesBoxes,move,takeAction);
+        layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
+                "-fx-background-size: cover; " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: no-repeat;") ;
+      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
+      grid.setBackground(backgroundImage);
+//      layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
+//              "-fx-background-size: cover; " +
+//              "-fx-background-position: center center; " +
+//              "-fx-background-repeat: no-repeat;") ;
         takeAction.setTranslateX(400);
         takeAction.setTranslateY(-200);
         move.setTranslateX(400);
         move.setTranslateY(500);
-        allHeroesBoxes.setTranslateX(-100);
+        //---------------------------------------
+//        availableHeroesBox.setTranslateX(900);
+//        allHeroesBoxes.setTranslateX(80);
+//        currentHeroBox.setTranslateX(100);
+//        HeroesBox.setTranslateX(90);
+//        HeroesBox.setTranslateY(90);
+
+//        allHeroesBoxes.setTranslateX(1000);
+        //----------------------------------------
+
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
         //both.setAlignment(Pos.BOTTOM_LEFT);
-        duringGameScene.getRoot().setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
-                "-fx-background-size: cover; " +
-                "-fx-background-position: center center; " +
-                "-fx-background-repeat: no-repeat;");
         duringGameScene = new Scene(layout,1000,1000);
        // duringGameScene= new Scene(allHeroesBoxes);
 

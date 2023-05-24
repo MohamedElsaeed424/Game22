@@ -35,7 +35,7 @@ import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
 
-public class duringGame extends StackPane{
+public class test3 extends StackPane{
     Hero heroToStart ;
     Scene duringGameScene ;
     AlertBoxes alertBoxes = new AlertBoxes();
@@ -80,7 +80,7 @@ public class duringGame extends StackPane{
     public Button getUseSpecial() {
         return useSpecial;
     }
-    public duringGame(Hero heroToStart) throws IOException, MovementException, NotEnoughActionsException {
+    public test3(Hero heroToStart) throws IOException, MovementException, NotEnoughActionsException {
         System.out.println(heroToStart);
         Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
         Background backgroundImage = new Background(new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
@@ -312,7 +312,8 @@ public class duringGame extends StackPane{
                     map.getChildren().add(empty);
                 }
             }
-        }layout.setLayoutY(300);layout.setLayoutX(200);
+        }
+        layout.setLayoutY(300);layout.setLayoutX(200);
         //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
         VBox availableHeroesBox = new VBox() ;

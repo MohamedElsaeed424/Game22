@@ -230,29 +230,25 @@ public class duringGame extends StackPane {
         useSpecial.setOnMouseReleased(event -> {
             useSpecial.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         });
-
 //        StackPane stack = new StackPane();
 //        stack.getChildren().addAll(up , down , left , right , attack , cure , endTurn , useSpecial);
-        HBox move1 = new HBox(10, left, down, right);
-        HBox move2 = new HBox(10, up);
+        HBox move1 = new HBox(10, left,down,right);
+        HBox move2 = new HBox(10,up);
         move2.setAlignment(Pos.CENTER);
-        move = new VBox(10, move2, move1);
-        move.setAlignment(Pos.BASELINE_RIGHT);
-//        move.setTranslateY(-100);
+        move = new VBox(10,move2,move1);
+        move.setAlignment(Pos.BOTTOM_LEFT);
         grid.getChildren().add(move);
-        HBox takeAction = new HBox(10, attack, cure, endTurn, useSpecial);
-//        takeAction.setTranslateY(-1011);
+        HBox takeAction = new HBox(10, attack, cure , endTurn, useSpecial);
         grid.getChildren().add(takeAction);
-        grid.setTranslateY(-200);
-        grid.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.TOP_RIGHT);
         // border.setTop(move);
-        duringGame.setAlignment(takeAction, Pos.CENTER);
+        duringGame.setAlignment(takeAction,Pos.CENTER);
 
         //HBox both = new HBox(20, move, takeAction);
 //        both.setAlignment(Pos.BOTTOM_CENTER);
         //both.setPadding(new Insets(20));
 
-         map = new GridPane();
+        map = new GridPane();
         //map.getChildren().add(layout);
         // map.setAlignment(Pos.TOP_CENTER);
 //        map.setHgap(30);
@@ -262,14 +258,14 @@ public class duringGame extends StackPane {
         layout.setLayoutY(490);
 
         Game.startGame(currentHero);
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                Button empty = new Button("E");
+        for (int i =0 ; i<15 ; i++){
+            for (int j =0 ; j<15 ; j++){
+                Button empty = new Button( "E");
                 layout = new Group(empty);
                 layout.setLayoutY(490);
                 empty.setMinWidth(40);
                 empty.setMinHeight(20);
-                GridPane.setConstraints(empty, i, j);
+                GridPane.setConstraints(empty,i,j);
                 map.getChildren().add(empty);
             }
         }
@@ -331,41 +327,42 @@ public class duringGame extends StackPane {
                 }
             }
         }
-        layout.setLayoutY(300);
-        layout.setLayoutX(200);
+        layout.setLayoutY(300);layout.setLayoutX(200);
         //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
-        VBox availableHeroesBox = new VBox();
+        VBox availableHeroesBox = new VBox() ;
         map.getChildren().add(availableHeroesBox);
         map.setAlignment(Pos.CENTER);
-        ArrayList<Hero> availableHeroes = Game.availableHeroes;
-        for (int i = 0; i < availableHeroes.size(); i++) {
+        ArrayList<Hero> availableHeroes = Game.availableHeroes ;
+        for (int i =0 ; i< availableHeroes.size() ; i++) {
             Hero h = availableHeroes.get(i);
             Button availableHeroeBtn = new Button(h.getName());
             availableHeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+
             availableHeroeBtn.setMinWidth(90);
             availableHeroeBtn.setMinHeight(40);
-            availableHeroeBtn.setPrefSize(20, 50);
+            availableHeroeBtn.setPrefSize(20 ,50);
             availableHeroesBox.getChildren().add(availableHeroeBtn);
             availableHeroesBox.setLayoutY(800);
             availableHeroeBtn.setAlignment(Pos.CENTER);
             availableHeroesBox.setLayoutX(550);
         }
-        VBox HeroesBox = new VBox();
-        ArrayList<Hero> Heroes = Game.heroes;
-        for (int i = 0; i < Heroes.size(); i++) {
-            Hero h = availableHeroes.get(i);
-            Button HeroeBtn = new Button(h.getName());
+        VBox HeroesBox = new VBox() ;
+        ArrayList<Hero> Heroes = Game.heroes ;
+        for (int i =0 ; i< Heroes.size() ; i++){
+            Hero h= availableHeroes.get(i);
+            Button HeroeBtn = new Button(h.getName()) ;
             HeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
             HeroeBtn.setMinWidth(90);
             HeroeBtn.setMinHeight(40);
-            HeroeBtn.setPrefSize(20, 50);
+            HeroeBtn.setPrefSize(20 ,50);
             HeroesBox.getChildren().add(HeroeBtn);
             HeroesBox.setLayoutY(800);
             HeroesBox.setLayoutY(700);
-            HeroeBtn.setAlignment(Pos.CENTER_RIGHT);
+            HeroeBtn.setAlignment(Pos.CENTER_RIGHT );
         }
-        Button currentHeroBtn = new Button();
+        Button currentHeroBtn = new Button("currentHero") ;
+        currentHeroBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         VBox currentHeroBox = new VBox(currentHeroBtn);
         // Button currentHeroBtn = new Button() ;
         //duringGameScene = new Scene(currentHeroBox, 100,100);
@@ -373,38 +370,67 @@ public class duringGame extends StackPane {
         currentHeroBox.setAlignment(Pos.CENTER);
         currentHeroBtn.setMinWidth(90);
         currentHeroBtn.setMinHeight(40);
-        currentHeroBtn.setPrefSize(20, 50);
-        // currentHeroBox.getChildren().add(currentHeroBtn);
+        currentHeroBtn.setPrefSize(20 ,50);
+        //currentHeroBox.getChildren().add(currentHeroBtn);
         //--------------------------------------------
-        availableHeroesBox.setLayoutX(800);
-        availableHeroesBox.setLayoutY(500);
-        HeroesBox.setLayoutX(400);
-        HeroesBox.setLayoutY(900);
-        currentHeroBox.setLayoutX(400);
-        currentHeroBox.setLayoutY(800);
+        availableHeroesBox.setLayoutX(620);
+        availableHeroesBox.setLayoutY(-10);
+        HeroesBox.setLayoutX(900);
+        HeroesBox.setLayoutY(1000);
+        currentHeroBox.setLayoutX(480);
+        currentHeroBox.setLayoutY(-60);
         VBox allHeroesBoxes = new VBox();
         duringGameScene = new Scene(allHeroesBoxes);
-        allHeroesBoxes.getChildren().addAll(currentHeroBox, availableHeroesBox, HeroesBox);
+        allHeroesBoxes.getChildren().addAll(currentHeroBox,availableHeroesBox,HeroesBox);
         StackPane pic = new StackPane();
         pic.setBackground(backgroundImage);
-        layout.getChildren().addAll(map, availableHeroesBox, currentHeroBox, HeroesBox, move, takeAction);
+        layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
+                "-fx-background-size: cover; " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: no-repeat;") ;
+//      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
+        grid.setBackground(backgroundImage);
+//      layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
+//              "-fx-background-size: cover; " +
+//              "-fx-background-position: center center; " +
+//              "-fx-background-repeat: no-repeat;") ;
         takeAction.setTranslateX(400);
         takeAction.setTranslateY(-200);
         move.setTranslateX(400);
         move.setTranslateY(500);
-//        allHeroesBoxes.setTranslateX(-100);
-        availableHeroesBox.setTranslateX(99);
-        HeroesBox.setTranslateX(100);
-        currentHeroBox.setTranslateX(101);
+        //---------------------------------------
+//        availableHeroesBox.setTranslateX(900);
+//        allHeroesBoxes.setTranslateX(80);
+//        currentHeroBox.setTranslateX(100);
+//        HeroesBox.setTranslateX(90);
+//        HeroesBox.setTranslateY(90);
+
+//        allHeroesBoxes.setTranslateX(1000);
+        //----------------------------------------
+        Label attackDmgLabel = new Label("Attack Damage: ");
+        Label currentHpLabel = new Label("Current HP: ");
+        Label actionPointsLabel = new Label("Action Points:");
+//        ProgressBar healthBar = new ProgressBar();
+//        healthBar.setProgress(1);
+//        healthBar.setLayoutY(-100);
+//        healthBar.setStyle("-fx-accent: red;");
+        VBox infoBox = new VBox(10); // 10 is the spacing between child nodes
+        infoBox.getChildren().addAll(attackDmgLabel, currentHpLabel,actionPointsLabel);
+        HBox all = new HBox(10);
+//        all.getChildren().addAll(healthBar,infoBox);
+        infoBox.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: blue;");
+        infoBox.setTranslateX(-130);
+        infoBox.setTranslateY(-130);
+        infoBox.setMinWidth(300);
+
+
+        layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox);
+
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
         //both.setAlignment(Pos.BOTTOM_LEFT);
-        duringGameScene.getRoot().setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
-                "-fx-background-size: cover; " +
-                "-fx-background-position: center center; " +
-                "-fx-background-repeat: no-repeat;");
-        duringGameScene = new Scene(layout, 1000, 1000);
+        duringGameScene = new Scene(layout,1000,1000);
         // duringGameScene= new Scene(allHeroesBoxes);
 
     }

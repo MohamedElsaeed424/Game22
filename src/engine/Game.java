@@ -48,7 +48,6 @@ public class Game {
             // -----------------------------------------------------------------
             if (heros[1].equals("FIGH")) {
                 h = new Fighter(name, maxHp, attackDmg, maxActions);
-                System.out.println(h.getName());
             } else if (heros[1].equals("MED")) {
                 h = new Medic(name, maxHp, attackDmg, maxActions);
             } else {
@@ -76,17 +75,20 @@ public class Game {
             Vaccine v = new Vaccine();
             map[Locations.get(point).x][Locations.get(point).y] = new CollectibleCell(v);
             Locations.remove(Locations.get(point));
+            System.out.println("V");
         }
         for (int i = 0; i < 5; i++) {
             int point = getRandomInteger(Locations.size());
             Supply s = new Supply();
             map[Locations.get(point).x][Locations.get(point).y] = new CollectibleCell(s);
             Locations.remove(Locations.get(point));
+            System.out.println("S");
         }
         for (int i = 0; i < 5; i++) {
             int point = getRandomInteger(Locations.size());
             map[Locations.get(point).x][Locations.get(point).y] = new TrapCell();
             Locations.remove(Locations.get(point));
+            System.out.println("T");
         }
         for (int i = 0; i < 10; i++) {
             int point = getRandomInteger(Locations.size());
@@ -95,6 +97,7 @@ public class Game {
             z.setLocation(Locations.get(point));
             zombies.add(z);
             Locations.remove(Locations.get(point));
+            System.out.println("Z");
         }
         // -------------------------------------------adding Hero-------------------
         heroes.add(h);
@@ -102,6 +105,8 @@ public class Game {
         map[0][0] = new CharacterCell(h);
         availableHeroes.remove(h);
         h.setAllVisible();
+        System.out.println(((CharacterCell)map[0][0]).getCharacter().getName());
+        System.out.println("All Field");
     }
 
     public static void setRestToCharacter() {
@@ -129,7 +134,7 @@ public class Game {
         return map;
     }
 
-    public static void endTurn() throws  InvalidTargetException, NotEnoughActionsException {
+    public static void endTurn() throws InvalidTargetException, NotEnoughActionsException {
         for (int i =0 ; i<zombies.size()  ; i++) {
             Zombie z = zombies.get(i) ;
             z.attack();

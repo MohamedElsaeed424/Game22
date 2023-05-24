@@ -59,12 +59,9 @@ public class duringGame extends StackPane {
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
-    GridPane map ;
+    private GridPane map ;
 
-    Point target;
-    ;
-
-
+   private Point target;
 
 
 

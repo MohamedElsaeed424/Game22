@@ -32,7 +32,6 @@ public abstract class Hero extends Character {
         this.specialAction = false;
         vaccineInventory = new ArrayList<>();
         supplyInventory = new ArrayList<>();
-
     }
 
     // ----------------------Setters and Getters-----------------------------------------------
@@ -77,7 +76,7 @@ public abstract class Hero extends Character {
         super.attack();
     }
 
-    public void move(Direction d) throws MovementException, NotEnoughActionsException, InvalidTargetException {
+    public void move(Direction d) throws MovementException, NotEnoughActionsException {
         if (this.getCurrentHp() == 0) {
             this.onCharacterDeath();
             return ;
@@ -273,11 +272,13 @@ public abstract class Hero extends Character {
     @Override
     public String toString() {
         return  "Hero Details :"+"\n"+
-                "actionsAvailable=" + actionsAvailable + "\n"+
-                ", maxActions=" + maxActions +"\n"+
-                ", specialAction=" + specialAction +"\n"+
-                ", vaccineInventory=" + vaccineInventory +"\n"+
-                ", supplyInventory=" + supplyInventory
+                ". "+this.getClass().getSimpleName()+"\n"+
+                ". actionsAvailable=" + actionsAvailable + "\n"+
+                ". maxActions=" + maxActions +"\n"+
+                ". specialAction=" + specialAction +"\n"+
+                ". vaccineInventory=" + vaccineInventory +"\n"+
+                ". supplyInventory=" + supplyInventory
                 ;
     }
+
 }

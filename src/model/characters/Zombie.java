@@ -16,6 +16,10 @@ public class Zombie extends Character {
         super("Zombie " + ZOMBIES_COUNT++, 40, 10);
     }
 
+    public static int getZombiesCount() {
+        return ZOMBIES_COUNT;
+    }
+
     public void attack() throws NotEnoughActionsException, InvalidTargetException {
         Point ZombieLocation = this.getLocation();
         int x = (int) ZombieLocation.getX();

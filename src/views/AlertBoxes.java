@@ -4,6 +4,23 @@ import javafx.scene.control.Alert;
 
 public class AlertBoxes {
 
+    public void alertBoxForInvalidToSetTarget(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Cant set This Position to be Target");
+        alert.setContentText("You Should Choose Valid Target");
+        alert.showAndWait();
+    }
+
+    public void alertBoxForInvalidHeroSelection(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("This is not a Hero");
+        alert.setContentText("You Should Choose Valid Hero");
+        alert.showAndWait();
+    }
+
+
     public void alertBoxForInvalidTargetAttack(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");

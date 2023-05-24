@@ -297,6 +297,12 @@ public class duringGame extends StackPane {
                     if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie) {
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button("Z");
+                        Image gifImage = new Image("https://th.bing.com/th/id/OIP.k9dXBoE0vfzbUOpmY5oW6gHaII?pid=ImgDet&rs=1");
+                        ImageView gifView = new ImageView(gifImage);
+                        gifView.setFitWidth(40);
+                        gifView.setFitHeight(20);
+//                        zombie.setGraphic(gifView);
+
                         zombie.setOnAction(e -> setZombieAsTarget(zombie));
                         layout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
@@ -515,21 +521,23 @@ public class duringGame extends StackPane {
     public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
             currentHero = h;
+            System.out.println("Current hero: " + currentHero);
             Button heroNewLocationBtn = new Button("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
-            Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x+1 , heroCurrentLocation.y);
+            Point heroCurrentLocation = h.getLocation();
+            System.out.println("Hero current location: " + heroCurrentLocation);
+            GridPane.setConstraints(heroNewLocationBtn, heroCurrentLocation.x + 1, heroCurrentLocation.y);
             Button heroLastLocation = new Button("H");
-            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
+            GridPane.setConstraints(heroLastLocation, heroCurrentLocation.x, heroCurrentLocation.y);
             map.getChildren().add(heroLastLocation);
             currentHero.move(Direction.UP);
+            System.out.println("Hero new location: " + currentHero.getLocation());
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
             alertBoxes.alertBoxForNotEnougthActionsForMovement();
         }
     }
-
     public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
             currentHero = h;
@@ -554,7 +562,7 @@ public class duringGame extends StackPane {
             Button heroNewLocationBtn = new Button("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             Point heroCurrentLocation = h.getLocation() ;
-            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x, heroCurrentLocation.y+1);
+            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.y, heroCurrentLocation.y+1);
             Button heroLastLocation = new Button("H");
             GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
             map.getChildren().add(heroLastLocation);
@@ -565,6 +573,23 @@ public class duringGame extends StackPane {
             alertBoxes.alertBoxForNotEnougthActionsForMovement();
         }
     }
+//    public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
+//        try {
+//            currentHero = h;
+//            Button heroNewLocationBtn = new Button("H");
+//            heroNewLocationBtn.setStyle("-fx-background-color: black");
+//            Point heroCurrentLocation = h.getLocation() ;
+//            GridPane.setConstraints( heroNewLocationBtn,heroCurrentLocation.x+1 , heroCurrentLocation.y);
+//            Button heroLastLocation = new Button("H");
+//            GridPane.setConstraints( heroLastLocation,heroCurrentLocation.x , heroCurrentLocation.y);
+//            map.getChildren().add(heroLastLocation);
+//            currentHero.move(Direction.UP);
+//        } catch (MovementException e) {
+//            alertBoxes.alertBoxForMovementDirection();
+//        } catch (NotEnoughActionsException e) {
+//            alertBoxes.alertBoxForNotEnougthActionsForMovement();
+//        }
+//    }
 
     public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {

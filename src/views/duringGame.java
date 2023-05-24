@@ -38,7 +38,7 @@ public class duringGame extends StackPane{
     private Button cure;
     private Button endTurn;
     private Button useSpecial;
-
+    Stage mapie  = new Stage();
     StartGame  startScene = new StartGame ();
     Scene game;
 
@@ -123,6 +123,8 @@ public class duringGame extends StackPane{
         layout.setCenter(map);
         layout.setRight(both);
         duringGameScene = new Scene(layout, 1000,1000);
+        mapie.setScene(duringGameScene);
+        mapie.show();
     }
     public Scene getDuringGameScene() {
         return duringGameScene;

@@ -9,10 +9,9 @@ import exceptions.MovementException;
 import exceptions.NoAvailableResourcesException;
 import exceptions.NotEnoughActionsException;
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,7 +19,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.layout.GridPane;
@@ -86,7 +88,6 @@ public class duringGame extends StackPane{
         Background backgroundImage = new Background(new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
 
       // duringGameScene.getRoot().setBackground(backgroundImage);
-
 
          up = new Button("\u2191");
         up.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
@@ -312,7 +313,7 @@ public class duringGame extends StackPane{
                     map.getChildren().add(empty);
                 }
             }
-        }layout.setLayoutY(300);layout.setLayoutX(200);
+        } layout.setLayoutY(300);layout.setLayoutX(200);
         //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
         VBox availableHeroesBox = new VBox() ;
@@ -373,7 +374,7 @@ public class duringGame extends StackPane{
                 "-fx-background-size: cover; " +
                 "-fx-background-position: center center; " +
                 "-fx-background-repeat: no-repeat;") ;
-//      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
+      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
       grid.setBackground(backgroundImage);
 //      layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
 //              "-fx-background-size: cover; " +
@@ -392,24 +393,6 @@ public class duringGame extends StackPane{
 
 //        allHeroesBoxes.setTranslateX(1000);
         //----------------------------------------
-        Label attackDmgLabel = new Label("Attack Damage: ");
-        Label currentHpLabel = new Label("Current HP: ");
-        Label actionPointsLabel = new Label("Action Points:");
-//        ProgressBar healthBar = new ProgressBar();
-//        healthBar.setProgress(1);
-//        healthBar.setLayoutY(-100);
-//        healthBar.setStyle("-fx-accent: red;");
-        VBox infoBox = new VBox(10); // 10 is the spacing between child nodes
-        infoBox.getChildren().addAll(attackDmgLabel, currentHpLabel,actionPointsLabel);
-        HBox all = new HBox(10);
-//        all.getChildren().addAll(healthBar,infoBox);
-        infoBox.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: blue;");
-        infoBox.setTranslateX(-130);
-        infoBox.setTranslateY(-130);
-        infoBox.setMinWidth(300);
-
-
-        layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox);
 
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);

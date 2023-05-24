@@ -60,10 +60,7 @@ public class duringGame extends StackPane {
     private Button endTurn;
     private Button useSpecial;
     private GridPane map ;
-
    private Point target;
-
-
 
     public Button getUp() {
         return up;

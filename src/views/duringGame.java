@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -38,7 +40,7 @@ import model.world.CharacterCell;
 import model.world.CollectibleCell;
 
 public class duringGame extends StackPane{
-    Hero heroToStart ;
+    Hero currentHero ;
     Scene duringGameScene ;
     AlertBoxes alertBoxes = new AlertBoxes();
     StartGame  startScene = new StartGame ();
@@ -57,7 +59,9 @@ public class duringGame extends StackPane{
     private Button endTurn;
     private Button useSpecial;
 
-    Hero currentHero ;
+    Point target ;
+
+
 
     public Button getUp() {
         return up;
@@ -82,8 +86,8 @@ public class duringGame extends StackPane{
     public Button getUseSpecial() {
         return useSpecial;
     }
-    public duringGame(Hero heroToStart) throws IOException, MovementException, NotEnoughActionsException {
-        System.out.println(heroToStart);
+    public duringGame(Hero currentHero) throws IOException, MovementException, NotEnoughActionsException {
+        System.out.println(currentHero);
         Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
         Background backgroundImage = new Background(new BackgroundImage(image,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT));
 
@@ -96,7 +100,7 @@ public class duringGame extends StackPane{
             up.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
             try {
-                 onMoveUpHandler(heroToStart);
+                 onMoveUpHandler(currentHero);
              } catch (MovementException ex) {
                  throw new RuntimeException(ex);
              } catch (NotEnoughActionsException ex) {
@@ -112,7 +116,7 @@ public class duringGame extends StackPane{
          down.setOnAction(e-> {
              down.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
              try {
-                 onMoveDownHandler(heroToStart);
+                 onMoveDownHandler(currentHero);
              } catch (MovementException ex) {
                  throw new RuntimeException(ex);
              } catch (NotEnoughActionsException ex) {
@@ -128,7 +132,7 @@ public class duringGame extends StackPane{
              left.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
              try {
-                 onMoveLeftHandler(heroToStart);
+                 onMoveLeftHandler(currentHero);
              } catch (MovementException ex) {
                  throw new RuntimeException(ex);
              } catch (NotEnoughActionsException ex) {
@@ -144,7 +148,7 @@ public class duringGame extends StackPane{
             right.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
             try {
-                onMoveLeftHandler(heroToStart);
+                onMoveRightHandler(currentHero);
             } catch (MovementException ex) {
                 throw new RuntimeException(ex);
             } catch (NotEnoughActionsException ex) {
@@ -162,7 +166,7 @@ public class duringGame extends StackPane{
              attack.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
              try {
-                 onAttackHandler(heroToStart);
+                 onAttackHandler(currentHero);
              } catch (InvalidTargetException ex) {
                  throw new RuntimeException(ex);
              } catch (NotEnoughActionsException ex) {
@@ -179,7 +183,7 @@ public class duringGame extends StackPane{
              cure.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
              try {
-                 onCureHandler(heroToStart);
+                 onCureHandler(currentHero);
              } catch (Exception ex) {
                  throw new RuntimeException(ex);
              }
@@ -211,7 +215,7 @@ public class duringGame extends StackPane{
              useSpecial.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
              try {
-                 onUseSpecialHandler(heroToStart);
+                 onUseSpecialHandler(currentHero);
              } catch (InvalidTargetException ex) {
                  throw new RuntimeException(ex);
              } catch (NotEnoughActionsException ex) {
@@ -251,7 +255,7 @@ public class duringGame extends StackPane{
         // layout.setLayoutX(80);
          layout.setLayoutY(490);
 
-        Game.startGame(heroToStart);
+        Game.startGame(currentHero);
         for (int i =0 ; i<15 ; i++){
             for (int j =0 ; j<15 ; j++){
                 Button empty = new Button( "E");
@@ -290,6 +294,7 @@ public class duringGame extends StackPane{
                     if ( ((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie){
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button( "Z");
+                        zombie.setOnAction(e->setZombieAsTarget(zombie));
                         layout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
                         zombie.setMinWidth(40);
@@ -324,7 +329,6 @@ public class duringGame extends StackPane{
             Hero h = availableHeroes.get(i);
             Button availableHeroeBtn = new Button(h.getName());
             availableHeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-
             availableHeroeBtn.setMinWidth(90);
             availableHeroeBtn.setMinHeight(40);
             availableHeroeBtn.setPrefSize(20 ,50);
@@ -339,7 +343,6 @@ public class duringGame extends StackPane{
             Hero h= availableHeroes.get(i);
             Button HeroeBtn = new Button(h.getName()) ;
             HeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-
             HeroeBtn.setMinWidth(90);
             HeroeBtn.setMinHeight(40);
             HeroeBtn.setPrefSize(20 ,50);
@@ -370,12 +373,15 @@ public class duringGame extends StackPane{
         allHeroesBoxes.getChildren().addAll(currentHeroBox,availableHeroesBox,HeroesBox);
         StackPane pic = new StackPane();
         pic.setBackground(backgroundImage);
-      layout.getChildren().addAll(map,allHeroesBoxes,move,takeAction);
+      layout.getChildren().addAll(map,availableHeroesBox,currentHeroBox,HeroesBox,move,takeAction);
         takeAction.setTranslateX(400);
         takeAction.setTranslateY(-200);
         move.setTranslateX(400);
         move.setTranslateY(500);
-        allHeroesBoxes.setTranslateX(-100);
+//        allHeroesBoxes.setTranslateX(-100);
+        availableHeroesBox.setTranslateX(99);
+        HeroesBox.setTranslateX(100);
+        currentHeroBox.setTranslateX(101);
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
@@ -390,11 +396,22 @@ public class duringGame extends StackPane{
     }
 
 
-
+    public void setZombieAsTarget(Button zombie){
+        int x =GridPane.getRowIndex(zombie);
+        int y = GridPane.getColumnIndex(zombie);
+        target = new Point(x ,y);
+    }
 
         public void onAttackHandler(Character c) throws InvalidTargetException, NotEnoughActionsException {
             try {
-            c.attack();
+                if (c instanceof  Hero) {
+                    currentHero = (Hero) c;
+                    currentHero.setTarget( ((CharacterCell)Game.map[target.x][target.y]).getCharacter());
+                    currentHero.attack();
+                }else {
+                    c.setTarget( ((CharacterCell)Game.map[target.x][target.y]).getCharacter());
+                    c.attack();
+                }
         } catch (InvalidTargetException e) {
             alertBoxes.alertBoxForInvalidTargetAttack();
         } catch (NotEnoughActionsException e) {
@@ -404,8 +421,9 @@ public class duringGame extends StackPane{
 
     public void onCureHandler(Hero h) throws Exception {
         try {
-//            h.setTarget();
-            h.cure();
+          currentHero = h ;
+            currentHero.setTarget( ((CharacterCell)Game.map[target.x][target.y]).getCharacter());
+            currentHero.cure();
         } catch (NotEnoughActionsException e) {
             alertBoxes.alertBoxForNotEnougthActionsCure();
         } catch (InvalidTargetException e) {
@@ -419,7 +437,9 @@ public class duringGame extends StackPane{
 
     public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
         try {
-            h.useSpecial();
+           currentHero = h ;
+            currentHero.setTarget( ((CharacterCell)Game.map[target.x][target.y]).getCharacter());
+            currentHero.useSpecial();
         } catch (InvalidTargetException e) {
             alertBoxes.alertBoxForInvalidTargetUseSpecial();
 
@@ -442,7 +462,8 @@ public class duringGame extends StackPane{
 
     public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
-            h.move(Direction.UP);
+            currentHero = h ;
+            currentHero.move(Direction.UP);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -452,7 +473,8 @@ public class duringGame extends StackPane{
 
     public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
-            h.move(Direction.DOWN);
+            currentHero = h ;
+            currentHero.move(Direction.DOWN);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -462,7 +484,8 @@ public class duringGame extends StackPane{
 
     public void onMoveRightHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
-            h.move(Direction.RIGHT);
+            currentHero =h ;
+            currentHero.move(Direction.RIGHT);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -472,7 +495,8 @@ public class duringGame extends StackPane{
 
     public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
-            h.move(Direction.LEFT);
+            currentHero =h ;
+            currentHero.move(Direction.LEFT);
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -480,12 +504,13 @@ public class duringGame extends StackPane{
         }
     }
 
-    public void  setHeroToStart (Hero h){
-        heroToStart = h ;
+
+    public void  setCurrentHero (Hero h){
+        currentHero = h ;
     }
 
-    public Hero getHeroToStart(){
-        return heroToStart ;
+    public Hero getCurrentHero(){
+        return currentHero ;
     }
     public Scene getDuringGameScene() {
         return duringGameScene;

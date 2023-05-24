@@ -39,7 +39,7 @@ import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
 
-public class duringGame extends StackPane{
+public class duringGam extends StackPane{
     Hero currentHero ;
     Scene duringGameScene ;
     AlertBoxes alertBoxes = new AlertBoxes();

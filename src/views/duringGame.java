@@ -59,6 +59,9 @@ public class duringGame extends StackPane{
 
     Hero currentHero ;
 
+
+
+
     public Button getUp() {
         return up;
     }

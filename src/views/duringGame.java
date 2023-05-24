@@ -64,6 +64,9 @@ public class duringGame extends StackPane {
     ;
 
 
+
+
+
     public Button getUp() {
         return up;
     }

@@ -29,6 +29,8 @@ import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
 
+import static engine.Game.zombies;
+
 public class duringGame extends StackPane {
     Hero currentHero;
     Scene duringGameScene;
@@ -452,11 +454,12 @@ public class duringGame extends StackPane {
             } else {
                 c.attack();
             }
-            if ((((CharacterCell) Game.map[(target.x)][target.y]).getCharacter()) == null){
+            if ((((CharacterCell) Game.map[(target.x)][target.y]).getCharacter())==null){
 
-                startScene.getWindow().setScene(duringGameScene);
-//                int row  = 14 - target.x ;
-//                ((Button) getNodeByRowColumnIndex(row , target.y , map)).setText("E");
+                int row  = 14 - target.x ;
+                Button newcell = ((Button) getNodeByRowColumnIndex(row , target.y , map));
+                newcell.setText("E");
+                newcell.setStyle("-fx-background-color: white");
 //                ((Button) getNodeByRowColumnIndex(row , target.y , map)).setStyle("-fx-background-color: white");
 //                Button actualTargetBtn = (Button) getNodeByRowColumnIndex(row , target.y , map);
 //                actualTargetBtn.setText("E");
@@ -533,6 +536,11 @@ public class duringGame extends StackPane {
     public void onEndTurnHandler() throws InvalidTargetException, NotEnoughActionsException {
         try {
             Game.endTurn();
+            int x = 14- zombies.get(zombies.size() - 1).getLocation().x;
+            int y = zombies.get(zombies.size() - 1).getLocation().y;
+            Button newzom = (Button) getNodeByRowColumnIndex(x,y,map);
+            newzom.setText("Z");
+            newzom.setStyle("-fx-background-color: red");
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {

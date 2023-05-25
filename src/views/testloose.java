@@ -36,7 +36,7 @@ public class testloose extends Application {
         HBox close = new HBox();
         close.getChildren().addAll(closeGame);
         close.setAlignment(Pos.CENTER);
-        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+        Image image = new Image(getClass().getResourceAsStream("gameover.jpg"));
         Image im = new Image(getClass().getResourceAsStream("zombie.gif"));
         ImageView imageView1 = new ImageView(im);
         imageView1.setFitHeight(300);

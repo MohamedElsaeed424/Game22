@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -268,6 +269,11 @@ public class duringGame extends StackPane {
                     if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie) {
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button("Z");
+//                        Image image = new Image(getClass().getResourceAsStream("z button.jpg"));
+//                        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, false));
+//                        Background background = new Background(backgroundImage);
+//                        zombie.setBackground(background);
+
                         zombie.setOnAction(e -> {
                             try {
                                 setZombieAsTarget(zombie);
@@ -398,7 +404,6 @@ public class duringGame extends StackPane {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         duringGameScene = new Scene(duringGameLayout,1000,4000 , Color.CYAN);
 
-
     }
 
     public void setZombieAsTarget(Button zombie) throws IOException {
@@ -417,9 +422,10 @@ public class duringGame extends StackPane {
     public void setHeroAsMedicTarget(Button hero) throws IOException {
         int x = GridPane.getRowIndex(hero);
         int y = GridPane.getColumnIndex(hero);
-        System.out.println("Hero at "+ x + " " + y);
+        System.out.println("Target Hero at "+ x + " " + y);
         target = new Point(14-x, y);
-        System.out.println("So Hero at "+( 14-x) + " " + y);
+        currentHero.setTarget(((CharacterCell)(Game.map[target.x][target.y])).getCharacter() );
+        System.out.println("So Hero at "+target.x + " " + target.y);
         System.out.println("Target seted to Hero");
         if(Game.checkWin()){
             startScene.getWindow().setScene(winGameScene.getWinGameScene());
@@ -427,6 +433,7 @@ public class duringGame extends StackPane {
             startScene.getWindow().setScene(gameOverscene.getGameOverScene());
         }
     }
+
     public void setCurrentHero(Button h) {
         int x = 14- GridPane.getRowIndex(h);
         int y = GridPane.getColumnIndex(h);
@@ -512,19 +519,16 @@ public class duringGame extends StackPane {
     public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
         try {
             currentHero = h;
-            if (h instanceof Fighter) {
+            if (currentHero instanceof Fighter) {
                 currentHero.setTarget(((CharacterCell) Game.map[target.x][target.y]).getCharacter());
-                currentHero.useSpecial();
-            }
 
+            }else if (currentHero instanceof Medic){
 
-
-            else if (h instanceof Medic){
-                h.useSpecial();
-
+//                setHeroAsMedicTarget();
             }else{
-
+                setAllMabVisible(currentHero);
             }
+            currentHero.useSpecial();
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -587,11 +591,20 @@ public class duringGame extends StackPane {
         }
     }
 
+    public void setAllMabVisible(Hero h){
+            for (int i =0 ; i<15 ; i++){
+                for (int j = 0 ; j<15 ; j++){
+                    Button updated = (Button)getNodeByRowColumnIndex(i,j,map);
+                    updated.setVisible(true);
+                }
+            }
+    }
+
     public void onMoveUpHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+            currentHero =h ;
             currentHero.move(Direction.UP);
             System.out.println(h.getActionsAvailable());
-            currentHero =h ;
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -607,6 +620,7 @@ public class duringGame extends StackPane {
             editVisibility(h);
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
+
             //remove on action listner in current location
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
@@ -626,9 +640,9 @@ public class duringGame extends StackPane {
 
     public void onMoveDownHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+            currentHero =h ;
             currentHero.move(Direction.DOWN);
             System.out.println(h.getActionsAvailable());
-            currentHero =h ;
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -662,9 +676,9 @@ public class duringGame extends StackPane {
 
     public void onMoveRightHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+            currentHero =h ;
             currentHero.move(Direction.RIGHT);
             System.out.println(h.getActionsAvailable());
-            currentHero =h ;
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -698,9 +712,9 @@ public class duringGame extends StackPane {
 
     public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+            currentHero =h ;
             currentHero.move(Direction.LEFT);
             System.out.println(h.getActionsAvailable());
-            currentHero =h ;
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -744,10 +758,6 @@ public class duringGame extends StackPane {
         }
 
         return result;
-    }
-
-    public void  setVisibilityOfGrid(){
-
     }
     public Hero getCurrentHero() {
         return currentHero;

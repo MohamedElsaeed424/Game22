@@ -10,7 +10,7 @@ import java.io.IOException;
 public class WinGame {
 
     Scene WinGameScene ;
-    StackPane winLayout ;
+    StackPane winLayout = new StackPane() ;
     Button closeGame ;
     StartGame s = new StartGame();
 

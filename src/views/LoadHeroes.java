@@ -45,7 +45,8 @@ public class LoadHeroes {
         //--------------------loading heroes from csv File
         try {
 //            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
-            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
+//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
+            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
 //            Game.loadHeroes(getClass().getResourceAsStream("Heros.csv")+"");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
@@ -56,6 +57,7 @@ public class LoadHeroes {
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         heroesdetails.setStyle("-fx-background-color:red; -fx-font-family: 'Arial'; -fx-right: 300px; -fx-bottom: 900px;-fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;-fx-font-size: 30px;");
         layoutheroes.setBottom(heroesdetails);
+//        layoutheroes.setTop(heroesdetails);
 
 
         //-----------------------initializing grid-------------------------------------------------------

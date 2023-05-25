@@ -28,6 +28,7 @@ import model.collectibles.Vaccine;
 import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
+import model.world.TrapCell;
 
 import static engine.Game.zombies;
 
@@ -489,6 +490,7 @@ public class duringGame extends StackPane {
         }
     }
 
+
     public void onCureHandler(Hero h) throws Exception {
         try {
             currentHero = h;
@@ -516,6 +518,7 @@ public class duringGame extends StackPane {
         }
     }
 
+
     public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
         try {
             currentHero = h;
@@ -539,6 +542,11 @@ public class duringGame extends StackPane {
             alertBoxes.alretBoxForNoAvailableResourcesUseSpecial();
         }catch (Exception e){
             alertBoxes.alertBoxForNotSelectingTarget();
+        }
+    }
+    public void checktrapcell(Button hero){
+        if (Game.map[14 - GridPane.getRowIndex(hero)][GridPane.getColumnIndex(hero)] instanceof TrapCell){
+            alertBoxes.alertBoxForEnteringTrapCell();
         }
     }
 
@@ -616,6 +624,7 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            checktrapcell(heroNewLocationBtn);
             editVisibility(h);
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
@@ -657,6 +666,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -693,6 +703,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -729,6 +740,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {

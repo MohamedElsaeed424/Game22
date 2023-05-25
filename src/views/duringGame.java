@@ -611,8 +611,9 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.UP);
-            checktrapcell(currentHero.getLocation().x - 1,currentHero.getLocation().y);
-            System.out.println(h.getActionsAvailable());
+            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -651,8 +652,9 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.DOWN);
-            checktrapcell(currentHero.getLocation().x + 1,currentHero.getLocation().y);
-            System.out.println(h.getActionsAvailable());
+            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -689,8 +691,9 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.RIGHT);
-            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y+1);
-            System.out.println(h.getActionsAvailable());
+            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
@@ -727,8 +730,9 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.LEFT);
-            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y-1);
-            System.out.println(h.getActionsAvailable());
+            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);

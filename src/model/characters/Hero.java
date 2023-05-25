@@ -150,4 +150,15 @@ public abstract class Hero extends Character {
         actionsAvailable--;
     }
 
+    public String toString() {
+        return  "Hero Details :"+"\n"+
+                ". "+this.getClass().getSimpleName()+"\n"+
+                ". actionsAvailable=" + actionsAvailable +"\n"+
+                ". maxActions=" + maxActions +"\n"+
+                ". specialAction=" + specialAction +"\n"+
+                ". vaccineInventory=" + vaccineInventory +"\n"+
+                ". supplyInventory=" + supplyInventory
+                ;
+    }
+
 }

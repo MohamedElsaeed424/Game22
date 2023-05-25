@@ -51,11 +51,11 @@ public class LoadHeroes {
             System.out.println("Not found File");
         }
         //---------------------For text box---------------------------------------
-        heroesdetails.setMaxSize(350, 350);
+        heroesdetails.setMaxSize(400, 300);
         heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
-        heroesdetails.setTranslateX(-320);
-        heroesdetails.setTranslateY(670);
+        heroesdetails.setTranslateX(-40);
+        heroesdetails.setTranslateY(450);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);
@@ -71,7 +71,6 @@ public class LoadHeroes {
         layoutheroes.setBackground(new Background(backgroundImage));
         LoadHeroes = new Scene(layoutheroes, 1000, 1000);
     }
-
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
         Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero1.jpg");
@@ -102,12 +101,11 @@ public class LoadHeroes {
         imageView6.setFitHeight(350);
         imageView7.setFitWidth(350);
         imageView7.setFitHeight(350);
-
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
         gridHeroesLayOut.setVgap(90);
         gridHeroesLayOut.setHgap(50);
         Button h0 = new Button( Heroes.get(0).getName()) ;
-        h0.setFont(new Font(60));
+        h0.setFont(new Font(20));
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered((e)->{
             h0.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
@@ -132,7 +130,7 @@ public class LoadHeroes {
         } );
         //---------------------------------------------------------------------
         Button h1 = new Button( Heroes.get(1).getName()) ;
-        h1.setFont(new Font(60));
+        h1.setFont(new Font(20));
         h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h1,1,0);
         h1.setOnMouseEntered((e)->{
@@ -158,7 +156,7 @@ public class LoadHeroes {
         //-------------------------------------------------------------------------
 
         Button h2 = new Button( Heroes.get(2).getName()) ;
-        h2.setFont(new Font(60));
+        h2.setFont(new Font(20));
         h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h2,2,0);
         h2.setOnMouseEntered((e)->{
@@ -180,7 +178,7 @@ public class LoadHeroes {
         } );
         //--------------------------------------------------------------------------
         Button h3 = new Button( Heroes.get(3).getName()) ;
-        h3.setFont(new Font(60));
+        h3.setFont(new Font(20));
         h3.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h3,0,1);
         h3.setOnMouseEntered((e)->{
@@ -204,7 +202,7 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h4 = new Button( Heroes.get(4).getName()) ;
-        h4.setFont(new Font(60));
+        h4.setFont(new Font(20));
         h4.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h4,1,1);
         h4.setOnMouseEntered((e)->{
@@ -229,7 +227,7 @@ public class LoadHeroes {
         } );
         //----------------------------------------------------------------------------
         Button h5 = new Button( Heroes.get(5).getName()) ;
-        h5.setFont(new Font(60));
+        h5.setFont(new Font(20));
         h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h5,2,1);
         h5.setOnMouseEntered((e)->{
@@ -254,7 +252,7 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h6 = new Button( Heroes.get(6).getName()) ;
-        h6.setFont(new Font(60));
+        h6.setFont(new Font(20));
         h6.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h6,1,2);
         h6.setOnMouseEntered((e)->{
@@ -280,7 +278,7 @@ public class LoadHeroes {
         } );
         //----------------------------------------------------------------------------
         Button h7 = new Button( Heroes.get(7).getName()) ;
-        h7.setFont(new Font(45));
+        h7.setFont(new Font(20));
         h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h7,2,2);
         h7.setOnMouseEntered((e)->{

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class WinGame {
 
     Scene WinGameScene ;
-    StackPane winLayout ;
+    StackPane winLayout = new StackPane() ;
     Button closeGame ;
     StartGame s = new StartGame();
     Text winner = new Text("You Won ! " + "\uD83D\uDE00");

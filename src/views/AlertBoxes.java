@@ -4,6 +4,15 @@ import javafx.scene.control.Alert;
 
 public class AlertBoxes {
 
+
+    public void alertBoxForEnteringTrapCell(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Trap Cell");
+        alert.setContentText("You Entered Trap Cell");
+        alert.showAndWait();
+    }
+
     public void alertBoxForNotSelectingTarget(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");

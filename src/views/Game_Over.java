@@ -16,7 +16,7 @@ import java.io.IOException;
 public class Game_Over {
 
     Scene GameOverScene ;
-    StackPane GameOverLayout ;
+    StackPane GameOverLayout = new StackPane() ;
     Button closeGame ;
     StartGame startGameScene = new StartGame();
 

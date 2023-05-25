@@ -45,21 +45,22 @@ public class LoadHeroes {
         //--------------------loading heroes from csv File
         try {
 //            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
-//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
-            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
+//            Game.loadHeroes("C:\\Users\\sahar\\Desktop\\src\\Heros.csv");
+            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
 //            Game.loadHeroes(getClass().getResourceAsStream("Heros.csv")+"");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
         //---------------------For text box---------------------------------------
-        heroesdetails.setMaxSize(350, 350);
+        heroesdetails.setMaxSize(400, 300);
+        heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
+        heroesdetails.setTranslateX(-40);
+        heroesdetails.setTranslateY(450);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
-        heroesdetails.setStyle("-fx-background-color:red; -fx-font-family: 'Arial'; -fx-right: 300px; -fx-bottom: 900px;-fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;-fx-font-size: 30px;");
-        layoutheroes.setBottom(heroesdetails);
-//        layoutheroes.setTop(heroesdetails);
-
-
+        heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
+        layoutheroes.setRight(heroesdetails);
+        heroesDetailsPlaceHolder.setStyle("-fx-background-color: red;");
         //-----------------------initializing grid-------------------------------------------------------
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
@@ -71,17 +72,15 @@ public class LoadHeroes {
         layoutheroes.setBackground(new Background(backgroundImage));
         LoadHeroes = new Scene(layoutheroes, 1000, 1000);
     }
-
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
-        Image hh0 = new Image(getClass().getResourceAsStream("Joel Miller.png"));
-        Image hh1 = new Image(getClass().getResourceAsStream("Ellie Williams.png"));
-        Image hh2 = new Image(getClass().getResourceAsStream("Tess.png"));
-        Image hh3 = new Image(getClass().getResourceAsStream("Riley abel.png"));
-        Image hh4 = new Image(getClass().getResourceAsStream("Tommy Miller.png"));
-        Image hh5 = new Image(getClass().getResourceAsStream("Bill.png"));
-        Image hh6 = new Image(getClass().getResourceAsStream("David.png"));
-        Image hh7 = new Image(getClass().getResourceAsStream("Henry Burell.png"));
+        Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero1.jpg");
+        Image hh1 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero2.jpg");
+        Image hh2 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero3.jpg");
+        Image hh3 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero4.jpg");
+        Image hh4 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero5.jpg");
+        Image hh5 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero6.jpg");
+        Image hh6 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero7.jpg");
         ImageView imageView1 = new ImageView(hh0);
         ImageView imageView2 = new ImageView(hh1);
         ImageView imageView3 = new ImageView(hh2);
@@ -89,7 +88,6 @@ public class LoadHeroes {
         ImageView imageView5 = new ImageView(hh4);
         ImageView imageView6 = new ImageView(hh5);
         ImageView imageView7 = new ImageView(hh6);
-        ImageView imageView8 = new ImageView(hh7);
         imageView1.setFitWidth(350);
         imageView1.setFitHeight(350);
         imageView2.setFitWidth(350);
@@ -104,18 +102,15 @@ public class LoadHeroes {
         imageView6.setFitHeight(350);
         imageView7.setFitWidth(350);
         imageView7.setFitHeight(350);
-        imageView8.setFitWidth(350);
-        imageView8.setFitHeight(350);
-
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
         gridHeroesLayOut.setVgap(90);
         gridHeroesLayOut.setHgap(50);
         Button h0 = new Button( Heroes.get(0).getName()) ;
-        h0.setFont(new Font(60));
+        h0.setFont(new Font(20));
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered((e)->{
             h0.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView4);
 
@@ -136,12 +131,12 @@ public class LoadHeroes {
         } );
         //---------------------------------------------------------------------
         Button h1 = new Button( Heroes.get(1).getName()) ;
-        h1.setFont(new Font(60));
+        h1.setFont(new Font(20));
         h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h1,1,0);
         h1.setOnMouseEntered((e)->{
                     h1.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-                    BorderPane.setAlignment(imageView1 , Pos.BOTTOM_RIGHT);
+                    BorderPane.setAlignment(imageView1 , Pos.BOTTOM_LEFT);
                     BorderPane.setMargin(imageView1, new Insets(12,12,12,12)); // optional
                     layoutheroes.setBottom(imageView1);
             onHeroesDetailsUpdate(Heroes.get(1));
@@ -162,12 +157,12 @@ public class LoadHeroes {
         //-------------------------------------------------------------------------
 
         Button h2 = new Button( Heroes.get(2).getName()) ;
-        h2.setFont(new Font(60));
+        h2.setFont(new Font(20));
         h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h2,2,0);
         h2.setOnMouseEntered((e)->{
             h2.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView2);
                     onHeroesDetailsUpdate(Heroes.get(2)) ; });
@@ -184,12 +179,12 @@ public class LoadHeroes {
         } );
         //--------------------------------------------------------------------------
         Button h3 = new Button( Heroes.get(3).getName()) ;
-        h3.setFont(new Font(60));
+        h3.setFont(new Font(20));
         h3.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h3,0,1);
         h3.setOnMouseEntered((e)->{
             h3.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView3, Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView3, Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView3, new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView3);
             onHeroesDetailsUpdate(Heroes.get(3));}
@@ -208,13 +203,13 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h4 = new Button( Heroes.get(4).getName()) ;
-        h4.setFont(new Font(60));
+        h4.setFont(new Font(20));
         h4.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h4,1,1);
         h4.setOnMouseEntered((e)->{
             h4.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView5, new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView5);
             onHeroesDetailsUpdate(Heroes.get(4));}
@@ -233,13 +228,13 @@ public class LoadHeroes {
         } );
         //----------------------------------------------------------------------------
         Button h5 = new Button( Heroes.get(5).getName()) ;
-        h5.setFont(new Font(60));
+        h5.setFont(new Font(20));
         h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h5,2,1);
         h5.setOnMouseEntered((e)->{
             h5.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView6 ,new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView6);
             onHeroesDetailsUpdate(Heroes.get(5));}
@@ -258,13 +253,13 @@ public class LoadHeroes {
         } );
         //-----------------------------------------------------------------------------
         Button h6 = new Button( Heroes.get(6).getName()) ;
-        h6.setFont(new Font(60));
+        h6.setFont(new Font(20));
         h6.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h6,1,2);
         h6.setOnMouseEntered((e)->{
             h6.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView7 , Pos.BOTTOM_RIGHT);
+            BorderPane.setAlignment(imageView7 , Pos.BOTTOM_LEFT);
             BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
             layoutheroes.setBottom(imageView7);
             onHeroesDetailsUpdate(Heroes.get(6));}
@@ -284,7 +279,7 @@ public class LoadHeroes {
         } );
         //----------------------------------------------------------------------------
         Button h7 = new Button( Heroes.get(7).getName()) ;
-        h7.setFont(new Font(45));
+        h7.setFont(new Font(20));
         h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         GridPane.setConstraints(h7,2,2);
         h7.setOnMouseEntered((e)->{

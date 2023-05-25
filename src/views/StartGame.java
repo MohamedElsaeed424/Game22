@@ -61,6 +61,7 @@ public class StartGame extends Application {
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         stack.setBackground(new Background(backgroundImage));
+        window.setOnCloseRequest(e->window.close());
         Scene scene = new Scene(stack,1000,1000);
         window.setScene(scene);
         window.show();

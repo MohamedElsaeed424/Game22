@@ -27,6 +27,7 @@ import model.collectibles.Vaccine;
 import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
+import model.world.TrapCell;
 
 import static engine.Game.zombies;
 
@@ -482,6 +483,7 @@ public class duringGame extends StackPane {
         }
     }
 
+
     public void onCureHandler(Hero h) throws Exception {
         try {
             currentHero = h;
@@ -507,6 +509,7 @@ public class duringGame extends StackPane {
             alertBoxes.alertBoxForNotSelectingTarget();
         }
     }
+
 
     public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
         try {

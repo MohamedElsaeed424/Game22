@@ -544,6 +544,11 @@ public class duringGame extends StackPane {
             alertBoxes.alertBoxForNotSelectingTarget();
         }
     }
+    public void checktrapcell(Button hero){
+        if (Game.map[14 - GridPane.getRowIndex(hero)][GridPane.getColumnIndex(hero)] instanceof TrapCell){
+            alertBoxes.alertBoxForEnteringTrapCell();
+        }
+    }
 
     public void onEndTurnHandler() throws InvalidTargetException, NotEnoughActionsException {
         try {
@@ -619,6 +624,7 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            checktrapcell(heroNewLocationBtn);
             editVisibility(h);
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
@@ -660,6 +666,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -696,6 +703,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -732,6 +740,7 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            checktrapcell(heroNewLocationBtn);
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {

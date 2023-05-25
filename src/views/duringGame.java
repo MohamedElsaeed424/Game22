@@ -457,7 +457,7 @@ public class duringGame extends StackPane {
             if ((((CharacterCell) Game.map[(target.x)][target.y]).getCharacter())==null){
 
                 int row  = 14 - target.x ;
-                Button newcell = ((Button) getNodeByRowColumnIndex(row , target.y , map));
+                Button newcell = (Button) getNodeByRowColumnIndex(row , target.y , map);
                 newcell.setText("E");
                 newcell.setStyle("-fx-background-color: white");
 //                ((Button) getNodeByRowColumnIndex(row , target.y , map)).setStyle("-fx-background-color: white");

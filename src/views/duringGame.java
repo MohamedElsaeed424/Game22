@@ -48,6 +48,7 @@ public class duringGame extends StackPane {
     private Button useSpecial;
     private GridPane map ;
    private Point target;
+   private int count = 1;
     public duringGame(Hero currentHero) throws IOException, MovementException, NotEnoughActionsException {
         System.out.println(currentHero.getName());
 //        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");

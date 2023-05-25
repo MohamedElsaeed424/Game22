@@ -316,7 +316,30 @@ public class duringGame extends StackPane {
                 }
             }
         }
-        duringGameLayout.setLayoutY(300);duringGameLayout.setLayoutX(200);
+        ProgressBar hp = new ProgressBar();
+        hp.setMinWidth(50);
+        hp.setMaxWidth(Double.MAX_VALUE);
+        double progress = currentHero.getCurrentHp() / currentHero.getMaxHp();
+        hp.setProgress(progress);
+
+        ProgressBar dmg = new ProgressBar();
+        dmg.setMinWidth(50);
+        dmg.setMaxWidth(Double.MAX_VALUE);
+        double progress1 = currentHero.getAttackDmg() / currentHero.getCurrentHp();
+        dmg.setProgress(progress1);
+
+        ProgressBar actpnts = new ProgressBar();
+        actpnts.setMinWidth(50);
+        hp.setMaxWidth(Double.MAX_VALUE);
+        double progress2 = currentHero.getActionsAvailable() / currentHero.getMaxActions();
+        actpnts.setProgress(progress2);
+
+
+
+
+
+
+
         //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
         VBox availableHeroesBox = new VBox() ;
@@ -378,9 +401,9 @@ public class duringGame extends StackPane {
         move.setTranslateY(500);
         //---------------------------------------
         //----------------------------------------
-        Label attackDmgLabel = new Label("Attack Damage: " + currentHero.getAttackDmg());
-        Label currentHpLabel = new Label("Current HP: " + currentHero.getCurrentHp());
-        Label actionPointsLabel = new Label("Action Points:" + currentHero.getActionsAvailable());
+        Label attackDmgLabel = new Label("Attack Damage: " + dmg );
+        Label currentHpLabel = new Label("Current HP: " + hp );
+        Label actionPointsLabel = new Label("Action Points:" + actpnts);
         Label typeLabel = new Label("Type : " );
 
         ProgressBar healthBar = new ProgressBar();
@@ -401,7 +424,7 @@ public class duringGame extends StackPane {
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
-        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+        Image image = new Image(getClass().getResourceAsStream("red.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -769,5 +792,6 @@ public class duringGame extends StackPane {
         return duringGameScene;
     }
 
+    }
 
-}
+

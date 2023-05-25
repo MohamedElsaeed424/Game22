@@ -378,15 +378,17 @@ public class duringGame extends StackPane {
         move.setTranslateY(500);
         //---------------------------------------
         //----------------------------------------
-        Label attackDmgLabel = new Label("Attack Damage: ");
-        Label currentHpLabel = new Label("Current HP: ");
-        Label actionPointsLabel = new Label("Action Points:");
+        Label attackDmgLabel = new Label("Attack Damage: " + currentHero.getAttackDmg());
+        Label currentHpLabel = new Label("Current HP: " + currentHero.getCurrentHp());
+        Label actionPointsLabel = new Label("Action Points:" + currentHero.getActionsAvailable());
+        Label typeLabel = new Label("Type : " );
+
         ProgressBar healthBar = new ProgressBar();
         healthBar.setProgress(1);
         healthBar.setLayoutY(-100);
         healthBar.setStyle("-fx-accent: red;");
         VBox infoBox = new VBox(10); // 10 is the spacing between child nodes
-        infoBox.getChildren().addAll(attackDmgLabel, currentHpLabel,actionPointsLabel);
+        infoBox.getChildren().addAll(attackDmgLabel, currentHpLabel,actionPointsLabel,typeLabel);
         HBox all = new HBox(10);
         all.getChildren().addAll(healthBar,infoBox);
         infoBox.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: blue;");

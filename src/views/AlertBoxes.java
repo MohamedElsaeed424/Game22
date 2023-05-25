@@ -4,6 +4,22 @@ import javafx.scene.control.Alert;
 
 public class AlertBoxes {
 
+    public void alertBoxForNotSelectingTarget(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("No Target Selected ");
+        alert.setContentText("You Should First Choose Valid Target");
+        alert.showAndWait();
+    }
+
+    public void alertBoxForNotSelectingHero(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("No Hero Selected ");
+        alert.setContentText("You Should First Choose Hero");
+        alert.showAndWait();
+    }
+
     public void alertBoxForInvalidToSetTarget(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");

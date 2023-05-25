@@ -455,8 +455,6 @@ public class test3 extends StackPane{
         } catch (InvalidTargetException e) {
             alertBoxes.alertBoxForInvalidTargetUseSpecial();
 
-        } catch (NotEnoughActionsException e) {
-            alertBoxes.alertBoxForNotEnougthActionsUseSpecial();
         } catch (NoAvailableResourcesException e) {
             alertBoxes.alretBoxForNoAvailableResourcesUseSpecial();
         }

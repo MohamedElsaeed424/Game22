@@ -491,6 +491,7 @@ public class duringGame extends StackPane {
                 Button actualTargetBtn = (Button) getNodeByRowColumnIndex(14-target.x  , target.y , map);
                 actualTargetBtn.setText("H");
                 actualTargetBtn.setStyle("-fx-background-color: black");
+                actualTargetBtn.setOnAction(e->setCurrentHero(actualTargetBtn));
                 if(Game.checkWin()){
                     startScene.getWindow().setScene(winGameScene.getWinGameScene());
                 } else if (Game.checkGameOver()) {

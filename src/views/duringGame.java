@@ -250,8 +250,8 @@ public class duringGame extends StackPane {
 //                        Vaccine.setOnAction(e -> setInvalidTargetCellAsTarget(Vaccine));
                         duringGameLayout = new Group(Vaccine);
                         Vaccine.setStyle("-fx-background-color: blue");
-                        Vaccine.setMinWidth(70);
-                        Vaccine.setMinHeight(60);
+                        Vaccine.setMinWidth(30);
+                        Vaccine.setMinHeight(40);
                         GridPane.setConstraints(Vaccine,  j ,14-i);
                         map.getChildren().add(Vaccine);
                         Vaccine.setVisible(false);
@@ -260,8 +260,8 @@ public class duringGame extends StackPane {
 //                        Supply.setOnAction(e -> setInvalidTargetCellAsTarget(Supply));
                         duringGameLayout = new Group(Supply);
                         Supply.setStyle("-fx-background-color: Yellow");
-                        Supply.setMinWidth(70);
-                        Supply.setMinHeight(60);
+                        Supply.setMinWidth(30);
+                        Supply.setMinHeight(40);
                         GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
                         Supply.setVisible(false);
@@ -284,8 +284,8 @@ public class duringGame extends StackPane {
                         });
                         duringGameLayout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
-                        zombie.setMinWidth(70);
-                        zombie.setMinHeight(60);
+                        zombie.setMinWidth(30);
+                        zombie.setMinHeight(40);
                         GridPane.setConstraints(zombie,   j ,14-i);
                         map.getChildren().add(zombie);
                         zombie.setVisible(false);
@@ -299,8 +299,8 @@ public class duringGame extends StackPane {
                         Hero c = (Hero) ((CharacterCell) Game.map[i][j]).getCharacter();
                         duringGameLayout = new Group(Hero);
                         Hero.setStyle("-fx-background-color: black");
-                        Hero.setMinWidth(70);
-                        Hero.setMinHeight(60);
+                        Hero.setMinWidth(30);
+                        Hero.setMinHeight(40);
                         GridPane.setConstraints(Hero,  j ,14-i);
                         map.getChildren().add(Hero);
                         editVisibility(c);
@@ -309,8 +309,8 @@ public class duringGame extends StackPane {
                     Button empty = new Button("E");
 //                    empty.setOnAction(e -> setInvalidTargetCellAsTarget(empty));
                     duringGameLayout = new Group(empty);
-                    empty.setMinWidth(70);
-                    empty.setMinHeight(60);
+                    empty.setMinWidth(30);
+                    empty.setMinHeight(40);
                     GridPane.setConstraints(empty, j ,14-i);
                     map.getChildren().add(empty);
                     empty.setVisible(false);
@@ -546,6 +546,7 @@ public class duringGame extends StackPane {
         }
     }
     public void checktrapcell(int x, int y){
+        System.out.println(Game.map[x][y] instanceof TrapCell);
         if (Game.map[x][y] instanceof TrapCell){
             alertBoxes.alertBoxForEnteringTrapCell();
         }

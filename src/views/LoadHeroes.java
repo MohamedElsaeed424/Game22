@@ -116,9 +116,9 @@ public class LoadHeroes {
         GridPane.setConstraints(h0,0,0);
         h0.setOnMouseEntered((e)->{
             h0.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
-            layoutheroes.setBottom(imageView4);
+            BorderPane.setAlignment(imageView1 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView1, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView1);
 
             onHeroesDetailsUpdate(Heroes.get(0));});
                 h0.setOnMouseExited(event -> h0.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));

@@ -294,6 +294,11 @@ public class duringGame extends StackPane {
                         Button Hero = new Button("H");
                         Hero.setOnAction((e) -> {
                             setCurrentHero(Hero);
+                            try {
+                                setHeroAsMedicTarget(Hero);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
 //                            setHeroAsTarget(Hero);
                         });
                         Hero c = (Hero) ((CharacterCell) Game.map[i][j]).getCharacter();
@@ -459,8 +464,12 @@ public class duringGame extends StackPane {
         try {
             if (c instanceof Hero) {
                 currentHero = (Hero) c;
+                if ((((CharacterCell) Game.map[target.x][target.y]).getCharacter()) instanceof  Zombie){
                 currentHero.setTarget((((CharacterCell) Game.map[target.x][target.y]).getCharacter())) ;
-                currentHero.attack();
+                currentHero.attack();}
+                else{
+                    alertBoxes.alertBoxForInvalidTargetAttack();
+                }
             } else {
                 c.attack();
             }
@@ -526,6 +535,13 @@ public class duringGame extends StackPane {
             if (currentHero instanceof Fighter) {
                 currentHero.setTarget(((CharacterCell) Game.map[target.x][target.y]).getCharacter());
             }else if (currentHero instanceof Medic){
+                  if((((CharacterCell) Game.map[target.x][target.y]).getCharacter()) instanceof  Hero){
+                      currentHero.useSpecial();
+
+                  }
+                  else if((((CharacterCell) Game.map[target.x][target.y]).getCharacter()) instanceof  Zombie){
+                      alertBoxes.alertBoxForInvalidTargetUseSpecial();
+                }
 
 //                setHeroAsMedicTarget();
             }else{

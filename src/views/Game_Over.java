@@ -28,7 +28,7 @@ public class Game_Over {
         GameOverScene = new Scene(GameOverLayout , 50 ,50);
     }
 
-    public Scene getWinGameScene() {
+    public Scene getGameOverScene() {
         return GameOverScene;
     }
 }

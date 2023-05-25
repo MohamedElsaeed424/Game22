@@ -8,7 +8,6 @@ import exceptions.MovementException;
 import exceptions.NoAvailableResourcesException;
 import exceptions.NotEnoughActionsException;
 import javafx.collections.ObservableList;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -228,18 +227,18 @@ public class duringGame extends StackPane {
         duringGameLayout.setLayoutY(490);
 
         Game.startGame(currentHero);
-        for (int i =0 ; i<15 ; i++){
-            for (int j =0 ; j<15 ; j++){
-                Button empty = new Button( "E");
-//                empty.setOnAction((e)->{setInvalidTargetCellAsTarget(empty);});
-                duringGameLayout = new Group(empty);
-                duringGameLayout.setLayoutY(490);
-                empty.setMinWidth(40);
-                empty.setMinHeight(20);
-                GridPane.setConstraints(empty,j,i);
-                map.getChildren().add(empty);
-            }
-        }
+//        for (int i =0 ; i<15 ; i++){
+//            for (int j =0 ; j<15 ; j++){
+//                Button empty = new Button( "E");
+////                empty.setOnAction((e)->{setInvalidTargetCellAsTarget(empty);});
+//                duringGameLayout = new Group(empty);
+//                duringGameLayout.setLayoutY(490);
+//                empty.setMinWidth(40);
+//                empty.setMinHeight(20);
+//                GridPane.setConstraints(empty,j,i);
+//                map.getChildren().add(empty);
+//            }
+//        }
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 Cell cell = Game.map[i][j];
@@ -251,7 +250,7 @@ public class duringGame extends StackPane {
                         Vaccine.setStyle("-fx-background-color: blue");
                         Vaccine.setMinWidth(40);
                         Vaccine.setMinHeight(20);
-                        GridPane.setConstraints(Vaccine,  j ,i);
+                        GridPane.setConstraints(Vaccine,  j ,14-i);
                         map.getChildren().add(Vaccine);
                     } else if ((((CollectibleCell) Game.map[i][j]).getCollectible()) instanceof Supply) {
                         Button Supply = new Button("S");
@@ -260,7 +259,7 @@ public class duringGame extends StackPane {
                         Supply.setStyle("-fx-background-color: Yellow");
                         Supply.setMinWidth(40);
                         Supply.setMinHeight(20);
-                        GridPane.setConstraints(Supply, j ,i);
+                        GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
                     }
                 } else if (cell instanceof CharacterCell) {
@@ -361,28 +360,11 @@ public class duringGame extends StackPane {
         duringGameScene = new Scene(allHeroesBoxes);
         allHeroesBoxes.getChildren().addAll(currentHeroBox,availableHeroesBox,HeroesBox);
         StackPane pic = new StackPane();
-//        pic.setBackground(backgroundImage);
-//        layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
-//                "-fx-background-size: cover; " +
-//                "-fx-background-position: center center; " +
-//                "-fx-background-repeat: no-repeat;") ;
-////      layout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic);
-//        grid.setBackground(backgroundImage);
-//      layout.setStyle("-fx-background-image: url('" + "file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif" + "'); " +
-//              "-fx-background-size: cover; " +
-//              "-fx-background-position: center center; " +
-//              "-fx-background-repeat: no-repeat;") ;
         takeAction.setTranslateX(400);
         takeAction.setTranslateY(-200);
         move.setTranslateX(400);
         move.setTranslateY(500);
         //---------------------------------------
-//        availableHeroesBox.setTranslateX(900);
-//        allHeroesBoxes.setTranslateX(80);
-//        currentHeroBox.setTranslateX(100);
-//        HeroesBox.setTranslateX(90);
-//        HeroesBox.setTranslateY(90);
-//        allHeroesBoxes.setTranslateX(1000);
         //----------------------------------------
         Label attackDmgLabel = new Label("Attack Damage: ");
         Label currentHpLabel = new Label("Current HP: ");
@@ -538,7 +520,15 @@ public class duringGame extends StackPane {
             Game.endTurn();
             int x = 14- zombies.get(zombies.size() - 1).getLocation().x;
             int y = zombies.get(zombies.size() - 1).getLocation().y;
+            System.out.println("Max Actions "+currentHero.getMaxActions());
             Button newzom = (Button) getNodeByRowColumnIndex(x,y,map);
+            newzom.setOnAction(e-> {
+                try {
+                    setZombieAsTarget(newzom);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
             newzom.setText("Z");
             newzom.setStyle("-fx-background-color: red");
             if(Game.checkWin()){
@@ -609,6 +599,8 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            System.out.println("Supply: "+currentHero.getSupplyInventory().size());
+            System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -642,6 +634,8 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            System.out.println("Supply: "+currentHero.getSupplyInventory().size());
+            System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -675,6 +669,8 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            System.out.println("Supply: "+currentHero.getSupplyInventory().size());
+            System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {

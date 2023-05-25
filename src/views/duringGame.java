@@ -521,7 +521,6 @@ public class duringGame extends StackPane {
             currentHero = h;
             if (currentHero instanceof Fighter) {
                 currentHero.setTarget(((CharacterCell) Game.map[target.x][target.y]).getCharacter());
-
             }else if (currentHero instanceof Medic){
 
 //                setHeroAsMedicTarget();

@@ -56,7 +56,7 @@ public class StartGame extends Application {
         //stack.getChildren().add(webView);
         stack.getChildren().add(startGame);
 //        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
-        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+        Image image = new Image(getClass().getResourceAsStream("red.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

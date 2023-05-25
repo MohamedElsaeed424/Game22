@@ -44,9 +44,9 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
-//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\test_heros.csv");
-
+//            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\test_heros.csv");
+            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
+//            Game.loadHeroes(getClass().getResourceAsStream("Heros.csv")+"");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
@@ -61,6 +61,12 @@ public class LoadHeroes {
         //-----------------------initializing grid-------------------------------------------------------
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
+        //        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
+        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+        BackgroundImage backgroundImage = new BackgroundImage(image,
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        layoutheroes.setBackground(new Background(backgroundImage));
         LoadHeroes = new Scene(layoutheroes, 1000, 1000);
     }
 
@@ -113,7 +119,7 @@ public class LoadHeroes {
         h0.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
         h0.setOnMouseClicked((e)->{
             try {
-                System.out.println("h0 Clicked");
+                System.out.println(Heroes.get(0).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(0)) ;
 //                duringGameScene.setHeroToStart();
 //                System.out.println(((CharacterCell)Game.map[0][0]).getCharacter().getName());
@@ -140,7 +146,7 @@ public class LoadHeroes {
         ;
         h1.setOnMouseClicked((e)->{
             try {
-                System.out.println("h1 Clicked");
+                System.out.println(Heroes.get(1).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(1)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -163,7 +169,7 @@ public class LoadHeroes {
 
         h2.setOnMouseClicked((e)->{
             try {
-                System.out.println("h2 Clicked");
+                System.out.println(Heroes.get(2).getName()+ " Clicked");
                 duringGameScene = new duringGame(Heroes.get(2)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -187,7 +193,7 @@ public class LoadHeroes {
 
         h3.setOnMouseClicked((e)->{
             try {
-                System.out.println("h3 Clicked");
+                System.out.println(Heroes.get(3).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(3)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -212,7 +218,7 @@ public class LoadHeroes {
 
         h4.setOnMouseClicked((e)->{
             try {
-                System.out.println("h4 Clicked");
+                System.out.println(Heroes.get(4).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(4)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -237,7 +243,7 @@ public class LoadHeroes {
 
         h5.setOnMouseClicked((e)->{
             try {
-                System.out.println("h5 Clicked");
+                System.out.println(Heroes.get(5).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(5)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -262,7 +268,7 @@ public class LoadHeroes {
 
         h6.setOnMouseClicked((e)->{
             try {
-                System.out.println("h6 Clicked");
+                System.out.println(Heroes.get(6).getName() + " Clicked");
                 duringGameScene = new duringGame(Heroes.get(6)) ;
                 startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
             } catch (IOException | MovementException | NotEnoughActionsException ex) {
@@ -271,15 +277,30 @@ public class LoadHeroes {
 
         } );
         //----------------------------------------------------------------------------
-        gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6);
+        Button h7 = new Button( Heroes.get(7).getName()) ;
+        h7.setFont(new Font(45));
+        h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+        GridPane.setConstraints(h7,2,2);
+        h7.setOnMouseEntered((e)->{
+            h7.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
+            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView2);
+            onHeroesDetailsUpdate(Heroes.get(7)) ; });
+        h7.setOnMouseExited(event -> h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
+
+        h7.setOnMouseClicked((e)->{
+            try {
+                System.out.println(Heroes.get(7).getName() + " Clicked");
+                duringGameScene = new duringGame(Heroes.get(7)) ;
+                startGameScene.getWindow().setScene(duringGameScene.getDuringGameScene());
+            } catch (IOException | MovementException | NotEnoughActionsException ex) {
+                throw new RuntimeException(ex);
+            }
+        } );
+        //---------------------------------------------------------------
+        gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6 ,h7);
         layoutheroes.setLeft(gridHeroesLayOut);
-        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
-        BackgroundImage backgroundImage = new BackgroundImage(image,
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        layoutheroes.setBackground(new Background(backgroundImage));
-
-
 
 
     }

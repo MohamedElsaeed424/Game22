@@ -1,26 +1,21 @@
 package model.collectibles;
 
-
-import exceptions.NoAvailableResourcesException;
 import model.characters.Hero;
+import model.world.CharacterCell;
+import engine.Game;
+import model.characters.Character;
 
 public class Supply implements Collectible {
 
-    //-------------------------------Constructor------------------------------
-    public Supply() {
-
-    }
-
+    @Override
     public void pickUp(Hero h) {
-
         h.getSupplyInventory().add(this);
     }
 
-    public void use(Hero h) throws NoAvailableResourcesException {
-        if (h.getSupplyInventory().size() == 0) {
-            throw new NoAvailableResourcesException("No Supplyies Available");
-        }
+    @Override
+    public void use(Hero h) {
         h.getSupplyInventory().remove(this);
     }
 
 }
+

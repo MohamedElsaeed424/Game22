@@ -36,11 +36,11 @@ public class testloose extends Application {
         HBox close = new HBox();
         close.getChildren().addAll(closeGame);
         close.setAlignment(Pos.CENTER);
-        Image image = new Image(getClass().getResourceAsStream("youlost.png"));
+        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
         Image im = new Image(getClass().getResourceAsStream("zombie.gif"));
         ImageView imageView1 = new ImageView(im);
-        imageView1.setFitHeight(500);
-        imageView1.setFitWidth(500);
+        imageView1.setFitHeight(300);
+        imageView1.setFitWidth(300);
         VBox pic = new VBox();
         pic.getChildren().add(imageView1);
         grid.add(borderPane,5000,2050);

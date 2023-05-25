@@ -74,13 +74,14 @@ public class LoadHeroes {
 
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
-        Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero1.jpg");
-        Image hh1 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero2.jpg");
-        Image hh2 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero3.jpg");
-        Image hh3 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero4.jpg");
-        Image hh4 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero5.jpg");
-        Image hh5 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero6.jpg");
-        Image hh6 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero7.jpg");
+        Image hh0 = new Image(getClass().getResourceAsStream("Joel Miller.png"));
+        Image hh1 = new Image(getClass().getResourceAsStream("Ellie Williams.png"));
+        Image hh2 = new Image(getClass().getResourceAsStream("Tess.png"));
+        Image hh3 = new Image(getClass().getResourceAsStream("Riley abel.png"));
+        Image hh4 = new Image(getClass().getResourceAsStream("Tommy Miller.png"));
+        Image hh5 = new Image(getClass().getResourceAsStream("Bill.png"));
+        Image hh6 = new Image(getClass().getResourceAsStream("David.png"));
+        Image hh7 = new Image(getClass().getResourceAsStream("Henry Burell.png"));
         ImageView imageView1 = new ImageView(hh0);
         ImageView imageView2 = new ImageView(hh1);
         ImageView imageView3 = new ImageView(hh2);
@@ -88,6 +89,7 @@ public class LoadHeroes {
         ImageView imageView5 = new ImageView(hh4);
         ImageView imageView6 = new ImageView(hh5);
         ImageView imageView7 = new ImageView(hh6);
+        ImageView imageView8 = new ImageView(hh7);
         imageView1.setFitWidth(350);
         imageView1.setFitHeight(350);
         imageView2.setFitWidth(350);
@@ -102,6 +104,8 @@ public class LoadHeroes {
         imageView6.setFitHeight(350);
         imageView7.setFitWidth(350);
         imageView7.setFitHeight(350);
+        imageView8.setFitWidth(350);
+        imageView8.setFitHeight(350);
 
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
         gridHeroesLayOut.setVgap(90);

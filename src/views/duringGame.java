@@ -204,7 +204,7 @@ public class duringGame extends StackPane {
         move1.setTranslateX(400);
         move1.setTranslateY(-200);
         move2.setTranslateX(400);
-        move2.setTranslateY(-250);
+        move2.setTranslateY(-200);
         move = new VBox(10,move2,move1);
 //        move.setAlignment(Pos.BOTTOM_LEFT);
 //        move.setTranslateY(-100);
@@ -250,8 +250,8 @@ public class duringGame extends StackPane {
 //                        Vaccine.setOnAction(e -> setInvalidTargetCellAsTarget(Vaccine));
                         duringGameLayout = new Group(Vaccine);
                         Vaccine.setStyle("-fx-background-color: blue");
-                        Vaccine.setMinWidth(40);
-                        Vaccine.setMinHeight(20);
+                        Vaccine.setMinWidth(70);
+                        Vaccine.setMinHeight(60);
                         GridPane.setConstraints(Vaccine,  j ,14-i);
                         map.getChildren().add(Vaccine);
                         Vaccine.setVisible(false);
@@ -260,8 +260,8 @@ public class duringGame extends StackPane {
 //                        Supply.setOnAction(e -> setInvalidTargetCellAsTarget(Supply));
                         duringGameLayout = new Group(Supply);
                         Supply.setStyle("-fx-background-color: Yellow");
-                        Supply.setMinWidth(40);
-                        Supply.setMinHeight(20);
+                        Supply.setMinWidth(70);
+                        Supply.setMinHeight(60);
                         GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
                         Supply.setVisible(false);
@@ -284,8 +284,8 @@ public class duringGame extends StackPane {
                         });
                         duringGameLayout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
-                        zombie.setMinWidth(40);
-                        zombie.setMinHeight(20);
+                        zombie.setMinWidth(70);
+                        zombie.setMinHeight(60);
                         GridPane.setConstraints(zombie,   j ,14-i);
                         map.getChildren().add(zombie);
                         zombie.setVisible(false);
@@ -299,8 +299,8 @@ public class duringGame extends StackPane {
                         Hero c = (Hero) ((CharacterCell) Game.map[i][j]).getCharacter();
                         duringGameLayout = new Group(Hero);
                         Hero.setStyle("-fx-background-color: black");
-                        Hero.setMinWidth(40);
-                        Hero.setMinHeight(20);
+                        Hero.setMinWidth(70);
+                        Hero.setMinHeight(60);
                         GridPane.setConstraints(Hero,  j ,14-i);
                         map.getChildren().add(Hero);
                         editVisibility(c);
@@ -309,8 +309,8 @@ public class duringGame extends StackPane {
                     Button empty = new Button("E");
 //                    empty.setOnAction(e -> setInvalidTargetCellAsTarget(empty));
                     duringGameLayout = new Group(empty);
-                    empty.setMinWidth(40);
-                    empty.setMinHeight(20);
+                    empty.setMinWidth(70);
+                    empty.setMinHeight(60);
                     GridPane.setConstraints(empty, j ,14-i);
                     map.getChildren().add(empty);
                     empty.setVisible(false);
@@ -394,6 +394,7 @@ public class duringGame extends StackPane {
         infoBox.setTranslateX(-130);
         infoBox.setTranslateY(-130);
         infoBox.setMinWidth(300);
+        map.setLayoutY(-250);
         duringGameLayout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox);
 
         //-------------------------------------------------------------------------
@@ -403,7 +404,7 @@ public class duringGame extends StackPane {
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        duringGameScene = new Scene(duringGameLayout,1000,4000 , Color.CYAN);
+        duringGameScene = new Scene(duringGameLayout,1000,4000 , Color.DARKGREY);
 
     }
 

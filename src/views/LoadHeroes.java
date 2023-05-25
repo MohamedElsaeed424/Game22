@@ -44,9 +44,8 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-//            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
-//            Game.loadHeroes("C:\\Users\\sahar\\Desktop\\src\\Heros.csv");
-            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
+            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
+//            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
 //            Game.loadHeroes(getClass().getResourceAsStream("Heros.csv")+"");
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
@@ -56,11 +55,13 @@ public class LoadHeroes {
         heroesdetails.setFont(new Font(28));
         heroesdetails.setEditable(false);
         heroesdetails.setTranslateX(-40);
-        heroesdetails.setTranslateY(450);
+        heroesdetails.setTranslateY(30);
         heroesDetailsPlaceHolder.getChildren().add(heroesdetails);
         heroesdetails.setStyle("-fx-background-color: red; -fx-border-color: black; -fx-border-width: 20px; -fx-border-radius: 5px; -fx-text-fill: black;");
         layoutheroes.setRight(heroesdetails);
         heroesDetailsPlaceHolder.setStyle("-fx-background-color: red;");
+        heroesDetailsPlaceHolder.setAlignment(Pos.TOP_RIGHT);
+        heroesDetailsPlaceHolder.setLayoutY(-200);
         //-----------------------initializing grid-------------------------------------------------------
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
@@ -74,13 +75,14 @@ public class LoadHeroes {
     }
     //------------------------------Adding Heroes buttons to grid and set their actions--------------------------------------------------------
     public void addingHeroesBtnsToGrid(ArrayList<Hero> Heroes){
-        Image hh0 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero1.jpg");
-        Image hh1 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero2.jpg");
-        Image hh2 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero3.jpg");
-        Image hh3 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero4.jpg");
-        Image hh4 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero5.jpg");
-        Image hh5 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero6.jpg");
-        Image hh6 = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/hero7.jpg");
+        Image hh0 = new Image(getClass().getResourceAsStream("Joel Miller.png"));
+        Image hh1 = new Image(getClass().getResourceAsStream("Ellie Williams.png"));
+        Image hh2 = new Image(getClass().getResourceAsStream("Tess.png"));
+        Image hh3 = new Image(getClass().getResourceAsStream("Riley abel.png"));
+        Image hh4 = new Image(getClass().getResourceAsStream("Tommy Miller.png"));
+        Image hh5 = new Image(getClass().getResourceAsStream("Bill.png"));
+        Image hh6 = new Image(getClass().getResourceAsStream("David.png"));
+        Image hh7 = new Image(getClass().getResourceAsStream("Henry Burell.png"));
         ImageView imageView1 = new ImageView(hh0);
         ImageView imageView2 = new ImageView(hh1);
         ImageView imageView3 = new ImageView(hh2);
@@ -88,6 +90,7 @@ public class LoadHeroes {
         ImageView imageView5 = new ImageView(hh4);
         ImageView imageView6 = new ImageView(hh5);
         ImageView imageView7 = new ImageView(hh6);
+        ImageView imageView8 = new ImageView(hh7);
         imageView1.setFitWidth(350);
         imageView1.setFitHeight(350);
         imageView2.setFitWidth(350);
@@ -102,6 +105,9 @@ public class LoadHeroes {
         imageView6.setFitHeight(350);
         imageView7.setFitWidth(350);
         imageView7.setFitHeight(350);
+        imageView8.setFitWidth(350);
+        imageView8.setFitHeight(350);
+
         gridHeroesLayOut.setPadding(new Insets(10,10,10,10));
         gridHeroesLayOut.setVgap(90);
         gridHeroesLayOut.setHgap(50);
@@ -209,9 +215,9 @@ public class LoadHeroes {
         h4.setOnMouseEntered((e)->{
             h4.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView5, new Insets(12,12,12,12)); // optional
-            layoutheroes.setBottom(imageView5);
+            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView4);
             onHeroesDetailsUpdate(Heroes.get(4));}
 
         );
@@ -230,13 +236,13 @@ public class LoadHeroes {
         Button h5 = new Button( Heroes.get(5).getName()) ;
         h5.setFont(new Font(20));
         h5.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-        GridPane.setConstraints(h5,2,1);
+        GridPane.setConstraints(h5,1,3);
         h5.setOnMouseEntered((e)->{
             h5.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView6 ,new Insets(12,12,12,12)); // optional
-            layoutheroes.setBottom(imageView6);
+            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView5 ,new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView5);
             onHeroesDetailsUpdate(Heroes.get(5));}
 
         );
@@ -259,9 +265,9 @@ public class LoadHeroes {
         h6.setOnMouseEntered((e)->{
             h6.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView7 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
-            layoutheroes.setBottom(imageView7);
+            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView6, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView6);
             onHeroesDetailsUpdate(Heroes.get(6));}
 
         );
@@ -284,9 +290,9 @@ public class LoadHeroes {
         GridPane.setConstraints(h7,2,2);
         h7.setOnMouseEntered((e)->{
             h7.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
-            layoutheroes.setBottom(imageView2);
+            BorderPane.setAlignment(imageView7, Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
+            layoutheroes.setBottom(imageView7);
             onHeroesDetailsUpdate(Heroes.get(7)) ; });
         h7.setOnMouseExited(event -> h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
 
@@ -299,8 +305,25 @@ public class LoadHeroes {
                 throw new RuntimeException(ex);
             }
         } );
+
+        HBox g1= new HBox(h0,h1,h2);
+        g1.setTranslateY(30);
+        g1.setTranslateX(30);
+        g1.setSpacing(30);
+        HBox g2 = new HBox(h3,h4,h5);
+        g2.setTranslateX(30);
+        g2.setTranslateY(30);
+        g2.setSpacing(30);
+        HBox g3 = new HBox(h6,h7);
+        g3.setTranslateX(30);
+        g3.setTranslateY(30);
+        g3.setAlignment(Pos.CENTER);
+        g3.setSpacing(30);
+        VBox gg = new VBox(g1,g2,g3);
+        gg.setSpacing(30);
+       // gg.setLayoutY(40);
         //---------------------------------------------------------------
-        gridHeroesLayOut.getChildren().addAll(h0,h1,h2,h3,h4,h5,h6 ,h7);
+        gridHeroesLayOut.getChildren().add(gg);
         layoutheroes.setLeft(gridHeroesLayOut);
 
 

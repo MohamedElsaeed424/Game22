@@ -66,7 +66,7 @@ public class LoadHeroes {
         addingHeroesBtnsToGrid(Game.availableHeroes);
         //----------------------Creating Scene----------------------------------
         //        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
-        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+        Image image = new Image(getClass().getResourceAsStream("gameover1.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

@@ -34,6 +34,9 @@ public class duringGame extends StackPane {
     Scene duringGameScene;
     AlertBoxes alertBoxes = new AlertBoxes();
     StartGame startScene = new StartGame();
+
+    WinGame winGameScene = new WinGame() ;
+    Game_Over gameOverscene = new Game_Over();
     Group duringGameLayout;
     GridPane grid = new GridPane();
     BorderPane border = new BorderPane();
@@ -48,7 +51,7 @@ public class duringGame extends StackPane {
     private Button useSpecial;
     private GridPane map ;
    private Point target;
-   private int count = 1;
+
     public duringGame(Hero currentHero) throws IOException, MovementException, NotEnoughActionsException {
         System.out.println(currentHero.getName());
 //        Image image = new Image("file:///C:/Users/Habiba%20Elguindy/IdeaProjects/Game22/src/views/red%20wallpaper.jfif");
@@ -262,7 +265,13 @@ public class duringGame extends StackPane {
                     if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie) {
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button("Z");
-                        zombie.setOnAction(e -> setZombieAsTarget(zombie));
+                        zombie.setOnAction(e -> {
+                            try {
+                                setZombieAsTarget(zombie);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        });
                         duringGameLayout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
                         zombie.setMinWidth(40);
@@ -402,13 +411,18 @@ public class duringGame extends StackPane {
 
     }
 
-    public void setZombieAsTarget(Button zombie) {
+    public void setZombieAsTarget(Button zombie) throws IOException {
         int x = GridPane.getRowIndex(zombie);
         int y = GridPane.getColumnIndex(zombie);
         System.out.println("Zombie at "+ x + " " + y);
         target = new Point(14-x, y);
         System.out.println("So Zombie at "+( 14-x) + " " + y);
         System.out.println("Target seted to zombie");
+        if(Game.checkWin()){
+            startScene.getWindow().setScene(winGameScene.getWinGameScene());
+        } else if (Game.checkGameOver()) {
+            startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+        }
     }
     public void setCurrentHero(Button h) {
         int x = 14- GridPane.getRowIndex(h);
@@ -418,6 +432,11 @@ public class duringGame extends StackPane {
             target = new Point(x ,y) ;
             currentHero = (Hero) (((CharacterCell) Game.map[x][y]).getCharacter());
             System.out.println("This is Current Hero " + currentHero.getName() );
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             alertBoxes.alertBoxForInvalidHeroSelection();
@@ -443,6 +462,11 @@ public class duringGame extends StackPane {
 //                actualTargetBtn.setText("E");
 //                actualTargetBtn.setStyle("-fx-background-color: white");
                 //reset on action
+                if(Game.checkWin()){
+                    startScene.getWindow().setScene(winGameScene.getWinGameScene());
+                } else if (Game.checkGameOver()) {
+                    startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+                }
             }
         } catch (InvalidTargetException e) {
             System.out.println(e.getMessage());
@@ -463,6 +487,11 @@ public class duringGame extends StackPane {
                 Button actualTargetBtn = (Button) getNodeByRowColumnIndex(14-target.x  , target.y , map);
                 actualTargetBtn.setText("H");
                 actualTargetBtn.setStyle("-fx-background-color: black");
+                if(Game.checkWin()){
+                    startScene.getWindow().setScene(winGameScene.getWinGameScene());
+                } else if (Game.checkGameOver()) {
+                    startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+                }
             }
         } catch (NotEnoughActionsException e) {
             alertBoxes.alertBoxForNotEnougthActionsCure();
@@ -487,6 +516,11 @@ public class duringGame extends StackPane {
             }else{
 
             }
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (InvalidTargetException e) {
             alertBoxes.alertBoxForInvalidTargetUseSpecial();
         } catch (NoAvailableResourcesException e) {
@@ -499,10 +533,17 @@ public class duringGame extends StackPane {
     public void onEndTurnHandler() throws InvalidTargetException, NotEnoughActionsException {
         try {
             Game.endTurn();
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (InvalidTargetException e) {
 
         } catch (NotEnoughActionsException e) {
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -527,7 +568,11 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             //remove on action listner in current location
-
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -556,7 +601,11 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
-
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -585,6 +634,11 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {
@@ -613,6 +667,11 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+            if(Game.checkWin()){
+                startScene.getWindow().setScene(winGameScene.getWinGameScene());
+            } else if (Game.checkGameOver()) {
+                startScene.getWindow().setScene(gameOverscene.getGameOverScene());
+            }
         } catch (MovementException e) {
             alertBoxes.alertBoxForMovementDirection();
         } catch (NotEnoughActionsException e) {

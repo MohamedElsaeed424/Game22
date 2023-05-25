@@ -8,6 +8,8 @@ import exceptions.MovementException;
 import exceptions.NoAvailableResourcesException;
 import exceptions.NotEnoughActionsException;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -27,6 +29,7 @@ import model.collectibles.Vaccine;
 import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
+import model.world.TrapCell;
 
 import static engine.Game.zombies;
 
@@ -239,6 +242,7 @@ public class duringGame extends StackPane {
 //                map.getChildren().add(empty);
 //            }
 //        }
+        map.setGridLinesVisible(true);
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 Cell cell = Game.map[i][j];
@@ -250,8 +254,9 @@ public class duringGame extends StackPane {
                         Vaccine.setStyle("-fx-background-color: blue");
                         Vaccine.setMinWidth(40);
                         Vaccine.setMinHeight(20);
-                        GridPane.setConstraints(Vaccine,  j ,14-i);
-                        map.getChildren().add(Vaccine);
+//                        map.setConstraints(Vaccine,  j ,14-i);
+                        map.add(Vaccine, j ,14-i);
+//                        map.getChildren().add(Vaccine);
                     } else if ((((CollectibleCell) Game.map[i][j]).getCollectible()) instanceof Supply) {
                         Button Supply = new Button("S");
 //                        Supply.setOnAction(e -> setInvalidTargetCellAsTarget(Supply));
@@ -262,7 +267,7 @@ public class duringGame extends StackPane {
                         GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
                     }
-                } else if (cell instanceof CharacterCell) {
+                } else if (cell instanceof CharacterCell && ((((CharacterCell) cell).getCharacter()!= null))) {
                     if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie) {
 //                        Button zombie = new Button( "Z "+((Zombie)(Character)((CharacterCell) Game.map[i][j]).getCharacter()).getZombiesCount());
                         Button zombie = new Button("Z");
@@ -282,7 +287,7 @@ public class duringGame extends StackPane {
                     } else if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Hero) {
 //                        Button Hero = new Button( ((CharacterCell) Game.map[i][j]).getCharacter().getName());
                         Button Hero = new Button("H");
-                        Hero.setOnAction((e) -> {
+                        Hero.setOnMouseClicked((e) -> {
                             setCurrentHero(Hero);
 //                            setHeroAsTarget(Hero);
                         });
@@ -293,7 +298,7 @@ public class duringGame extends StackPane {
                         GridPane.setConstraints(Hero,  j ,14-i);
                         map.getChildren().add(Hero);
                     }
-                } else {
+                } else if (Game.map[i][j] instanceof TrapCell){
                     Button empty = new Button("E");
 //                    empty.setOnAction(e -> setInvalidTargetCellAsTarget(empty));
                     duringGameLayout = new Group(empty);
@@ -301,6 +306,15 @@ public class duringGame extends StackPane {
                     empty.setMinHeight(20);
                     GridPane.setConstraints(empty, j ,14-i);
                     map.getChildren().add(empty);
+                }else {
+                    Button empty = new Button("E");
+//                    empty.setOnAction(e -> setInvalidTargetCellAsTarget(empty));
+                    duringGameLayout = new Group(empty);
+                    empty.setMinWidth(40);
+                    empty.setMinHeight(20);
+                    GridPane.setConstraints(empty, j ,14-i);
+                    map.getChildren().add(empty);
+
                 }
             }
         }
@@ -577,7 +591,7 @@ public class duringGame extends StackPane {
             alertBoxes.alertBoxForNotEnougthActionsForMovement();
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
             alertBoxes.alertBoxForNotSelectingHero();
         }
     }

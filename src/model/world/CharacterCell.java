@@ -4,22 +4,18 @@ import model.characters.Character;
 
 public class CharacterCell extends Cell {
 
-    //---------------------------Attributes-------------------------------------
     private Character character;
     private boolean isSafe;
 
-    //---------------------------constructor------------------------------------
     public CharacterCell(Character character, boolean isSafe) {
         this.character = character;
-        this.isSafe = isSafe;
+        this.isSafe=isSafe;
     }
 
     public CharacterCell(Character character) {
         this.character = character;
-        this.isSafe = false;
     }
 
-    //-------------------------getters and setters--------------------------------
     public Character getCharacter() {
         return character;
     }

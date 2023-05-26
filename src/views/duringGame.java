@@ -37,6 +37,7 @@ public class duringGame extends StackPane {
    private static Hero currentHero;
     Scene duringGameScene;
     AlertBoxes alertBoxes = new AlertBoxes();
+    HBox availableHeroesBox = new HBox() ;
     StartGame startScene = new StartGame();
 
     WinGame winGameScene = new WinGame() ;
@@ -346,7 +347,7 @@ public class duringGame extends StackPane {
         duringGameLayout.setLayoutY(300);
         duringGameLayout.setLayoutX(200);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
-        HBox availableHeroesBox = new HBox() ;
+
         // move.setTranslateY(500);
         map.setLayoutX(-100);
         map.getChildren().add(availableHeroesBox);
@@ -600,6 +601,7 @@ public class duringGame extends StackPane {
                     }
                 });
                 updateDataInInfoBox();
+                availableHeroesBox.getChildren().remove(0);
                 if(Game.checkWin()){
                     startScene.getWindow().setScene(winGameScene.getWinGameScene());
                 } else if (Game.checkGameOver()) {

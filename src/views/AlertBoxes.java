@@ -115,7 +115,7 @@ public class AlertBoxes {
     public void alretBoxForNoAvailableResourcesUseSpecial(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
-        alert.setHeaderText("No Enough Vaccine To UseSpecial");
+        alert.setHeaderText("No Enough Supply To UseSpecial");
         alert.setContentText("Try to collect Vaccine");
         alert.showAndWait();
     }

@@ -27,5 +27,4 @@ public class Vaccine implements Collectible {
         ((CharacterCell) cell).setCharacter(tba);
         tba.setLocation(p);
     }
-
 }

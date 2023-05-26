@@ -66,8 +66,6 @@ public class StartGame extends Application {
         window.setScene(scene);
         window.show();
     }
-
-
     public Stage getWindow() throws IOException {
         start(window);
         return window;

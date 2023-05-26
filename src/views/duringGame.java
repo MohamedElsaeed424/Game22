@@ -28,11 +28,12 @@ import model.collectibles.Vaccine;
 import model.world.Cell;
 import model.world.CharacterCell;
 import model.world.CollectibleCell;
+import model.world.TrapCell;
 
 import static engine.Game.zombies;
 
 public class duringGame extends StackPane {
-    Hero currentHero;
+   private Hero currentHero;
     Scene duringGameScene;
     AlertBoxes alertBoxes = new AlertBoxes();
     StartGame startScene = new StartGame();
@@ -53,6 +54,19 @@ public class duringGame extends StackPane {
     private Button useSpecial;
     private GridPane map ;
    private Point target;
+   private Point heroAsTarget ;
+
+   private Label Name ;
+   private Label Type ;
+   private Label CurrentHp ;
+    private Label ActionsAvailables ;
+    private Label AttackDamage ;
+    private Label Vaccines ;
+    private Label Supplies ;
+    private ProgressBar healthBar ;
+    private ProgressBar hp ;
+    private  ProgressBar dmg ;
+    private  ProgressBar actpnts ;
 
     public duringGame(Hero currentHero) throws IOException, MovementException, NotEnoughActionsException {
         System.out.println(currentHero.getName());
@@ -249,8 +263,8 @@ public class duringGame extends StackPane {
 //                        Vaccine.setOnAction(e -> setInvalidTargetCellAsTarget(Vaccine));
                         duringGameLayout = new Group(Vaccine);
                         Vaccine.setStyle("-fx-background-color: blue");
-                        Vaccine.setMinWidth(70);
-                        Vaccine.setMinHeight(60);
+                        Vaccine.setMinWidth(30);
+                        Vaccine.setMinHeight(40);
                         GridPane.setConstraints(Vaccine,  j ,14-i);
                         map.getChildren().add(Vaccine);
                         Vaccine.setVisible(false);
@@ -259,8 +273,8 @@ public class duringGame extends StackPane {
 //                        Supply.setOnAction(e -> setInvalidTargetCellAsTarget(Supply));
                         duringGameLayout = new Group(Supply);
                         Supply.setStyle("-fx-background-color: Yellow");
-                        Supply.setMinWidth(70);
-                        Supply.setMinHeight(60);
+                        Supply.setMinWidth(30);
+                        Supply.setMinHeight(40);
                         GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
                         Supply.setVisible(false);
@@ -283,8 +297,8 @@ public class duringGame extends StackPane {
                         });
                         duringGameLayout = new Group(zombie);
                         zombie.setStyle("-fx-background-color: red");
-                        zombie.setMinWidth(70);
-                        zombie.setMinHeight(60);
+                        zombie.setMinWidth(30);
+                        zombie.setMinHeight(40);
                         GridPane.setConstraints(zombie,   j ,14-i);
                         map.getChildren().add(zombie);
                         zombie.setVisible(false);
@@ -293,13 +307,18 @@ public class duringGame extends StackPane {
                         Button Hero = new Button("H");
                         Hero.setOnAction((e) -> {
                             setCurrentHero(Hero);
+                            try {
+                                setHeroAsMedicTarget(Hero);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
 //                            setHeroAsTarget(Hero);
                         });
                         Hero c = (Hero) ((CharacterCell) Game.map[i][j]).getCharacter();
                         duringGameLayout = new Group(Hero);
                         Hero.setStyle("-fx-background-color: black");
-                        Hero.setMinWidth(70);
-                        Hero.setMinHeight(60);
+                        Hero.setMinWidth(30);
+                        Hero.setMinHeight(40);
                         GridPane.setConstraints(Hero,  j ,14-i);
                         map.getChildren().add(Hero);
                         editVisibility(c);
@@ -308,41 +327,20 @@ public class duringGame extends StackPane {
                     Button empty = new Button("E");
 //                    empty.setOnAction(e -> setInvalidTargetCellAsTarget(empty));
                     duringGameLayout = new Group(empty);
-                    empty.setMinWidth(70);
-                    empty.setMinHeight(60);
+                    empty.setMinWidth(30);
+                    empty.setMinHeight(40);
                     GridPane.setConstraints(empty, j ,14-i);
                     map.getChildren().add(empty);
                     empty.setVisible(false);
                 }
             }
         }
-        ProgressBar hp = new ProgressBar();
-        hp.setMinWidth(50);
-        hp.setMaxWidth(Double.MAX_VALUE);
-        double progress = currentHero.getCurrentHp() / currentHero.getMaxHp();
-        hp.setProgress(progress);
-
-        ProgressBar dmg = new ProgressBar();
-        dmg.setMinWidth(50);
-        dmg.setMaxWidth(Double.MAX_VALUE);
-        double progress1 = currentHero.getAttackDmg() / currentHero.getCurrentHp();
-        dmg.setProgress(progress1);
-
-        ProgressBar actpnts = new ProgressBar();
-        actpnts.setMinWidth(50);
-        hp.setMaxWidth(Double.MAX_VALUE);
-        double progress2 = currentHero.getActionsAvailable() / currentHero.getMaxActions();
-        actpnts.setProgress(progress2);
+        duringGameLayout.setLayoutY(300);duringGameLayout.setLayoutX(200);
 
 
-
-
-
-
-
-        //layout.getChildren().removeAll(move,takeAction);
         //---------------------AvailableHeroes and Heroes and current Hero Added to the scene-------------------
         VBox availableHeroesBox = new VBox() ;
+        move.setTranslateY(500);
         map.getChildren().add(availableHeroesBox);
         map.setAlignment(Pos.CENTER);
         ArrayList<Hero> availableHeroes = Game.availableHeroes ;
@@ -350,7 +348,6 @@ public class duringGame extends StackPane {
             Hero h = availableHeroes.get(i);
             Button availableHeroeBtn = new Button(h.getName());
             availableHeroeBtn.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-
             availableHeroeBtn.setMinWidth(90);
             availableHeroeBtn.setMinHeight(40);
             availableHeroeBtn.setPrefSize(20 ,50);
@@ -401,35 +398,51 @@ public class duringGame extends StackPane {
         move.setTranslateY(500);
         //---------------------------------------
         //----------------------------------------
-        Label attackDmgLabel = new Label("Attack Damage: " + dmg );
-        Label currentHpLabel = new Label("Current HP: " + hp );
-        Label actionPointsLabel = new Label("Action Points:" + actpnts);
-        Label typeLabel = new Label("Type : " );
+        Name = new Label("Name: "+currentHero.getName());
+        Type = new Label("Hero Type: "+currentHero.getClass().getSimpleName());
+        CurrentHp = new Label("Hero Current Health: "+currentHero.getCurrentHp());
+        AttackDamage = new Label("Attack Damage: " + currentHero.getAttackDmg());
+        ActionsAvailables = new Label("Actions Available: "+currentHero.getActionsAvailable());
+        Vaccines = new Label("Vaccines: "+currentHero.getVaccineInventory().size());
+        Supplies = new Label("Supplies: "+currentHero.getSupplyInventory().size());
+//        hp = new ProgressBar();
+//        hp.setMinWidth(50);
+//        hp.setMaxWidth(Double.MAX_VALUE);
+//        double progress = currentHero.getCurrentHp() / currentHero.getMaxHp();
+//        hp.setProgress(progress);
+//
+//        dmg = new ProgressBar();
+//        dmg.setMinWidth(50);
+//        dmg.setMaxWidth(Double.MAX_VALUE);
+//        double progress1 = currentHero.getAttackDmg() / currentHero.getCurrentHp();
+//        dmg.setProgress(progress1);
+//
+//        actpnts = new ProgressBar();
+//        actpnts.setMinWidth(50);
+//        actpnts.setMaxWidth(Double.MAX_VALUE);
+//        double progress2 = currentHero.getActionsAvailable() / currentHero.getMaxActions();
+//        actpnts.setProgress(progress2);
 
-        ProgressBar healthBar = new ProgressBar();
-        healthBar.setProgress(1);
-        healthBar.setLayoutY(-100);
-        healthBar.setStyle("-fx-accent: red;");
         VBox infoBox = new VBox(10); // 10 is the spacing between child nodes
-        infoBox.getChildren().addAll(attackDmgLabel, currentHpLabel,actionPointsLabel,typeLabel);
+        infoBox.getChildren().addAll(Name , Type , CurrentHp , AttackDamage , ActionsAvailables,Vaccines , Supplies);
         HBox all = new HBox(10);
-        all.getChildren().addAll(healthBar,infoBox);
+        all.getChildren().addAll(infoBox);
         infoBox.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: blue;");
         infoBox.setTranslateX(-130);
         infoBox.setTranslateY(-130);
         infoBox.setMinWidth(300);
         map.setLayoutY(-250);
-        duringGameLayout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox);
+        duringGameLayout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox ,all );
 
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
         map.setAlignment(Pos.TOP_CENTER);
-        Image image = new Image(getClass().getResourceAsStream("red.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("red wallpaper.jfif"));
+//        Image image = new Image(getClass().getResourceAsStream("red.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         duringGameScene = new Scene(duringGameLayout,1000,4000 , Color.DARKGREY);
-
     }
 
     public void setZombieAsTarget(Button zombie) throws IOException {
@@ -449,10 +462,9 @@ public class duringGame extends StackPane {
         int x = GridPane.getRowIndex(hero);
         int y = GridPane.getColumnIndex(hero);
         System.out.println("Target Hero at "+ x + " " + y);
-        target = new Point(14-x, y);
-        currentHero.setTarget(((CharacterCell)(Game.map[target.x][target.y])).getCharacter() );
-        System.out.println("So Hero at "+target.x + " " + target.y);
-        System.out.println("Target seted to Hero");
+        heroAsTarget = new Point(14-x, y);
+        System.out.println("So Hero Target at "+heroAsTarget.x + " " + heroAsTarget.y);
+        System.out.println("Target is Hero");
         if(Game.checkWin()){
             startScene.getWindow().setScene(winGameScene.getWinGameScene());
         } else if (Game.checkGameOver()) {
@@ -465,8 +477,15 @@ public class duringGame extends StackPane {
         int y = GridPane.getColumnIndex(h);
         System.out.println(x + " " + y);
         try {
-            target = new Point(x ,y) ;
-            currentHero = (Hero) (((CharacterCell) Game.map[x][y]).getCharacter());
+           Hero he  = (Hero)(((CharacterCell) Game.map[x][y]).getCharacter()) ;
+           int index = 0;
+            for (int i =0 ; i <Game.heroes.size() ; i++){
+                Hero hero = Game.heroes.get(i);
+                if (hero.getName() == he.getName()){
+                    index =i ;
+                }
+            }
+            this.currentHero = Game.heroes.get(index);
             System.out.println("This is Current Hero " + currentHero.getName() );
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
@@ -483,28 +502,27 @@ public class duringGame extends StackPane {
         try {
             if (c instanceof Hero) {
                 currentHero = (Hero) c;
+                if ((((CharacterCell) Game.map[target.x][target.y]).getCharacter()) instanceof  Zombie){
                 currentHero.setTarget((((CharacterCell) Game.map[target.x][target.y]).getCharacter())) ;
-                currentHero.attack();
+                currentHero.attack();}
+                else{
+                    alertBoxes.alertBoxForInvalidTargetAttack();
+                }
             } else {
                 c.attack();
             }
             if ((((CharacterCell) Game.map[(target.x)][target.y]).getCharacter())==null){
-
                 int row  = 14 - target.x ;
                 Button newcell = (Button) getNodeByRowColumnIndex(row , target.y , map);
                 newcell.setText("E");
                 newcell.setStyle("-fx-background-color: white");
-//                ((Button) getNodeByRowColumnIndex(row , target.y , map)).setStyle("-fx-background-color: white");
-//                Button actualTargetBtn = (Button) getNodeByRowColumnIndex(row , target.y , map);
-//                actualTargetBtn.setText("E");
-//                actualTargetBtn.setStyle("-fx-background-color: white");
-                //reset on action
                 if(Game.checkWin()){
                     startScene.getWindow().setScene(winGameScene.getWinGameScene());
                 } else if (Game.checkGameOver()) {
                     startScene.getWindow().setScene(gameOverscene.getGameOverScene());
                 }
             }
+            updateDataInInfoBox();
         } catch (InvalidTargetException e) {
             System.out.println(e.getMessage());
             alertBoxes.alertBoxForInvalidTargetAttack();
@@ -524,7 +542,14 @@ public class duringGame extends StackPane {
                 Button actualTargetBtn = (Button) getNodeByRowColumnIndex(14-target.x  , target.y , map);
                 actualTargetBtn.setText("H");
                 actualTargetBtn.setStyle("-fx-background-color: black");
-                actualTargetBtn.setOnAction(e->setCurrentHero(actualTargetBtn));
+                actualTargetBtn.setOnMouseClicked ((e)->{
+                    try {
+                        setHeroAsMedicTarget(actualTargetBtn);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    setCurrentHero(actualTargetBtn);});
+                updateDataInInfoBox();
                 if(Game.checkWin()){
                     startScene.getWindow().setScene(winGameScene.getWinGameScene());
                 } else if (Game.checkGameOver()) {
@@ -542,18 +567,20 @@ public class duringGame extends StackPane {
         }
     }
 
+
     public void onUseSpecialHandler(Hero h) throws InvalidTargetException, NotEnoughActionsException, NoAvailableResourcesException {
         try {
             currentHero = h;
             if (currentHero instanceof Fighter) {
                 currentHero.setTarget(((CharacterCell) Game.map[target.x][target.y]).getCharacter());
             }else if (currentHero instanceof Medic){
-
-//                setHeroAsMedicTarget();
+                      currentHero.setTarget((((CharacterCell) Game.map[heroAsTarget.x][heroAsTarget.y]).getCharacter()));
+                      currentHero.useSpecial();
             }else{
                 setAllMabVisible(currentHero);
             }
             currentHero.useSpecial();
+            updateDataInInfoBox();
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -585,6 +612,7 @@ public class duringGame extends StackPane {
             newzom.setText("Z");
             newzom.setStyle("-fx-background-color: red");
             newzom.setVisible(false);
+            updateDataInInfoBox();
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -629,10 +657,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.UP);
-            System.out.println(h.getActionsAvailable());
+//                checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int row  = x + 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(row ,y,map);
             heroLastLocation.setText("E");
@@ -642,11 +673,12 @@ public class duringGame extends StackPane {
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
             heroNewLocationBtn.setOnAction(e->setCurrentHero(heroNewLocationBtn));
+
             editVisibility(h);
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
+            updateDataInInfoBox();
 
-            //remove on action listner in current location
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -667,10 +699,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.DOWN);
-            System.out.println(h.getActionsAvailable());
+
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int row  = x - 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(row ,y,map);
             heroLastLocation.setText("E");
@@ -683,6 +718,8 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            updateDataInInfoBox();
+
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -703,10 +740,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.RIGHT);
-            System.out.println(h.getActionsAvailable());
+//            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int coloum  = y - 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(x ,coloum,map);
             heroLastLocation.setText("E");
@@ -719,6 +759,8 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            updateDataInInfoBox();
+
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -737,17 +779,20 @@ public class duringGame extends StackPane {
 
     public void onMoveLeftHandler(Hero h) throws MovementException, NotEnoughActionsException {
         try {
+
             currentHero =h ;
             currentHero.move(Direction.LEFT);
-            System.out.println(h.getActionsAvailable());
+//            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
+            System.out.println("CurrentHp: "+currentHero.getCurrentHp());
+            System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int coloum  = y + 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(x ,coloum,map);
             heroLastLocation.setText("E");
             heroLastLocation.setStyle("-fx-background-color: silver");
-
             Button heroNewLocationBtn = (Button) getNodeByRowColumnIndex(x ,y,map);
             heroNewLocationBtn.setText("H");
             heroNewLocationBtn.setStyle("-fx-background-color: black");
@@ -755,6 +800,8 @@ public class duringGame extends StackPane {
             System.out.println("Supply: "+currentHero.getSupplyInventory().size());
             System.out.println("Vaccine "+currentHero.getVaccineInventory().size());
             editVisibility(h);
+            updateDataInInfoBox();
+
             if(Game.checkWin()){
                 startScene.getWindow().setScene(winGameScene.getWinGameScene());
             } else if (Game.checkGameOver()) {
@@ -771,6 +818,14 @@ public class duringGame extends StackPane {
         }
     }
 
+    public void checktrapcell(int x, int y){
+        System.out.println(Game.map[x][y] instanceof TrapCell);
+        if (Game.map[x][y] instanceof TrapCell){
+            alertBoxes.alertBoxForEnteringTrapCell();
+        }
+    }
+
+
     public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
         Node result = null;
         ObservableList<Node> childrens = gridPane.getChildren();
@@ -781,8 +836,18 @@ public class duringGame extends StackPane {
                 break;
             }
         }
-
         return result;
+    }
+
+    public void updateDataInInfoBox(){
+        Name.setText("Name: "+currentHero.getName());
+        Type.setText("Hero Type: "+currentHero.getClass().getSimpleName());
+        CurrentHp .setText("Hero Current Health: "+currentHero.getCurrentHp());
+        AttackDamage .setText("Attack Damage: " + currentHero.getAttackDmg());
+        ActionsAvailables .setText("Actions Available: "+currentHero.getActionsAvailable());
+        Vaccines .setText("Vaccines: "+currentHero.getVaccineInventory().size());
+        Supplies .setText("Supplies: "+currentHero.getSupplyInventory().size());
+//        hp.setProgress(currentHero.getCurrentHp() / currentHero.getMaxHp());
     }
     public Hero getCurrentHero() {
         return currentHero;
@@ -792,6 +857,5 @@ public class duringGame extends StackPane {
         return duringGameScene;
     }
 
-    }
 
-
+}

@@ -48,7 +48,7 @@ public class Game_Over {
         grid.add(borderPane,5000,2050);
         grid.add(close , 5000,5000);
         grid.setAlignment(Pos.CENTER);
-        Image image = new Image(getClass().getResourceAsStream("gameover.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("gameover1.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

@@ -426,13 +426,13 @@ public class duringGame extends StackPane {
         VBox infoBox = new VBox(10); // 10 is the spacing between child nodes
         infoBox.getChildren().addAll(Name , Type , CurrentHp , AttackDamage , ActionsAvailables,Vaccines , Supplies);
         HBox all = new HBox(10);
-        all.getChildren().addAll(hp,infoBox);
+        all.getChildren().addAll(infoBox);
         infoBox.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: blue;");
         infoBox.setTranslateX(-130);
         infoBox.setTranslateY(-130);
         infoBox.setMinWidth(300);
         map.setLayoutY(-250);
-        duringGameLayout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox ,all , hp);
+        duringGameLayout.getChildren().addAll(map,availableHeroesBox,allHeroesBoxes,HeroesBox,currentHeroBox,move,takeAction,grid,pic,infoBox ,all );
 
         //-------------------------------------------------------------------------
         allHeroesBoxes.setAlignment(Pos.TOP_RIGHT);
@@ -657,12 +657,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.UP);
-                checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+//                checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
             System.out.println("CurrentHp: "+currentHero.getCurrentHp());
             System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int row  = x + 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(row ,y,map);
             heroLastLocation.setText("E");
@@ -698,12 +699,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.DOWN);
-            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+
             System.out.println("CurrentHp: "+currentHero.getCurrentHp());
             System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int row  = x - 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(row ,y,map);
             heroLastLocation.setText("E");
@@ -738,12 +740,13 @@ public class duringGame extends StackPane {
         try {
             currentHero =h ;
             currentHero.move(Direction.RIGHT);
-            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+//            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
             System.out.println("CurrentHp: "+currentHero.getCurrentHp());
             System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int coloum  = y - 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(x ,coloum,map);
             heroLastLocation.setText("E");
@@ -779,12 +782,13 @@ public class duringGame extends StackPane {
 
             currentHero =h ;
             currentHero.move(Direction.LEFT);
-            checktrapcell(14-currentHero.getLocation().x ,currentHero.getLocation().y);
+//            checktrapcell(currentHero.getLocation().x ,currentHero.getLocation().y);
             System.out.println("CurrentHp: "+currentHero.getCurrentHp());
             System.out.println("Actions Available: "+currentHero.getActionsAvailable());
             int x = 14- currentHero.getLocation().x ;
             int y = currentHero.getLocation().y;
             System.out.println((currentHero.getLocation().x)+" "+y);
+            checktrapcell(currentHero.getLocation().x,y);
             int coloum  = y + 1 ;
             Button heroLastLocation = (Button)getNodeByRowColumnIndex(x ,coloum,map);
             heroLastLocation.setText("E");

@@ -36,7 +36,7 @@ public class testloose extends Application {
         HBox close = new HBox();
         close.getChildren().addAll(closeGame);
         close.setAlignment(Pos.CENTER);
-        Image image = new Image(getClass().getResourceAsStream("gameover.jpg"));
+//        Image image = new Image(getClass().getResourceAsStream("gameover1.jpg"));
         Image im = new Image(getClass().getResourceAsStream("zombie.gif"));
         ImageView imageView1 = new ImageView(im);
         imageView1.setFitHeight(300);
@@ -48,7 +48,7 @@ public class testloose extends Application {
         grid.add(pic,5000,1000);
         grid.setAlignment(Pos.CENTER);
 
-        BackgroundImage backgroundImage = new BackgroundImage(image,
+        BackgroundImage backgroundImage = new BackgroundImage(im,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         grid.setBackground(new Background(backgroundImage));

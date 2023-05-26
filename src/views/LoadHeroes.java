@@ -45,10 +45,10 @@ public class LoadHeroes {
     public LoadHeroes() throws IOException {
         //--------------------loading heroes from csv File
         try {
-//            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
+            Game.loadHeroes("C:\\Users\\Habiba Elguindy\\IdeaProjects\\Game22\\src\\views\\Heros.csv");
 //            Game.loadHeroes("C:\\Users\\Dell\\OneDrive\\Desktop\\Eclipse_DATA\\My-Game\\Game22\\src\\views\\Heros.csv");
 
-            Game.loadHeroes(new File(getClass().getResource("./Heros.csv").getPath()).toString());
+            //Game.loadHeroes(new File(getClass().getResource("./Heros.csv").getPath()).toString());
         } catch (FileNotFoundException e) {
             System.out.println("Not found File");
         }
@@ -146,9 +146,9 @@ public class LoadHeroes {
         GridPane.setConstraints(h1,1,0);
         h1.setOnMouseEntered((e)->{
                     h1.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-                    BorderPane.setAlignment(imageView1 , Pos.BOTTOM_LEFT);
-                    BorderPane.setMargin(imageView1, new Insets(12,12,12,12)); // optional
-                    layoutheroes.setBottom(imageView1);
+                    BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
+                    BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
+                    layoutheroes.setBottom(imageView2);
             onHeroesDetailsUpdate(Heroes.get(1));
         });
                 h1.setOnMouseExited(event -> h1.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
@@ -172,10 +172,10 @@ public class LoadHeroes {
         GridPane.setConstraints(h2,2,0);
         h2.setOnMouseEntered((e)->{
             h2.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView2 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView2, new Insets(12,12,12,12)); // optional
-            imageView2.setTranslateY(-250);
-            layoutheroes.setBottom(imageView2);
+            BorderPane.setAlignment(imageView3 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView3, new Insets(12,12,12,12)); // optional
+            imageView3.setTranslateY(-250);
+            layoutheroes.setBottom(imageView3);
                     onHeroesDetailsUpdate(Heroes.get(2)) ; });
         h2.setOnMouseExited(event -> h2.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
 
@@ -195,10 +195,10 @@ public class LoadHeroes {
         GridPane.setConstraints(h3,0,1);
         h3.setOnMouseEntered((e)->{
             h3.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView3, Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView3, new Insets(12,12,12,12)); // optional
-            imageView3.setTranslateY(-250);
-            layoutheroes.setBottom(imageView3);
+            BorderPane.setAlignment(imageView4, Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
+            imageView4.setTranslateY(-250);
+            layoutheroes.setBottom(imageView4);
             onHeroesDetailsUpdate(Heroes.get(3));}
 
         );
@@ -221,10 +221,10 @@ public class LoadHeroes {
         h4.setOnMouseEntered((e)->{
             h4.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView4 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView4, new Insets(12,12,12,12)); // optional
-            imageView4.setTranslateY(-250);
-            layoutheroes.setBottom(imageView4);
+            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView5, new Insets(12,12,12,12)); // optional
+            imageView5.setTranslateY(-250);
+            layoutheroes.setBottom(imageView5);
             onHeroesDetailsUpdate(Heroes.get(4));}
 
         );
@@ -247,10 +247,10 @@ public class LoadHeroes {
         h5.setOnMouseEntered((e)->{
             h5.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView5 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView5 ,new Insets(12,12,12,12)); // optional
-            imageView5.setTranslateY(-250);
-            layoutheroes.setBottom(imageView5);
+            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView6,new Insets(12,12,12,12)); // optional
+            imageView6.setTranslateY(-250);
+            layoutheroes.setBottom(imageView6);
             onHeroesDetailsUpdate(Heroes.get(5));}
 
         );
@@ -273,10 +273,10 @@ public class LoadHeroes {
         h6.setOnMouseEntered((e)->{
             h6.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
 
-            BorderPane.setAlignment(imageView6 , Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView6, new Insets(12,12,12,12)); // optional
-            imageView6.setTranslateY(-250);
-            layoutheroes.setBottom(imageView6);
+            BorderPane.setAlignment(imageView7 , Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
+            imageView7.setTranslateY(-250);
+            layoutheroes.setBottom(imageView7);
             onHeroesDetailsUpdate(Heroes.get(6));}
 
         );
@@ -299,10 +299,10 @@ public class LoadHeroes {
         GridPane.setConstraints(h7,2,2);
         h7.setOnMouseEntered((e)->{
             h7.setStyle("-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;");
-            BorderPane.setAlignment(imageView7, Pos.BOTTOM_LEFT);
-            BorderPane.setMargin(imageView7, new Insets(12,12,12,12)); // optional
-            imageView7.setTranslateY(-250);
-            layoutheroes.setBottom(imageView7);
+            BorderPane.setAlignment(imageView8, Pos.BOTTOM_LEFT);
+            BorderPane.setMargin(imageView8, new Insets(12,12,12,12)); // optional
+            imageView8.setTranslateY(-250);
+            layoutheroes.setBottom(imageView8);
             onHeroesDetailsUpdate(Heroes.get(7)) ; });
         h7.setOnMouseExited(event -> h7.setStyle("-fx-background-color: black; -fx-border-color: red; -fx-border-width: 10px; -fx-border-radius: 5px; -fx-text-fill: red;"));
         h7.setOnMouseClicked((e)->{

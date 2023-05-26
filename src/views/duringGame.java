@@ -266,7 +266,8 @@ public class duringGame extends StackPane {
                         Vaccine.setMinHeight(40);
                         GridPane.setConstraints(Vaccine,  j ,14-i);
                         map.getChildren().add(Vaccine);
-                        Vaccine.setVisible(false);
+                        if(!(i < 2 && j < 2)){
+                        Vaccine.setVisible(false);}
                     } else if ((((CollectibleCell) Game.map[i][j]).getCollectible()) instanceof Supply) {
                         Button Supply = new Button();
 //                        Supply.setOnAction(e -> setInvalidTargetCellAsTarget(Supply));
@@ -275,7 +276,8 @@ public class duringGame extends StackPane {
                         Supply.setMinHeight(40);
                         GridPane.setConstraints(Supply, j ,14-i);
                         map.getChildren().add(Supply);
-                        Supply.setVisible(false);
+                        if(!(i < 2 && j < 2)){
+                        Supply.setVisible(false);}
                     }
                 } else if (cell instanceof CharacterCell && (((CharacterCell) cell).getCharacter()!=null)) {
                     if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Zombie) {
@@ -299,7 +301,8 @@ public class duringGame extends StackPane {
                         zombie.setMinHeight(40);
                         GridPane.setConstraints(zombie,   j ,14-i);
                         map.getChildren().add(zombie);
-                        zombie.setVisible(false);
+                        if(!(i < 2 && j < 2)){
+                        zombie.setVisible(false);}
                     } else if (((CharacterCell) Game.map[i][j]).getCharacter() instanceof Hero) {
 //                        Button Hero = new Button( ((CharacterCell) Game.map[i][j]).getCharacter().getName());
                         Button Hero = new Button();
@@ -321,7 +324,8 @@ public class duringGame extends StackPane {
                     empty.setMinHeight(40);
                     GridPane.setConstraints(empty, j ,14-i);
                     map.getChildren().add(empty);
-                    empty.setVisible(false);
+                    if(!(i < 2 && j < 2)){
+                    empty.setVisible(false);}
                 }
             }
         }

@@ -110,6 +110,8 @@ public abstract class Hero extends Character {
             throw new InvalidTargetException("You are only able to attack adjacent targets.");
         if (this.getTarget() instanceof Hero)
             throw new InvalidTargetException("You can only attack zombies.");
+        if (this.getTarget() instanceof Agent && ((Revolutionary)this.getTarget()).isFriendly())
+            throw new InvalidTargetException("You can only attack Friendly.");
         super.attack();
         if (this instanceof Fighter && (this.isSpecialAction()))
             return;

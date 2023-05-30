@@ -6,11 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import model.characters.Explorer;
-import model.characters.Fighter;
-import model.characters.Hero;
-import model.characters.Medic;
-import model.characters.Zombie;
+import model.characters.*;
 import model.collectibles.Supply;
 import model.collectibles.Vaccine;
 import model.world.Cell;
@@ -26,6 +22,8 @@ public class Game {
     public static ArrayList<Hero> heroes = new ArrayList<Hero>();
     public static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
     public static Cell[][] map = new Cell[15][15];
+    public static ArrayList<Agent> agents = new ArrayList<>();
+
 
     public static void loadHeroes(String filePath) throws IOException {
         availableHeroes = new ArrayList<>();
@@ -51,6 +49,11 @@ public class Game {
         for (Zombie zombie : zombies) {
             zombie.attack();
             zombie.setTarget(null);
+        }
+        for (Agent agent : agents) {
+            if (((Revolutionary)agent).isFriendly() == false)
+            agent.attack();
+            agent.setTarget(null);
         }
         spawnNewZombie();
         for (int i = 0; i < map.length; i++)
@@ -92,7 +95,32 @@ public class Game {
                 || (map[x][y] instanceof CollectibleCell) || (map[x][y] instanceof TrapCell));
         z.setLocation(new Point(x, y));
         map[x][y] = new CharacterCell(z);
-        System.out.println("Zombie start: "+x+" "+y);
+//        System.out.println("Zombie start: "+x+" "+y);
+    }
+    public static void spawnRevolutionary() {
+        Revolutionary f = new Revolutionary(true);
+        Revolutionary nf = new Revolutionary(false);
+        agents.add(f);
+        agents.add(nf);
+        int x, y;
+        do {
+            x = ((int) (Math.random() * map.length));
+            y = ((int) (Math.random() * map[x].length));
+        } while ((map[x][y] instanceof CharacterCell && ((CharacterCell) map[x][y]).getCharacter() != null)
+                || (map[x][y] instanceof CollectibleCell) || (map[x][y] instanceof TrapCell));
+        f.setLocation(new Point(x, y));
+        map[x][y] = new CharacterCell(f);
+//        System.out.println("Zombie start: "+x+" "+y);
+
+        int i, j;
+        do {
+            i = ((int) (Math.random() * map.length));
+            j = ((int) (Math.random() * map[x].length));
+        } while ((map[i][j] instanceof CharacterCell && ((CharacterCell) map[i][j]).getCharacter() != null)
+                || (map[i][j] instanceof CollectibleCell) || (map[i][j] instanceof TrapCell));
+        nf.setLocation(new Point(i, j));
+        map[i][j] = new CharacterCell(nf);
+//        System.out.println("Zombie start: "+x+" "+y);
     }
 
     public static boolean checkWin() {
@@ -138,7 +166,7 @@ public class Game {
 
         ((CharacterCell) map[0][0]).setCharacter(h);
         h.setLocation(new Point(0, 0));
-
+        spawnRevolutionary();
         spawnCollectibles();
         for (int i = 0; i < 10; i++) {
             spawnNewZombie();
@@ -157,7 +185,7 @@ public class Game {
             } while ((map[x][y] instanceof CharacterCell && ((CharacterCell) map[x][y]).getCharacter() != null)
                     || (map[x][y] instanceof CollectibleCell) || (map[x][y] instanceof TrapCell));
             map[x][y] = new CollectibleCell(v);
-            System.out.println("Vaccine start: "+x+" "+y);
+//            System.out.println("Vaccine start: "+x+" "+y);
         }
         for (int i = 0; i < 5; i++) {
             Supply v = new Supply();
@@ -168,7 +196,7 @@ public class Game {
             } while ((map[x][y] instanceof CharacterCell && ((CharacterCell) map[x][y]).getCharacter() != null)
                     || (map[x][y] instanceof CollectibleCell) || (map[x][y] instanceof TrapCell));
             map[x][y] = new CollectibleCell(v);
-            System.out.println("Supply start: "+x+" "+y);
+//            System.out.println("Supply start: "+x+" "+y);
         }
     }
 
@@ -181,7 +209,7 @@ public class Game {
             } while ((map[x][y] instanceof CharacterCell && ((CharacterCell) map[x][y]).getCharacter() != null)
                     || (map[x][y] instanceof CollectibleCell) || (map[x][y] instanceof TrapCell));
             map[x][y] = new TrapCell();
-            System.out.println("Trap start: "+x+" "+y);
+//            System.out.println("Trap start: "+x+" "+y);
         }
     }
 }

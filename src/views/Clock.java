@@ -9,13 +9,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Clock extends Application {
-static Label hours;
-static Label minutes;
+static Label hours = new Label();
+static Label minutes = new Label();
  int h = 23;
 int m = 24;
-static Button timechanger;
-static Label indicator;
-static StackPane clock;
+static Button timechanger = new Button();
+static Label indicator = new Label();
+static StackPane clock = new StackPane();
 Stage window = new Stage();
  Scene layout;
     public static void main(String[] args) {
@@ -60,8 +60,8 @@ Stage window = new Stage();
 
         layout = new Scene(clock,1000,1000);
 
-        primaryStage.setScene(layout);
-        primaryStage.show();
+        window.setScene(layout);
+        window.show();
 
     }
 }
